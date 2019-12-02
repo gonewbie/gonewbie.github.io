@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>jekyll을 이용해서 github 블로그를 만들어보자 · gonewbie&#39;s Studio</title>
+    <title>gonewbie&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >gonewbie&#39;s notepad</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">jekyll을 이용해서 github 블로그를 만들어보자</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>gonewbie's notepad</a>
 </header>
@@ -231,75 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            jekyll을 이용해서 github 블로그를 만들어보자
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "jekyll">jekyll</a>
-    
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "github">github</a>
-    
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "blog">blog</a>
-    
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "portfolio">portfolio</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">394</span>Reading time: <span class="post-count reading-time">2 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/30</span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -400,89 +338,47 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>포트폴리오 페이지 겸으로 깃허브 페이지를 만들고자 검색하던 도중, github 자체적으로 jekyll을 이용하여 정적 페이지를 만드는 것이 가능하다는 것을 알고 이를 적용하기 위한 과정을 적어보는 게시글이다.</p>
-<h2 id="Jekyll-적용해보기"><a href="#Jekyll-적용해보기" class="headerlink" title="Jekyll 적용해보기"></a>Jekyll 적용해보기</h2><p>기본적인 설치법은 jekyll 공식 페이지를 통해 확인할 수 있다.</p>
-<blockquote>
-<p><a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll 설치법</a></p>
-</blockquote>
-<p>macOS의 경우 기본적으로 ruby가 설치되어 있지만, windows나 linux와 같은 OS에서는 ruby를 별도로 설치하여야 정상적으로 cli 기능을 이용할 수 있다.<br>해당 OS에 맞게 루비를 설치하고 gem 명령어를 통해 jekyll과 bundler를 설치할 수 있다. 잠시 후, 설치가 완료되면 cli를 통해 jekyll을 사용할 수 있다.</p>
-<blockquote>
-<p>~$ gem install bundler jekyll</p>
-</blockquote>
-<p>아래와 같은 명령어를 이용하면 기본적으로 설정된 방식으로 my-blog-pages 경로를 생성하여 jekyll이 가동할 수 있도록 한다.<br>리액트 등을 해보셨거나 관심이 있으신 분들이라면 create-react-app cli를 통해 기본적인 react 프로젝트를 생성하는 것과 비슷하다고 볼 수 있다.</p>
-<blockquote>
-<p>~$ jekyll new my-blog-pages</p>
-</blockquote>
-<p>정상적으로 실행이 됐는지 확인하기 위해 다음의 명령어를 입력하여서 동작을 확인할 수 있다. 문제가 없을 경우, <strong><a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></strong>를 통해 접속하면 Welcome to Jekyll!이라는 표시의 기본 사이트가 생성된 것을 알 수 있다.</p>
-<blockquote>
-<p>~$ bundle exec jekyll serve</p>
-</blockquote>
-<h2 id="jekyll에-옷을-입혀보자"><a href="#jekyll에-옷을-입혀보자" class="headerlink" title="jekyll에 옷을 입혀보자!"></a>jekyll에 옷을 입혀보자!</h2><p>휑한 상태의 jekyll을 보고 있자니 뭔가 아쉽다. 그럴 때에는 theme를 적용하여서 휑한 jekyll을 좀 더 꾸며보자.</p>
-<p>jekyll theme 관련 사이트는 크게 2가지가 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;jekyllthemes.io</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;jekyllthemes.org</span></pre></td></tr></table></figure>
-
-<p>위 두 사이트에서 테마를 받아서 적용하면 된다. <strong><a href="https://jekyllthemes.io" target="_blank" rel="noopener">https://jekyllthemes.io</a></strong> 페이지의 경우, 유료 테마와 무료 테마가 있으므로 경제적으로 부담이 되시면 무료 테마에서 선택하여 적용할 수 있다.<br>이 포스트의 경우 <strong><a href="https://jekyllthemes.io" target="_blank" rel="noopener">https://jekyllthemes.io</a></strong> 페이지를 통한 theme 적용에 대해 적어보도록 하겠다.</p>
-<p>맘에 드는 테마를 선택하고 주황색의 <strong>Get … on Github</strong> 버튼을 클릭하면 해당 테마에 대한 깃허브 주소가 나온다.</p>
-<p>해당 사이트로 이동하여 github 주소를 파악하고 해당 깃허브를 클론하여 테마를 가져온다.</p>
-<blockquote>
-<p>git clone <a href="http://github.com/**{User}**/**{Repository}**.git" target="_blank" rel="noopener">http://github.com/**{User}**/**{Repository}**.git</a></p>
-</blockquote>
-<p>해당 프로젝트를 복사하고 기본적인 적용방법은 해당 프로젝트의 ReadMe.md를 이용하면 사용할 수 있다.</p>
-<p>기본적으로 <strong>_config.yml</strong>을 통해 기본적인 설정을 변경하면 동작하는 것도 있고, 좀 더 복잡한 테마도 있을 것이다. 해당 메뉴얼을 따라 실행하고 명령어를 수행하면 로컬에서 동작을 확인할 수 있다.</p>
-<h2 id="원격-서버에-적용해보기"><a href="#원격-서버에-적용해보기" class="headerlink" title="원격 서버에 적용해보기"></a>원격 서버에 적용해보기</h2><p>이제 실제 github에 Jekyll을 적용해보는 문제만이 남았다.</p>
-<p>우선적으로 github에 로그인하여 Repository를 생성해야 한다.<br><strong>Repositories</strong> 탭에서 <strong>new</strong> 버튼을 눌러 새 repository를 만든다.</p>
-<p><strong>Repository name</strong>을 설정할 때는 다음과 같은 형식으로 해야 한다.</p>
-<blockquote>
-<p><strong>{Github 아이디}</strong>.github.io</p>
-</blockquote>
-<p>위와 같이 레포지토리를 만들고, 기존에 생성해놓은 jekyll 파일을 github에 푸시하면 해당 블로그가 잠시 후 적용된 것을 확인할 수 있다.</p>
-
-    </article>
-    <!-- license  -->
+            <main class="main index-page">
     
-        <div class="license-wrapper">
-            <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
-            <p>link：<a href="https://gonewbie.github.io/2019/08/30/making-github-blog-pages-with-jekyll/">https://gonewbie.github.io/2019/08/30/making-github-blog-pages-with-jekyll/</a>
-            <p>create date：<a href="https://gonewbie.github.io/2019/08/30/making-github-blog-pages-with-jekyll/">August 30th 2019, 12:50:07 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2019/08/30/making-github-blog-pages-with-jekyll/">December 2nd 2019, 11:51:32 pm</a>
-            <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/13/Today-I-Learned-191013/" >
+            
+                <span>TIL(Today I Learned)</span>
+        </a>
+        <div class="abstract-content">
+            기본 자바스크립트에 강타입의 장점과 컴파일 타임의 오류를 잡아낼 수 있는 등의 장점을 가진 Typescript에 대해 알아보고 이를 활용한 웹 Backend 페이지를 구현해보고자 한다.
+Typescript와 ES6+의 특성을 충분히 활용한 백엔드 프레임워크로는 NestJS가 있었고 이를 활용하여 RESTful API를 구현하고자 한다.
+우선적인 목표는 NestJS CLI를 통해 프로젝트를 생성하고 TypeORM을 활용하여 DB와 연결하는 작업을 진행하고, Real World 프로젝트의 NestJS 버전 코드를 직접보면서 따라하...
         </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "typescript">typescript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "nestjs">nestjs</a>
+    
+        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "typeorm">typeorm</a>
+    
+        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "TIL">TIL</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/09/06/mongodb-local-seoul-2019/" title= "mongoDB.local seoul 2019에 참가">
-                    <div class="nextTitle">mongoDB.local seoul 2019에 참가</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/08/26/mariaDB-root-password-settings-at-first/" title= "macOS에서 mariaDB 설정">
-                    <div class="prevTitle">macOS에서 mariaDB 설정</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -553,24 +449,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jekyll-적용해보기"><span class="toc-number">1.</span> <span class="toc-text">Jekyll 적용해보기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jekyll에-옷을-입혀보자"><span class="toc-number">2.</span> <span class="toc-text">jekyll에 옷을 입혀보자!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#원격-서버에-적용해보기"><span class="toc-number">3.</span> <span class="toc-text">원격 서버에 적용해보기</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -862,8 +740,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
