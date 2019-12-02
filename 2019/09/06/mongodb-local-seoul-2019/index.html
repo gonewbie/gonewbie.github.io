@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="gonewbie">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="gonewbie">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>mongoDB.local seoul 2019에 참가 · gonewbie&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >gonewbie&#39;s notepad</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">mongoDB.local seoul 2019에 참가</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>gonewbie's notepad</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            mongoDB.local seoul 2019에 참가
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "jekyll github blog portfolio">jekyll github blog portfolio</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.5k</span>Reading time: <span class="post-count reading-time">9 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/09/06</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>2019년 09월 06일 진행된 Mongo DB.local Seoul 2019 행사에 참석하고 해당 프레젠테이션을 요약, 정리해보았다.</p>
+<hr>
+<h2 id="09-20-09-25-인사말"><a href="#09-20-09-25-인사말" class="headerlink" title="09:20 - 09:25 인사말"></a>09:20 - 09:25 인사말</h2><p>신재성 MongoDB Korea 지사장</p>
+<ul>
+<li>무중단 서비스 구현 방식에 대한 소개 예정</li>
+</ul>
+<hr>
+<h2 id="09-25-09-40-데이터를-사용하고-저장하는데-있어-최적의-데이터베이스-MongoDB"><a href="#09-25-09-40-데이터를-사용하고-저장하는데-있어-최적의-데이터베이스-MongoDB" class="headerlink" title="09:25 - 09:40 데이터를 사용하고, 저장하는데 있어 최적의 데이터베이스 MongoDB"></a>09:25 - 09:40 데이터를 사용하고, 저장하는데 있어 최적의 데이터베이스 MongoDB</h2><p>Alan Chhabra, MongoDB 글로벌 파트너 APAC 지역 부사장</p>
+<ul>
+<li><p>개발자를 위한 DB인 MongoDB<br>(Stackoverflow 개발자 설문 조사 1위)</p>
+</li>
+<li><p>플랫폼 전환(클라우드로의)의 초기 단계에 발맞춰 대응 -&gt; MongoDB Atlas(클라우드 DB)</p>
+</li>
+<li><dl><dt>MongoDB Atlas 소개<br>: 2016년 AWS 4지역</dt><dd>현재 AWS, GCP, Azure 전서버에서 제공</dd></dl></li>
+</ul>
+<p>MongoDB에 대한 개발자 요구사항을 만족하고자 함</p>
+<ul>
+<li><strong>뛰어난 생산성</strong>과 신속한 이동성<ul>
+<li>애자일 인프라의 <strong>확장성</strong></li>
+<li><strong>대규모 다형성 데이터</strong> 손쉽게 처리</li>
+<li>원하는 컴퓨팅 환경을 <strong>자유롭게</strong> 아용</li>
+<li><strong>점차 높아지는</strong> 성능 및 안정성에 대한 <strong>기대치 충족</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="09-40-10-45-MongoDB-신제품-및-신기능-소개"><a href="#09-40-10-45-MongoDB-신제품-및-신기능-소개" class="headerlink" title="09:40-10:45 MongoDB 신제품 및 신기능 소개"></a>09:40-10:45 MongoDB 신제품 및 신기능 소개</h2><p>Keynote Session</p>
+<p>현대 애플리케이션</p>
+<ul>
+<li><strong>개발자 생산성</strong></li>
+<li><strong>인프라 민칩성</strong></li>
+<li><strong>빅데이터, 다형 테이터</strong></li>
+<li><strong>성급하고 요구사항 많은 사용자</strong></li>
+</ul>
+<p>해당 조건을 모두 수용하는 MongoDB</p>
+<ul>
+<li>문서 모델: 자연스러운 모델링, 자연스러운 쿼리, 동적 스키마</li>
+<li>분산 시스템: 높은 가용성, 확장성, 워크로드 분리, 지리적-배치</li>
+<li>트랜잭션<ul>
+<li>Replica Set Transaction<br>: RDB ACID유사(익숙), 대화형, 고성능, 분산 트랜잭션은 내부에서 알아서 처리</li>
+<li>Distributed Transaction<br>: 대화형, ACID, 커밋전 기록 열람 가능, …</li>
+</ul>
+</li>
+</ul>
+<dl><dt>현대 운영</dt><dd>가용성, 모니터링 &amp; 경보, 백업, 셀프 서비스, APIs</dd></dl><ul>
+<li>MongoDB Ops Manager : On-premise tools</li>
+<li>MongoDb Atlas: Public Cloud DB</li>
+</ul>
+<h3 id="Ops-Manager-features"><a href="#Ops-Manager-features" class="headerlink" title="Ops Manager features"></a>Ops Manager features</h3><ul>
+<li>백업: 적시 복원, 쿼리 가능한 스냅샷, 아키텍처 간소화</li>
+<li>Kubernetes 배포와 함께 작동</li>
+</ul>
+<h3 id="Atlas-features"><a href="#Atlas-features" class="headerlink" title="Atlas features"></a>Atlas features</h3><ul>
+<li>클라이언트측 필드 수준 암호화<br>: 개발자에게 투명, 유연한 동적 키 선택..</li>
+</ul>
+<dl><dt>Live Feature showing<br>: Full text search<br>Atlas 에서 제공하는 인텍스 수행을 통해 GUI로 설정하여 어플리케이션에 적용 가능<br>: MongoDB Charts GA(generally Available)<br>GUI로 조절 가능, 보안/비보안 설정 가능, 사용자 구별 필터 등을 설정 가능</dt><dd>Data Lake<br>AWS S3에 json, gson, csv, tsv 등 데이터 등을 연결해서 쿼리할 수 있는 기능</dd></dl><ul>
+<li>Realm (모바일 DB)와의 통합</li>
+</ul>
+<hr>
+<h2 id="11-00-11-30-분산-트랜잭션-큰힘에는-큰-책임이-따른다"><a href="#11-00-11-30-분산-트랜잭션-큰힘에는-큰-책임이-따른다" class="headerlink" title="11:00 - 11:30 분산 트랜잭션 - 큰힘에는 큰 책임이 따른다"></a>11:00 - 11:30 분산 트랜잭션 - 큰힘에는 큰 책임이 따른다</h2><h3 id="ACID-Transaction"><a href="#ACID-Transaction" class="headerlink" title="ACID, Transaction"></a>ACID, Transaction</h3><ul>
+<li>자체적인 코드 구현보다 MongoDB 트랜잭션의 2배 이상의 성능 보유</li>
+</ul>
+<p>sharding된 DB에서 성능을 내기 위해서는</p>
+<ul>
+<li>데이터를 한곳에 모아서(co-location)</li>
+<li>하나의 shard에만 write 하기</li>
+</ul>
+<h3 id="Read-CONCERN-READ-ISOLATION"><a href="#Read-CONCERN-READ-ISOLATION" class="headerlink" title="Read CONCERN = READ ISOLATION"></a>Read CONCERN = READ ISOLATION</h3><p>Options: Local, Majority, <strong>SNAPSHOT, LINEARIZABLE</strong>(new features)</p>
+<h3 id="Locking"><a href="#Locking" class="headerlink" title="Locking"></a>Locking</h3><p>Locking 획득을 위한 시간 간격을 exponential back off(지수적 증가)<br>read -&gt; Locking을 확득하지 않음</p>
+<hr>
+<h2 id="11-30-12-00-MongoDB-in-Banksalad"><a href="#11-30-12-00-MongoDB-in-Banksalad" class="headerlink" title="11:30 - 12:00 MongoDB in Banksalad"></a>11:30 - 12:00 MongoDB in Banksalad</h2><p>뱅크샐러드에서 MongoDB 사용 배경<br>이전 2번의 실패..<br>세번째 도전 (2017)</p>
+<p><strong>고민 1. 표현력 (RDB)</strong><br>가계부 데이터 예시 - 내역</p>
+<ul>
+<li>이체 (계좌 간 돈이동)</li>
+<li>지출 (계좌에서 돈이 인출)</li>
+<li>수입 (계좌로 돈이 입금)<br>내역 transaction 데이터가 내부적으로 지출, 수입, 이체(계좌 간 돈 이동)로 나뉘고 각각 형태가 상이한 경우가 빈번</li>
+</ul>
+<p><img src="https://gonewbie.github.io/img/mongodb-local/presentation5-1.png" alt="Backsalad 사진">;</p>
+<p>RDB -&gt; NoSQL(MongoDB)</p>
+<ul>
+<li>이전 2번(‘15, ‘16)의 실패 이유 분석<br>사용자를 잘 아는가? -&gt; 사용자를 어떻게 하면 알수 있는가?</li>
+</ul>
+<blockquote>
+<p>개인이 학습한다고 해서 제품이나 서비스를 고객에게 전달하는 방식에서 변화가 있는 것도 아니다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>전통적인 조직</th>
+<th>학습하는 조직</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>확실성/예측성</td>
+<td>높음</td>
+<td>낮음</td>
+</tr>
+<tr>
+<td>목표 달성 방안</td>
+<td>명확</td>
+<td>불투명</td>
+</tr>
+<tr>
+<td>일하는 방식</td>
+<td>분업</td>
+<td>협업</td>
+</tr>
+<tr>
+<td>활동</td>
+<td>계획,역할,예산,일정</td>
+<td>실험,측정,방향,투자</td>
+</tr>
+</tbody></table>
+<h3 id="개발-전략"><a href="#개발-전략" class="headerlink" title="개발 전략"></a>개발 전략</h3><blockquote>
+<p>“어떻게 하면 방향을 조절할 수 있는가?”<br><br>“이 방향이 잘못된 방향이라면 어떻게 하면 이를 더 빨리 알 수 있을까?”</p>
+</blockquote>
+<p><strong>고민 2. 생산성</strong></p>
+<p>“우리가 지금 하는 일이 우리의 실헙(학습)을 3달 미룰 만큼 <strong><em>가치있는</em></strong> 일인가?”</p>
+<p><strong>고민 2. 생산성(개발)</strong></p>
+<ul>
+<li>Python 환경 활용성</li>
+<li>해당 기술 생태계의 성장 가능성</li>
+<li>개발 시 문제 해결에 도움되는 자료와 커뮤니티의 성숙도</li>
+</ul>
+<p>사용자를 이해하지 못한 상태에서 이후 변경에 있어서 용이성이 있는 DB를 찾아보자</p>
+<p><strong>고민 2. 생산성(운영)</strong></p>
+<ul>
+<li>회사 내 DB 전문가 부재</li>
+<li>앞으로도 채용 확률 낮음</li>
+<li>내부 인원을 DB 전문가로 키울수도 없음</li>
+<li>DB 선택 기준<ul>
+<li>DB Instatnce 관리</li>
+<li>확장에 대한 대응(scale-up, scale-out)</li>
+<li>문제 해결에 대한 도움</li>
+<li>현재 운영 인프라 지원 여부(AWS)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>MongoDB가 사실상 유일한 후보</p>
+</blockquote>
+<p>Backsalad에서 사용 예정인 mongoDB</p>
+<ul>
+<li>MongoDB Change Streams</li>
+<li>MongoDB Stitch (마이크로서비스 간의 정합성)</li>
+<li>MongoDB Atlas Data Lake</li>
+</ul>
+<p><strong>요약</strong></p>
+<blockquote>
+<p>우리가 다루는 문제</p>
+<ul>
+<li>불확실성이 큰 문제 =&gt; 풍부한 표현력(의 데이터) -&gt; document 타입</li>
+<li>비즈니스 가설의 빠른 검증이 필요 =&gt; 개발 및 운영의 생산성</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="13-00-13-30-MongoDB-Atlas-Data-Lake-기술-심층-분석"><a href="#13-00-13-30-MongoDB-Atlas-Data-Lake-기술-심층-분석" class="headerlink" title="13:00 - 13:30 MongoDB Atlas Data Lake 기술 심층 분석"></a>13:00 - 13:30 MongoDB Atlas Data Lake 기술 심층 분석</h1><p>Atlas Data Lake의 필요성</p>
+<ul>
+<li>기업들의 엄청난 데이터 보유</li>
+<li>클라우드 스토리지에 장기 데이터를 보관하는데 비용효과적</li>
+<li>운영이 까다로움</li>
+</ul>
+<p>기술 분석?</p>
+<ul>
+<li>MongoDB의 와이어 프로토콜 사용</li>
+<li>MongoDB Query Language(MQL) 지원</li>
+<li>MongoDB 보안 모델</li>
+<li>고객 데이터 보안</li>
+<li>확장 가능한 처리</li>
+<li>데이터 형식 (Apache avro, …, bson, json, csv, tsv, …)</li>
+</ul>
+<h2 id="Data-Lake-생성-방법"><a href="#Data-Lake-생성-방법" class="headerlink" title="Data Lake 생성 방법"></a>Data Lake 생성 방법</h2><ul>
+<li>Atlas 클러스터</li>
+<li>AWS에서 한 개 이상의 S3 버킷</li>
+<li>AWS CLI로 접속 가능한 IAM role 필요</li>
+</ul>
+<h3 id="MQL-gt-분산-MQL"><a href="#MQL-gt-분산-MQL" class="headerlink" title="MQL -&gt;  분산 MQL"></a>MQL -&gt;  분산 MQL</h3><ul>
+<li>쿼리 <strong>구문 분석</strong></li>
+<li><strong>병렬 방식</strong> 처리</li>
+<li>워크로드 <strong>분산</strong></li>
+</ul>
+<p>링크 참고: <a href="https://docs.atlas.mongodb.com/reference/data-lake-configuration" target="_blank" rel="noopener">data-lake-configuration Docs</a></p>
+<hr>
+<h1 id="13-30-14-00-사용자-경험-및-MongoDB-Support-Portal-활용-Line"><a href="#13-30-14-00-사용자-경험-및-MongoDB-Support-Portal-활용-Line" class="headerlink" title="13:30-14:00 사용자 경험 및 MongoDB Support Portal 활용[Line]"></a>13:30-14:00 사용자 경험 및 MongoDB Support Portal 활용[Line]</h1><p>Agenda</p>
+<ul>
+<li>MongoDB In Line Corp</li>
+<li>Surpport Portal 활용</li>
+<li></li>
+</ul>
+<h2 id="MongoDB-in-Line-Corp"><a href="#MongoDB-in-Line-Corp" class="headerlink" title="MongoDB in Line Corp"></a>MongoDB in Line Corp</h2><p>[사진1-사용 예]</p>
+<p>[사진2-]</p>
+<p>[사진3-구성]</p>
+<h2 id="Support-Portal-활용"><a href="#Support-Portal-활용" class="headerlink" title="Support Portal 활용"></a>Support Portal 활용</h2><p>계약 전: jira.mongodb.org<br>계약 후: support.mongodb.com</p>
+<p> PSA -&gt; PSS</p>
+<p> [사진 정리하기]</p>
+<p><a href="https://docs.ncloud.com/ko/database/database-10-3.html" target="_blank" rel="noopener">참고(개인검색)</a></p>
+<hr>
+<h1 id="14-00-14-45-Aggregation-Pipeline-Power-MongoDB-4-2-파이프-라인-쿼리-업데이트-및-구체화된-뷰-소개"><a href="#14-00-14-45-Aggregation-Pipeline-Power-MongoDB-4-2-파이프-라인-쿼리-업데이트-및-구체화된-뷰-소개" class="headerlink" title="14:00-14:45 Aggregation Pipeline Power++: MongoDB 4.2 파이프 라인 쿼리, 업데이트 및 구체화된 뷰 소개"></a>14:00-14:45 Aggregation Pipeline Power++: MongoDB 4.2 파이프 라인 쿼리, 업데이트 및 구체화된 뷰 소개</h1><h2 id="Aggregation-Pipeline-소개"><a href="#Aggregation-Pipeline-소개" class="headerlink" title="Aggregation Pipeline 소개"></a>Aggregation Pipeline 소개</h2><p>Stream Stage &lt;-&gt; Blocking Stage<br>쿼리 튜닝 방식 차이</p>
+<h2 id="Update-에서-집계-파이프라인-사용"><a href="#Update-에서-집계-파이프라인-사용" class="headerlink" title="Update 에서 집계 파이프라인 사용"></a>Update 에서 집계 파이프라인 사용</h2><p>update 구문에서 []로 aggregation pipeline 적용 가능 (mongoDB 4.2 이상)</p>
+<h2 id="새로운-merge-스테이지"><a href="#새로운-merge-스테이지" class="headerlink" title="새로운 $merge 스테이지"></a>새로운 $merge 스테이지</h2><p>$merge 적용 예시</p>
+<p>참고) Materialized View: View를 통해 직접 콜렉션에 접속하기보다 업데이트 된거만 자동으로 맞춰주는 view</p>
+<hr>
+<h1 id="15-00-15-40-MongoDB-Charts로-데이터-사파리를-시작하세요"><a href="#15-00-15-40-MongoDB-Charts로-데이터-사파리를-시작하세요" class="headerlink" title="15:00-15:40 MongoDB Charts로 데이터 사파리를 시작하세요"></a>15:00-15:40 MongoDB Charts로 데이터 사파리를 시작하세요</h1><p><a href="https://docs.atlas.mongodb.com/sample-data/sample-mflix/#sample-mflix-comments" target="_blank" rel="noopener">영화 Datasets</a></p>
+<p>MongoDB Atlas Charts Demonstration…</p>
+<hr>
+<h1 id="15-40-16-15-속도의-속도에-의한-속도를-위한-몽고DB-네이버-컨텐츠-검색과-몽고DB-Naver"><a href="#15-40-16-15-속도의-속도에-의한-속도를-위한-몽고DB-네이버-컨텐츠-검색과-몽고DB-Naver" class="headerlink" title="15:40-16:15 속도의, 속도에 의한, 속도를 위한 몽고DB(네이버 컨텐츠 검색과 몽고DB)[Naver]"></a>15:40-16:15 속도의, 속도에 의한, 속도를 위한 몽고DB(네이버 컨텐츠 검색과 몽고DB)[Naver]</h1><h2 id="1-네이버-검색에서-몽고-DB"><a href="#1-네이버-검색에서-몽고-DB" class="headerlink" title="1. 네이버 검색에서 몽고 DB"></a>1. 네이버 검색에서 몽고 DB</h2><h3 id="1-1-네이버-컨텐츠-검색"><a href="#1-1-네이버-컨텐츠-검색" class="headerlink" title="1.1 네이버 컨텐츠 검색"></a>1.1 네이버 컨텐츠 검색</h3><p>: 인물, 영화, 방송, 날씨, 스포츠등 다양한 주제의 검색 쿼리 대응</p>
+<h3 id="1-2-네이버-컨텐츠검색과-몽고-DB"><a href="#1-2-네이버-컨텐츠검색과-몽고-DB" class="headerlink" title="1.2 네이버 컨텐츠검색과 몽고 DB"></a>1.2 네이버 컨텐츠검색과 몽고 DB</h3><p><img src="https://gonewbie.github.io/img/mongodb-local/presentation11-1.png" alt="네이버 Chicago 구조"></p>
+<h2 id="2-Why-mongoDB"><a href="#2-Why-mongoDB" class="headerlink" title="2. Why mongoDB"></a>2. Why mongoDB</h2><p><strong>FAST</strong> + <strong>SCALABLE</strong> + HIGHLY AVAILABLE = <strong>MongoDB</strong></p>
+<ul>
+<li>통합검색 1초 룰, 평균 응답속도 10ms 미만.</li>
+<li>일 평균 4~5억건 이상 서버 호출, 초당 6천건 수준, 몽고 DB는 초당 만건 이상.</li>
+</ul>
+<h2 id="3-몽고DB-속도-올리기-Index"><a href="#3-몽고DB-속도-올리기-Index" class="headerlink" title="3. 몽고DB 속도 올리기 - Index"></a>3. 몽고DB 속도 올리기 - Index</h2><h3 id="3-1-MongoDB-Index-이해하기"><a href="#3-1-MongoDB-Index-이해하기" class="headerlink" title="3.1 MongoDB Index 이해하기"></a>3.1 MongoDB Index 이해하기</h3><ul>
+<li>컬렉션당 최대 64개 인덱스만 생성 가능.</li>
+<li><em>너무 많은 인덱스</em>를 추가하면, side effects 발생<ul>
+<li><strong>Frequent Swap</strong>.</li>
+<li>Write performance 감소.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-Index-prefix를-사용하자"><a href="#3-2-Index-prefix를-사용하자" class="headerlink" title="3-2 Index prefix를 사용하자"></a>3-2 Index prefix를 사용하자</h3><p>Index prefixes are the <strong>beginning subsets</strong> of index fields.</p>
+<p><img src="https://gonewbie.github.io/img/mongodb-local/presentation11-2.png" alt="Index Prefix 커버 예시"></p>
+<p>인덱스 생성 시, 적용된 순서 및 그 하위의 순서로 검색 시 인덱스를 통한 검색</p>
+<p><img src="https://gonewbie.github.io/img/mongodb-local/presentation11-3.png" alt="Index Prefix 커버 불가 예시"></p>
+<p>인덱스가 적용되지 않는 경우는 위와 같음</p>
+<h3 id="3-3-멀티-소팅"><a href="#3-3-멀티-소팅" class="headerlink" title="3-3 멀티 소팅"></a>3-3 멀티 소팅</h3><p><img src="https://gonewbie.github.io/img/mongodb-local/presentation11-4.png" alt="소팅 시 주의 사항"></p>
+<h2 id="4-몽고DB-속도-올리기-Index"><a href="#4-몽고DB-속도-올리기-Index" class="headerlink" title="4. 몽고DB 속도 올리기 - ^Index"></a>4. 몽고DB 속도 올리기 - ^Index</h2><h3 id="4-1-하나의-컬렉션을-여러-컬렉션으로-나누자"><a href="#4-1-하나의-컬렉션을-여러-컬렉션으로-나누자" class="headerlink" title="4-1 하나의 컬렉션을 여러 컬렉션으로 나누자"></a>4-1 하나의 컬렉션을 여러 컬렉션으로 나누자</h3><ul>
+<li>하나의 컬렉션이 <strong>너무 많은 문서</strong>를 가질 경우, <strong>인덱스 사이즈가 증가</strong>하고 인덱스 필드의 <strong>cardinality가 낮아질</strong> 가능성이 높음</li>
+<li>이는 lookup performance에 악영향을 미치고 <strong>slow query</strong> 유발</li>
+<li>너무 많은 문서가 있는 컬렉션은 <strong>반드시 나눠</strong> query processor가 <strong>중복되는 인덱스 key</strong>를 look up하는 것을 방지해야 함</li>
+</ul>
+<h3 id="4-2-쓰레드를-이용해-대량의-Document를-upsert"><a href="#4-2-쓰레드를-이용해-대량의-Document를-upsert" class="headerlink" title="4-2 쓰레드를 이용해 대량의 Document를 upsert"></a>4-2 쓰레드를 이용해 대량의 Document를 upsert</h3><ul>
+<li>여러 개의 thread에서 Bulk Operation으로 많은 document를 한번에 write</li>
+<li><strong>document transaction</strong>과 a relation은 미지원</li>
+<li>Writing time을 획기적으로 개선 가능 <blockquote>
+<p>속도가 중요하고 transaction이 필요없으면 thread 나눠서 write하는거도 방법</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-3-MongoDB-4-0으로-업그레이드"><a href="#4-3-MongoDB-4-0으로-업그레이드" class="headerlink" title="4-3 MongoDB 4.0으로 업그레이드"></a>4-3 MongoDB 4.0으로 업그레이드</h3><ul>
+<li>몽고DB <strong>4.0 이전</strong>에는 <strong>non-blocking secondary read</strong> 기능이 없었음<ul>
+<li>Write가 primary에 반영되고 secondary들에 다 전달될 떄까지 secondary는 <strong>read를 block</strong>해서 데이터가 <strong>잘못된 순서</strong>로 read되는 것을 방지</li>
+<li><strong>주기적으로</strong> 높은 <strong>global lock acquire count</strong>가 생기고 read 성능 저하</li>
+</ul>
+</li>
+<li><strong>non-blocking secondary read</strong><ul>
+<li>몽고DB 4.0부터 data timestamp와 consistent snapshot을 이용해 이 이슈를 해결</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-미운-Index"><a href="#5-미운-Index" class="headerlink" title="5. 미운 Index"></a>5. 미운 Index</h2><h3 id="5-1-Slow-Queries…"><a href="#5-1-Slow-Queries…" class="headerlink" title="5-1 Slow Queries…"></a>5-1 Slow Queries…</h3><p>네이버의 API 호출 속도 기준인 10ms에 못미치는 쿼리 발생</p>
+<h3 id="5-2-Explain-결과"><a href="#5-2-Explain-결과" class="headerlink" title="5-2 Explain 결과"></a>5-2 Explain 결과</h3><p><img src="https://gonewbie.github.io/img/mongodb-local/presentation11-5.png" alt="explain 결과"></p>
+<p>참고) key examined &gt; 10000 이면 100ms이상 걸림</p>
+<h3 id="5-3-이게-최선일까"><a href="#5-3-이게-최선일까" class="headerlink" title="5-3 이게 최선일까?"></a>5-3 이게 최선일까?</h3><p>전체 9만 개의 문서에서 100여개의 검색 결과를 찾기 위해 수 만개의 문서를 탐색.<br>사전에 정의한 인덱스에 따라 탐색하면 문제가 없어야 함</p>
+<h3 id="5-4-인공지능-보단-인간지능"><a href="#5-4-인공지능-보단-인간지능" class="headerlink" title="5-4 인공지능 보단 인간지능"></a>5-4 인공지능 보단 인간지능</h3><ol>
+<li><p>각 쿼리별 새로 정의한 인덱스 생성</p>
+<p> <strong>예상 시나리오</strong>: 새로운 Index를 타면 해당 인덱스를 타서 검색 시간이 개선될 것</p>
+<p> <strong>실제</strong>: 해당 인덱스를 타지 않음!</p>
+</li>
+<li><p><strong>hint</strong>를 이용하여 강제로 인덱스 태우기</p>
+<p> <strong>강제로</strong> 인덱스를 태우니 검색 시간 단축</p>
+</li>
+</ol>
+<h3 id="5-5-Index가-미운짓을-하는-이유"><a href="#5-5-Index가-미운짓을-하는-이유" class="headerlink" title="5-5 Index가 미운짓을 하는 이유"></a>5-5 Index가 미운짓을 하는 이유</h3><p><strong>왜 자꾸 엉뚱한 인덱스를 타는 걸까?</strong> 의문</p>
+<ul>
+<li>몽고 DB가 <strong>최선의 쿼리 플랜을 찾는 방법</strong>은?</li>
+</ul>
+<p>답은 <strong>Query Planner</strong>에 있음</p>
+<ul>
+<li>이전에 실행한 쿼리 플랜을 <em>캐싱</em></li>
+<li>캐싱된 쿼리 플랜이 없을 경우, 가능한 모든 쿼리 플랜들을 조회하여 첫 <strong>batch(101개)</strong>를 <strong>가장 좋은 성능</strong>으로 가져오는 플랜을 <strong>캐싱</strong></li>
+<li>성능이 너무 안좋아지면 위 작업 반복</li>
+</ul>
+<ul>
+<li>캐싱의 사용 조건은 같은 <strong>Query Shape</strong>의 경우</li>
+</ul>
+<p><img src="https://gonewbie.github.io/img/mongodb-local/presentation11-6.png" alt="Query Planner Flowchart"></p>
+<blockquote>
+<p>Query Planner가 count() 쿼리의 <strong>Query Shape</strong>로 첫번째 batch를 가져오는 성능을 테스트를 했을 때 엉뚱한 인덱스가 제일 좋은 성능을 보인 것이 문제</p>
+</blockquote>
+<ul>
+<li>만일 <strong>동점</strong>의 경우, <strong>in-memory sort를 하지 않아도 되는</strong> 쿼리 플랜 선택<br>(몽고DB는 32MB가 넘는 결과값을에 대해선 in-memory sort가 불가능하므로)</li>
+</ul>
+<p><img src="https://gonewbie.github.io/img/mongodb-local/presentation11-7.png" alt="솔로몬의 선택"></p>
+<hr>
+<h1 id="16-15-16-50-MongoDB-Data-모델에-대한-전체적인-방법론"><a href="#16-15-16-50-MongoDB-Data-모델에-대한-전체적인-방법론" class="headerlink" title="16:15-16:50 MongoDB Data 모델에 대한 전체적인 방법론"></a>16:15-16:50 MongoDB Data 모델에 대한 전체적인 방법론</h1><h2 id="Goals-of-the-presentation"><a href="#Goals-of-the-presentation" class="headerlink" title="Goals of the presentation"></a>Goals of the presentation</h2><ul>
+<li>문서 vs 테이블</li>
+<li>방법론</li>
+<li>스키마 패턴</li>
+</ul>
+<h2 id="문서-document"><a href="#문서-document" class="headerlink" title="문서 (document)"></a>문서 (document)</h2><ul>
+<li>다형성 (polymorphism): 문서마다 다른 필드가 포함될 수 있음</li>
+<li>배열 (Array): 일대다 표현, 별도의 인덱싱쿼리</li>
+<li>서브문서</li>
+<li>json</li>
+</ul>
+<p>방법론</p>
+<h2 id="1-워크로드-분석-주요-factor-사이즈-파악-정량화-등-필요"><a href="#1-워크로드-분석-주요-factor-사이즈-파악-정량화-등-필요" class="headerlink" title="1. 워크로드 분석(주요 factor 사이즈 파악, 정량화 등 필요)"></a>1. 워크로드 분석(주요 factor 사이즈 파악, 정량화 등 필요)</h2><ul>
+<li>시나리오 구성</li>
+<li>수량화 및 검증 작업</li>
+<li>Write 작업 세부 사항</li>
+<li>Read 작업 세부 사항 -&gt; 분석전용 노드(Hidden Secondary)</li>
+</ul>
+<h2 id="2-관계모델에-대한-분석"><a href="#2-관계모델에-대한-분석" class="headerlink" title="2. 관계모델에 대한 분석"></a>2. 관계모델에 대한 분석</h2><h2 id="3-스키마-패턴-적용"><a href="#3-스키마-패턴-적용" class="headerlink" title="3. 스키마 패턴 적용"></a>3. 스키마 패턴 적용</h2><ul>
+<li>Attribute 패턴</li>
+<li>Extended Reference 패턴</li>
+<li>Subset 패턴 (자주 사용되는 부분과 덜 사용되는 부분을 나눔)</li>
+<li>Computed(Read panout, write panout) 패턴 (ex. 계산 부분을 미리 저장하여 해당 부분만 읽어 오기)</li>
+<li>Bucket 패턴(RDB를 JSON으로 변경한 패턴의 경우 자주 발생, 특정 주제에 대해서 묶어서 bucket으로 묶어서 관리하면 Index)<br>Computed 패턴과 섞여서 적용될 수 있음 , Attribute 같은 모델, Document size Control 용이 등 장점</li>
+<li>Schema Versioning 패턴(요구사항 변경에 용이하게 버젼을 입력하여 관리)</li>
+<li>기타 등등…</li>
+</ul>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
+            <p>link：<a href="https://gonewbie.github.io/2019/09/06/mongodb-local-seoul-2019/">https://gonewbie.github.io/2019/09/06/mongodb-local-seoul-2019/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2019/09/06/mongodb-local-seoul-2019/">September 6th 2019, 9:03:07 am</a>
+            <p>update date：<a href="https://gonewbie.github.io/2019/09/06/mongodb-local-seoul-2019/">December 2nd 2019, 10:04:57 pm</a>
+            <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/10/13/Today-I-Learned-191013/" title= "TIL(Today I Learned)">
+                    <div class="nextTitle">TIL(Today I Learned)</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/30/making-github-blog-pages-with-jekyll/" title= "jekyll을 이용해서 github 블로그를 만들어보자">
+                    <div class="prevTitle">jekyll을 이용해서 github 블로그를 만들어보자</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:gounewbie@gmail.com" target="_blank" rel="noopener" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/gonewbie" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#09-20-09-25-인사말"><span class="toc-number">1.</span> <span class="toc-text">09:20 - 09:25 인사말</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#09-25-09-40-데이터를-사용하고-저장하는데-있어-최적의-데이터베이스-MongoDB"><span class="toc-number">2.</span> <span class="toc-text">09:25 - 09:40 데이터를 사용하고, 저장하는데 있어 최적의 데이터베이스 MongoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#09-40-10-45-MongoDB-신제품-및-신기능-소개"><span class="toc-number">3.</span> <span class="toc-text">09:40-10:45 MongoDB 신제품 및 신기능 소개</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ops-Manager-features"><span class="toc-number">3.1.</span> <span class="toc-text">Ops Manager features</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Atlas-features"><span class="toc-number">3.2.</span> <span class="toc-text">Atlas features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-00-11-30-분산-트랜잭션-큰힘에는-큰-책임이-따른다"><span class="toc-number">4.</span> <span class="toc-text">11:00 - 11:30 분산 트랜잭션 - 큰힘에는 큰 책임이 따른다</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACID-Transaction"><span class="toc-number">4.1.</span> <span class="toc-text">ACID, Transaction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Read-CONCERN-READ-ISOLATION"><span class="toc-number">4.2.</span> <span class="toc-text">Read CONCERN = READ ISOLATION</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Locking"><span class="toc-number">4.3.</span> <span class="toc-text">Locking</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-30-12-00-MongoDB-in-Banksalad"><span class="toc-number">5.</span> <span class="toc-text">11:30 - 12:00 MongoDB in Banksalad</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#개발-전략"><span class="toc-number">5.1.</span> <span class="toc-text">개발 전략</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-00-13-30-MongoDB-Atlas-Data-Lake-기술-심층-분석"><span class="toc-number"></span> <span class="toc-text">13:00 - 13:30 MongoDB Atlas Data Lake 기술 심층 분석</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Lake-생성-방법"><span class="toc-number">1.</span> <span class="toc-text">Data Lake 생성 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MQL-gt-분산-MQL"><span class="toc-number">1.1.</span> <span class="toc-text">MQL -&gt;  분산 MQL</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-30-14-00-사용자-경험-및-MongoDB-Support-Portal-활용-Line"><span class="toc-number"></span> <span class="toc-text">13:30-14:00 사용자 경험 및 MongoDB Support Portal 활용[Line]</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB-in-Line-Corp"><span class="toc-number">1.</span> <span class="toc-text">MongoDB in Line Corp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Support-Portal-활용"><span class="toc-number">2.</span> <span class="toc-text">Support Portal 활용</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-00-14-45-Aggregation-Pipeline-Power-MongoDB-4-2-파이프-라인-쿼리-업데이트-및-구체화된-뷰-소개"><span class="toc-number"></span> <span class="toc-text">14:00-14:45 Aggregation Pipeline Power++: MongoDB 4.2 파이프 라인 쿼리, 업데이트 및 구체화된 뷰 소개</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Aggregation-Pipeline-소개"><span class="toc-number">1.</span> <span class="toc-text">Aggregation Pipeline 소개</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Update-에서-집계-파이프라인-사용"><span class="toc-number">2.</span> <span class="toc-text">Update 에서 집계 파이프라인 사용</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#새로운-merge-스테이지"><span class="toc-number">3.</span> <span class="toc-text">새로운 $merge 스테이지</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-00-15-40-MongoDB-Charts로-데이터-사파리를-시작하세요"><span class="toc-number"></span> <span class="toc-text">15:00-15:40 MongoDB Charts로 데이터 사파리를 시작하세요</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-40-16-15-속도의-속도에-의한-속도를-위한-몽고DB-네이버-컨텐츠-검색과-몽고DB-Naver"><span class="toc-number"></span> <span class="toc-text">15:40-16:15 속도의, 속도에 의한, 속도를 위한 몽고DB(네이버 컨텐츠 검색과 몽고DB)[Naver]</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-네이버-검색에서-몽고-DB"><span class="toc-number">1.</span> <span class="toc-text">1. 네이버 검색에서 몽고 DB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-네이버-컨텐츠-검색"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 네이버 컨텐츠 검색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-네이버-컨텐츠검색과-몽고-DB"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 네이버 컨텐츠검색과 몽고 DB</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-mongoDB"><span class="toc-number">2.</span> <span class="toc-text">2. Why mongoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-몽고DB-속도-올리기-Index"><span class="toc-number">3.</span> <span class="toc-text">3. 몽고DB 속도 올리기 - Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-MongoDB-Index-이해하기"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 MongoDB Index 이해하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Index-prefix를-사용하자"><span class="toc-number">3.2.</span> <span class="toc-text">3-2 Index prefix를 사용하자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-멀티-소팅"><span class="toc-number">3.3.</span> <span class="toc-text">3-3 멀티 소팅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-몽고DB-속도-올리기-Index"><span class="toc-number">4.</span> <span class="toc-text">4. 몽고DB 속도 올리기 - ^Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-하나의-컬렉션을-여러-컬렉션으로-나누자"><span class="toc-number">4.1.</span> <span class="toc-text">4-1 하나의 컬렉션을 여러 컬렉션으로 나누자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-쓰레드를-이용해-대량의-Document를-upsert"><span class="toc-number">4.2.</span> <span class="toc-text">4-2 쓰레드를 이용해 대량의 Document를 upsert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-MongoDB-4-0으로-업그레이드"><span class="toc-number">4.3.</span> <span class="toc-text">4-3 MongoDB 4.0으로 업그레이드</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-미운-Index"><span class="toc-number">5.</span> <span class="toc-text">5. 미운 Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Slow-Queries…"><span class="toc-number">5.1.</span> <span class="toc-text">5-1 Slow Queries…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Explain-결과"><span class="toc-number">5.2.</span> <span class="toc-text">5-2 Explain 결과</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-이게-최선일까"><span class="toc-number">5.3.</span> <span class="toc-text">5-3 이게 최선일까?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-인공지능-보단-인간지능"><span class="toc-number">5.4.</span> <span class="toc-text">5-4 인공지능 보단 인간지능</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-Index가-미운짓을-하는-이유"><span class="toc-number">5.5.</span> <span class="toc-text">5-5 Index가 미운짓을 하는 이유</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-15-16-50-MongoDB-Data-모델에-대한-전체적인-방법론"><span class="toc-number"></span> <span class="toc-text">16:15-16:50 MongoDB Data 모델에 대한 전체적인 방법론</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Goals-of-the-presentation"><span class="toc-number">1.</span> <span class="toc-text">Goals of the presentation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#문서-document"><span class="toc-number">2.</span> <span class="toc-text">문서 (document)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-워크로드-분석-주요-factor-사이즈-파악-정량화-등-필요"><span class="toc-number">3.</span> <span class="toc-text">1. 워크로드 분석(주요 factor 사이즈 파악, 정량화 등 필요)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-관계모델에-대한-분석"><span class="toc-number">4.</span> <span class="toc-text">2. 관계모델에 대한 분석</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-스키마-패턴-적용"><span class="toc-number">5.</span> <span class="toc-text">3. 스키마 패턴 적용</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 12
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/02</span><a class="archive-post-title" href= "/2019/12/02/blog-migration-from-jekyll-to-hexo/" >jekyll에서 hexo로 blog migration 변경기</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span><a class="archive-post-title" href= "/2019/10/20/Today-I-Learned-191020/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/Today-I-Learned-191018/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/Today-I-Learned-191017/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/Today-I-Learned-191016/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/Today-I-Learned-191015/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href= "/2019/10/14/Today-I-Learned-191014/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span><a class="archive-post-title" href= "/2019/10/13/Today-I-Learned-191013/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/mongodb-local-seoul-2019/" >mongoDB.local seoul 2019에 참가</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/30</span><a class="archive-post-title" href= "/2019/08/30/making-github-blog-pages-with-jekyll/" >jekyll을 이용해서 github 블로그를 만들어보자</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/2019/08/26/mariaDB-root-password-settings-at-first/" >macOS에서 mariaDB 설정</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2019/08/22/configure-vscode-eslint-in-macOS/" >VS Code에서 eslint 인식 오류 문제 해결 (masOS)</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="webdev eslint vscode"><span class="iconfont-archer">&#xe606;</span>webdev eslint vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="webdev mariadb sequelize"><span class="iconfont-archer">&#xe606;</span>webdev mariadb sequelize</span>
+    
+        <span class="sidebar-tag-name" data-tags="jekyll github blog portfolio"><span class="iconfont-archer">&#xe606;</span>jekyll github blog portfolio</span>
+    
+        <span class="sidebar-tag-name" data-tags="typescript nestjs typeorm"><span class="iconfont-archer">&#xe606;</span>typescript nestjs typeorm</span>
+    
+        <span class="sidebar-tag-name" data-tags="typescript nestjs typeorm TIL"><span class="iconfont-archer">&#xe606;</span>typescript nestjs typeorm TIL</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="development"><span class="iconfont-archer">&#xe60a;</span>development</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "gonewbie"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
