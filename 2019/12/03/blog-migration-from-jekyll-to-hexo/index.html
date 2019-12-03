@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">871</span>Reading time: <span class="post-count reading-time">5 min</span></span>
+                        <span>Word count: <span class="post-count word-count">890</span>Reading time: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -417,11 +417,11 @@ height:50vh;
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/gonewbie/gonewbie.github.io.git</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span></pre></td></tr></table></figure>
 
 <p>기존 블로그와 마찬가지로 <code>{Github ID}.github.io</code>라는 원격 repository에 블로그 파일을 배포하기 위해 해당 주소를 입력하였다. 이후에는 해당 원격 repository에 파일을 build 한 후 deploy하기 위한 절차가 필요한데, 이 역시 cli가 있어 간단하게 배포가 가능하다. 빌드 및 배포에 대한 명령어는 다음과 같다.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment">#(--watch) flag를 통해 변경사항만 배포 가능</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment"># 빌드하기</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
 <p>배포를 완료하고 보니 깜짝 놀라는 현상이 발생하였다. gonewbie.github.io repository가 깨끗히 날라가고 hexo가 빌드된 파일만 올라와 있는 것이 아니겠는가?!</p>
 <p><img src="https://gonewbie.github.io/img/repository_shots.png" alt="repository_shots"></p>
 <p>당황스러워 해당 내용을 검색해보니 hexo는 배포된 레포지토리에서는 코드 변경을 관리하지 않기 때문에 페이지 코드 변경을 관리하기 위해 별도의 repository가 하나 더 필요하다는 것을 알게 되었다. 이후 블로그에 대한 설정 및 코드 관리를 위한 repository를 하나 더 생성하여 문제를 해결할 수 있었다.</p>
-<h1 id="느낀-점"><a href="#느낀-점" class="headerlink" title="느낀 점"></a>느낀 점</h1><p>전체적으로 블로그 배포 구조가 유사하다고 해서 마냥 migration이 쉽다고 생각하고 달려든 것에 비해 헤메던 점이 좀 있었다. 하지만 일단 만족스러운 테마를 건지기도 했고(물론 가장 큰 소득..) 블로그 개편에 더불어 블로그 게시글 작성에 대한 의욕을 살릴 수 있다는 점에서 긍정적으로 보고 있다.<br>개인적으로 진행할 다음 목표로는 기존 블로그에서 블로그 포스트 항목 이외의 항목도 점진적으로 수정하여 포스트할 예정이다. 물론 최종적인 목표는 React에 능숙해져서 Gatsby를 통해 정적 페이지를 직접 제공하고 싶은 아직은 먼 훗날의 계획이 있다.. 물론 이러한 점진적인 개발 및 관련 내용에 대한 회고 및 기록을 최우선으로 두기 위한 목적의 일환으로 블로그를 개선한 점이기 떄문에 이 점부터 차근차근 진행할 예정이다.</p>
+<h1 id="느낀-점"><a href="#느낀-점" class="headerlink" title="느낀 점"></a>느낀 점</h1><p>전체적으로 블로그 배포 구조가 유사하다고 해서 마냥 migration이 쉽다고 생각하고 달려든 것에 비해 헤메던 점이 좀 있었다. 하지만 일단 만족스러운 테마를 건지기도 했고(물론 가장 큰 소득..) 블로그 개편에 더불어 블로그 게시글 작성에 대한 의욕을 살릴 수 있다는 점에서 긍정적으로 보고 있다. 또한 이건 가끔씩 볼 수 있는 오류 stack이 더 익숙한 javascript 이기 때문에 원인 추적(할 일도 거의 없지만)이 훨씬 수월해진 것 같다.<br>개인적으로 진행할 다음 목표로는 기존 블로그에서 블로그 포스트 항목 이외의 항목도 점진적으로 수정하여 포스트할 예정이다. 물론 최종적인 목표는 React에 능숙해져서 Gatsby를 통해 정적 페이지를 직접 제공하고 싶은 아직은 먼 훗날의 계획이 있다.. 물론 이러한 점진적인 개발 및 관련 내용에 대한 회고 및 기록을 최우선으로 두기 위한 목적의 일환으로 블로그를 개선한 점이기 떄문에 이 점부터 차근차근 진행할 예정이다.</p>
 <p>긴 글 읽느라 고생 많으셨습니다. :D</p>
 
     </article>
@@ -431,7 +431,7 @@ height:50vh;
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
             <p>link：<a href="https://gonewbie.github.io/2019/12/03/blog-migration-from-jekyll-to-hexo/">https://gonewbie.github.io/2019/12/03/blog-migration-from-jekyll-to-hexo/</a>
             <p>create date：<a href="https://gonewbie.github.io/2019/12/03/blog-migration-from-jekyll-to-hexo/">December 3rd 2019, 10:51:06 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2019/12/03/blog-migration-from-jekyll-to-hexo/">December 3rd 2019, 10:52:42 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2019/12/03/blog-migration-from-jekyll-to-hexo/">December 3rd 2019, 11:29:42 pm</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -562,6 +562,10 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
     
     
     
