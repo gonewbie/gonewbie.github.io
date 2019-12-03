@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">6</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">871</span>Reading time: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,7 +396,33 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>hexo에서 jekyll로 변경을 진행해보았다.</p>
+        <h1 id="블로그에-정이-안가"><a href="#블로그에-정이-안가" class="headerlink" title="블로그에 정이 안가.."></a>블로그에 정이 안가..</h1><p>기존에 만들어두었던 블로그는 github에서 호스팅하는 jekyll을 기반으로 만들어져 있었다. 개발 내용을 필기할 블로그 보유를 목적으로 만들었기 때문에 기존에 개발 커뮤니티에서 jekyll을 기반으로 블로그를 만들었다는 글을 보고서 무작정 따라하여 블로그를 개설하였다. 블로그를 막상 개설하고 보니 생각치도 못한 문제가 발생하였다.</p>
+<p>우선, 반응형으로 구성되어 있지 않았다. 물론 개인적인 기록을 남기기 위해 시작한 블로그인 것은 분명하지만 블로그를 구축한 이후, 글을 작성하고 모바일 환경에서 게시글을 살펴본 적이 있는데 반응형으로 이루어지지 않아 불편함이 있었다.</p>
+<p>두번째로, ruby 기반으로 이루어져 있었던 문제가 있었다. github 역시 ruby로 이루어져 있기도 했고 ruby는 rails라는 프레임워크도 있기 때문에 서버로서의 검증은 이루어졌다고 볼 수는 있다. 하지만 개인적으로 ruby에 대해서는 문외한이었기 때문에 ruby 및 jekyll의 cli에 대한 심도있는 이해라던가 환경 구성에 대해서 어려움이 있었다. 불행 중 다행이도, 맥북의 경우 ruby로 환경 구성이 어렵지 않은 편이었으나 윈도우로 구성하게 된다면 추가적으로 설정할 부분이 귀찮기도 하고 이러한 설정은 블로그 작성을 맥북 하나에만 귀속되어버리는 문제가 있었다.</p>
+<p>그러던 도중, 우연히 개발 커뮤니티에서 살펴본 개발 관련 블로그 글을 읽는 도중, 나와 같이 github에 정적으로 블로그 페이지를 배포하여 포스트를 하신 개발자가 있었다. 우연히 호기심이 생겨서 블로그를 살펴보니 hexo를 이용하여 배포하는 것을 알 수 있었다. 이를 눈여겨보고 있다가 뜸해진 블로그를 다시 관리할 겸 새로 게시글을 작성하기 위해 블로그에 들어와보니 이참에 새롭게 꾸며보고 싶어 블로그를 고치게 되었다.</p>
+<h1 id="블로그-리모델링"><a href="#블로그-리모델링" class="headerlink" title="블로그 리모델링"></a>블로그 리모델링</h1><p>hexo는 기본적으로 node로 구성되어 있어 친숙한 것이 강점이다. 또한 문서도 한글화 되어 있어 구축에 어려움도 적었다. 기본적으로 jekyll과 마찬가지로 markdown으로 게시글을 작성하면 이를 html로 변환하여 사용자에게 제공한다. 물론 github pages를 통한 배포 이외에도 정적 페이지 배포로 netlify 등 무료로 정적 페이지를 제공하거나 직접 만든 react SPA 페이지를 gatsby를 통해 정적 페이지를 생성하여 제공하는 방법 등 방법이야 여러 가지 있지만 <code>github.io</code>를 블로그 도메인으로 가지는 간단한 페이지를 가지면서도 친숙한 js기반의 hexo를 최종적으로 채택하게 되었다.</p>
+<h2 id="hexo-설치"><a href="#hexo-설치" class="headerlink" title="hexo 설치"></a>hexo 설치</h2><p>hexo를 설치하기 위해서 우선 global로 hexo를 설치한다. npm이든 yarn이든 적당한 package manager를 골라서 전역으로 hexo를 설치해보자. 본인은 yarn을 주로 사용했으므로 yarn을 통해 전역으로 설치하였다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ yarn global add hexo-cli</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm install -g hexo-cli</span></span></pre></td></tr></table></figure>
+
+<p>설치가 완료되었으면 블로그를 위한 경로 설정 및 hexo 설정을 위해 다음과 같은 명령어를 입력한다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo init &#123;경로명&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> &#123;경로명&#125;</span></pre></td></tr></table></figure>
+<p>이후 hexo에 대한 기본적인 설정으로 package.json 파일이 생성되고 필요한 dependencies가 설치되고 폴더 경로가 구성된다.</p>
+<h2 id="테마부터-골라보자"><a href="#테마부터-골라보자" class="headerlink" title="테마부터 골라보자"></a>테마부터 골라보자</h2><p>이왕에 migration을 진행하는데 있어서 보기 좋은 떡이 좋다는 말이 있듯이 일단 테마부터 고르려고 했다. 기본적인 설정만 마친 후 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">theme 페이지</a>로 이동하여 테마를 골라보았다. 우선적으로 고려한 사항들은 영문 문서의 존재여부였다. hexo는 대만의 개발자를 주도로 개발되었던 만큼 중국 커뮤니티의 참여가 많았고, 테마들도 중문 문서들이 대다수였다. 영문 문서가 있는 테마들 중에서 두 번째로 고려한 것은 반응형의 여부였다. 이 두 가지 상황을 고려하여 테마를 고르고 migration을 진행하였다.</p>
+<h2 id="게시글-옮기기"><a href="#게시글-옮기기" class="headerlink" title="게시글 옮기기"></a>게시글 옮기기</h2><p>우선적으로 게시글들을 옮기기 위해 markdown 구성을 살펴보니 큰 차이가 없어서 게시글 자체는 설정만 바꾸면 바로 적용할 수 있었다. 게시글을 옮기고 난 이후에는 정상적으로 블로그 페이지가 동작하는지 로컬서버에서 확인하는 명령어 역시 hexo에서 지원하고 있다. 로컬서버에서 블로그를 동작하기 위한 명령어는 다음과 같다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo server</span></span></pre></td></tr></table></figure>
+<p>로컬 서버에서 테마를 적용해보니 미처 영문으로 번역되지 않은 중문항목이 있어 해당 내용을 배포 전에 수정할 수 있었다.</p>
+<h2 id="게시글-작성하기"><a href="#게시글-작성하기" class="headerlink" title="게시글 작성하기"></a>게시글 작성하기</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new post &#123;게시글 이름&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo new draft &#123;게시글 이름&#125;</span></span></pre></td></tr></table></figure>
+<p><code>{게시글 이름}</code>을 제목으로 가진 markdown 파일이 init 설정된 root 폴더 내 <code>/source/_posts</code> 경로 내에 새로이 생성된다. 바로 반영되는 post 게시글 이외에도 draft라는 초안 파일을 생성해 블로그에 직접 적용이 되지 않지만 게시글을 작성하는 기능도 있다. 현재 게시글 역시 post를 cli로 생성하여 내용을 작성하였다.</p>
+<h2 id="배포하기"><a href="#배포하기" class="headerlink" title="배포하기"></a>배포하기</h2><p>마지막으로 블로그를 실제 github pages에 배포하는 작업을 진행하기 위해서 <code>hexo init</code>시 생성된 <code>_config.yml</code> 파일에 배포에 대한 설정을 입력한다. 현재 블로그는 git으로 버젼을 관리하기 때문에 다음과 같은 설정을 하였다.</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/gonewbie/gonewbie.github.io.git</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span></pre></td></tr></table></figure>
+
+<p>기존 블로그와 마찬가지로 <code>{Github ID}.github.io</code>라는 원격 repository에 블로그 파일을 배포하기 위해 해당 주소를 입력하였다. 이후에는 해당 원격 repository에 파일을 build 한 후 deploy하기 위한 절차가 필요한데, 이 역시 cli가 있어 간단하게 배포가 가능하다. 빌드 및 배포에 대한 명령어는 다음과 같다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment">#(--watch) flag를 통해 변경사항만 배포 가능</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
+<p>배포를 완료하고 보니 깜짝 놀라는 현상이 발생하였다. gonewbie.github.io repository가 깨끗히 날라가고 hexo가 빌드된 파일만 올라와 있는 것이 아니겠는가?!</p>
+<p><img src="https://gonewbie.github.io/img/repository_shots.png" alt="repository_shots"></p>
+<p>당황스러워 해당 내용을 검색해보니 hexo는 배포된 레포지토리에서는 코드 변경을 관리하지 않기 때문에 페이지 코드 변경을 관리하기 위해 별도의 repository가 하나 더 필요하다는 것을 알게 되었다. 이후 블로그에 대한 설정 및 코드 관리를 위한 repository를 하나 더 생성하여 문제를 해결할 수 있었다.</p>
+<h1 id="느낀-점"><a href="#느낀-점" class="headerlink" title="느낀 점"></a>느낀 점</h1><p>전체적으로 블로그 배포 구조가 유사하다고 해서 마냥 migration이 쉽다고 생각하고 달려든 것에 비해 헤메던 점이 좀 있었다. 하지만 일단 만족스러운 테마를 건지기도 했고(물론 가장 큰 소득..) 블로그 개편에 더불어 블로그 게시글 작성에 대한 의욕을 살릴 수 있다는 점에서 긍정적으로 보고 있다.<br>개인적으로 진행할 다음 목표로는 기존 블로그에서 블로그 포스트 항목 이외의 항목도 점진적으로 수정하여 포스트할 예정이다. 물론 최종적인 목표는 React에 능숙해져서 Gatsby를 통해 정적 페이지를 직접 제공하고 싶은 아직은 먼 훗날의 계획이 있다.. 물론 이러한 점진적인 개발 및 관련 내용에 대한 회고 및 기록을 최우선으로 두기 위한 목적의 일환으로 블로그를 개선한 점이기 떄문에 이 점부터 차근차근 진행할 예정이다.</p>
+<p>긴 글 읽느라 고생 많으셨습니다. :D</p>
 
     </article>
     <!-- license  -->
@@ -405,7 +431,7 @@ height:50vh;
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
             <p>link：<a href="https://gonewbie.github.io/2019/12/02/blog-migration-from-jekyll-to-hexo/">https://gonewbie.github.io/2019/12/02/blog-migration-from-jekyll-to-hexo/</a>
             <p>create date：<a href="https://gonewbie.github.io/2019/12/02/blog-migration-from-jekyll-to-hexo/">December 2nd 2019, 8:30:02 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2019/12/02/blog-migration-from-jekyll-to-hexo/">December 2nd 2019, 11:54:32 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2019/12/02/blog-migration-from-jekyll-to-hexo/">December 3rd 2019, 10:42:46 pm</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -523,7 +549,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#블로그에-정이-안가"><span class="toc-number">1.</span> <span class="toc-text">블로그에 정이 안가..</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#블로그-리모델링"><span class="toc-number">2.</span> <span class="toc-text">블로그 리모델링</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-설치"><span class="toc-number">2.1.</span> <span class="toc-text">hexo 설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#테마부터-골라보자"><span class="toc-number">2.2.</span> <span class="toc-text">테마부터 골라보자</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#게시글-옮기기"><span class="toc-number">2.3.</span> <span class="toc-text">게시글 옮기기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#게시글-작성하기"><span class="toc-number">2.4.</span> <span class="toc-text">게시글 작성하기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#배포하기"><span class="toc-number">2.5.</span> <span class="toc-text">배포하기</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#느낀-점"><span class="toc-number">3.</span> <span class="toc-text">느낀 점</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -785,6 +811,8 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="development"><span class="iconfont-archer">&#xe60a;</span>development</span>
+    
+        <span class="sidebar-category-name" data-categories="blog"><span class="iconfont-archer">&#xe60a;</span>blog</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
