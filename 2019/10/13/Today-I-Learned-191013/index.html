@@ -211,7 +211,7 @@
         ga('send', 'pageview');
     </script>
     
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
     
         <body class="post-body">
@@ -277,19 +277,19 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "typescript">typescript</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "typescript">typescript</a>
     
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "nestjs">nestjs</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "nestjs">nestjs</a>
     
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "typeorm">typeorm</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "typeorm">typeorm</a>
     
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "TIL">TIL</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "TIL">TIL</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">339</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">330</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -430,10 +430,10 @@ height:50vh;
 <p>&gt; yarn add -D nodemon</p>
 </blockquote>
 <p>이후 프로젝트 root 폴더에 nodemon.json 파일을 생성하여 nodemon 파일을 설정한다.</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"watch"</span>: [<span class="string">"src"</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"ext"</span>: <span class="string">"ts"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"ignore"</span>: [<span class="string">"src/**/*.spec.ts"</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"exec"</span>: <span class="string">"node ./index"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"watch"</span>: [<span class="string">"src"</span>],</span><br><span class="line">  <span class="attr">"ext"</span>: <span class="string">"ts"</span>,</span><br><span class="line">  <span class="attr">"ignore"</span>: [<span class="string">"src/**/*.spec.ts"</span>],</span><br><span class="line">  <span class="attr">"exec"</span>: <span class="string">"node ./index"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>src 폴더 내의 변경을 감지하되, test 파일을 제외하며 실행시 index 파일을 실행한다는 의미이다.</p>
 <p>또한 nodemon을 실행시키기 위해 package.json의 <code>scripts</code> 항목에 명령어를 추가한다.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  "start:watch": "nodemon",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">  ...</span><br><span class="line">  "start:watch": "nodemon",</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>이후에는 terminal에서 다음의 명령어를 통해 nodemon을 실행할 수 있다.</p>
 <blockquote>
@@ -441,7 +441,7 @@ height:50vh;
 </blockquote>
 <p>nestJS는 appModule이라는 핵심 모듈에 각 기능에 해당하는 모듈들을 포함해서 넣는 것이 가능하다. 따라서 유저 정보를 위한 모듈인 user 관련 모듈을 우선적으로 구현하기로 했다.</p>
 <p>nestJS 각 모듈의 구성 요소들을 직접 구현할 수도 있지만 친절하게도 cli를 통해서도 해당 요소들의 뼈대를 구성할 수 있다. 따라서 cli를 통해서 해당 요소들을 만들어 보았다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&gt; nest g module user</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&gt; nest g controller user</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&gt; nest g service user</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&gt; nest g decorator user</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; nest g module user</span><br><span class="line">&gt; nest g controller user</span><br><span class="line">&gt; nest g service user</span><br><span class="line">&gt; nest g decorator user</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
@@ -519,7 +519,7 @@ height:50vh;
     
         
             
-                <a href="mailto:gounewbie@gmail.com" target="_blank" rel="noopener" class="iconfont-archer email" title=email ></a>
+                <a href="mailto:gounewbie@gmail.com" class="iconfont-archer email" title=email ></a>
             
         
     
@@ -742,9 +742,40 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 15
         </div>
         <!-- search  -->
         
@@ -757,6 +788,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-argements-rest-spread/" >es6-argements-rest-spread</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -852,8 +888,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="TIL"><span class="iconfont-archer">&#xe606;</span>TIL</span>
     
-        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
         <span class="sidebar-tag-name" data-tags="webdev"><span class="iconfont-archer">&#xe606;</span>webdev</span>
     
         <span class="sidebar-tag-name" data-tags="eslint"><span class="iconfont-archer">&#xe606;</span>eslint</span>
@@ -868,13 +902,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="portfolio"><span class="iconfont-archer">&#xe606;</span>portfolio</span>
     
-        <span class="sidebar-tag-name" data-tags="mariadb"><span class="iconfont-archer">&#xe606;</span>mariadb</span>
-    
-        <span class="sidebar-tag-name" data-tags="sequelize"><span class="iconfont-archer">&#xe606;</span>sequelize</span>
-    
         <span class="sidebar-tag-name" data-tags="javascript"><span class="iconfont-archer">&#xe606;</span>javascript</span>
     
         <span class="sidebar-tag-name" data-tags="es6"><span class="iconfont-archer">&#xe606;</span>es6</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="mariadb"><span class="iconfont-archer">&#xe606;</span>mariadb</span>
+    
+        <span class="sidebar-tag-name" data-tags="sequelize"><span class="iconfont-archer">&#xe606;</span>sequelize</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -911,11 +947,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="development"><span class="iconfont-archer">&#xe60a;</span>development</span>
     
+        <span class="sidebar-category-name" data-categories="development/group-stude"><span class="iconfont-archer">&#xe60a;</span>development/group-stude</span>
+    
         <span class="sidebar-category-name" data-categories="blog"><span class="iconfont-archer">&#xe60a;</span>blog</span>
     
         <span class="sidebar-category-name" data-categories="development/database"><span class="iconfont-archer">&#xe60a;</span>development/database</span>
-    
-        <span class="sidebar-category-name" data-categories="development/group-stude"><span class="iconfont-archer">&#xe60a;</span>development/group-stude</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

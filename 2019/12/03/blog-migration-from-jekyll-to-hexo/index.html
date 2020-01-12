@@ -211,7 +211,7 @@
         ga('send', 'pageview');
     </script>
     
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
     
         <body class="post-body">
@@ -277,13 +277,13 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" target="_blank" rel="noopener" data-tags = "hexo">hexo</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "hexo">hexo</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">890</span>Reading time: <span class="post-count reading-time">5 min</span></span>
+                        <span>Word count: <span class="post-count word-count">885</span>Reading time: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -413,22 +413,22 @@ height:50vh;
 <p>그러던 도중, 우연히 개발 커뮤니티에서 살펴본 개발 관련 블로그 글을 읽는 도중, 나와 같이 github에 정적으로 블로그 페이지를 배포하여 포스트를 하신 개발자가 있었다. 우연히 호기심이 생겨서 블로그를 살펴보니 hexo를 이용하여 배포하는 것을 알 수 있었다. 이를 눈여겨보고 있다가 뜸해진 블로그를 다시 관리할 겸 새로 게시글을 작성하기 위해 블로그에 들어와보니 이참에 새롭게 꾸며보고 싶어 블로그를 고치게 되었다.</p>
 <h1 id="블로그-리모델링"><a href="#블로그-리모델링" class="headerlink" title="블로그 리모델링"></a>블로그 리모델링</h1><p>hexo는 기본적으로 node로 구성되어 있어 친숙한 것이 강점이다. 또한 문서도 한글화 되어 있어 구축에 어려움도 적었다. 기본적으로 jekyll과 마찬가지로 markdown으로 게시글을 작성하면 이를 html로 변환하여 사용자에게 제공한다. 물론 github pages를 통한 배포 이외에도 정적 페이지 배포로 netlify 등 무료로 정적 페이지를 제공하거나 직접 만든 react SPA 페이지를 gatsby를 통해 정적 페이지를 생성하여 제공하는 방법 등 방법이야 여러 가지 있지만 <code>github.io</code>를 블로그 도메인으로 가지는 간단한 페이지를 가지면서도 친숙한 js기반의 hexo를 최종적으로 채택하게 되었다.</p>
 <h2 id="hexo-설치"><a href="#hexo-설치" class="headerlink" title="hexo 설치"></a>hexo 설치</h2><p>hexo를 설치하기 위해서 우선 global로 hexo를 설치한다. npm이든 yarn이든 적당한 package manager를 골라서 전역으로 hexo를 설치해보자. 본인은 yarn을 주로 사용했으므로 yarn을 통해 전역으로 설치하였다.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ yarn global add hexo-cli</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm install -g hexo-cli</span></span></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn global add hexo-cli</span><br><span class="line"><span class="comment"># npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure>
 
 <p>설치가 완료되었으면 블로그를 위한 경로 설정 및 hexo 설정을 위해 다음과 같은 명령어를 입력한다.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo init &#123;경로명&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> &#123;경로명&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &#123;경로명&#125;</span><br><span class="line">$ <span class="built_in">cd</span> &#123;경로명&#125;</span><br></pre></td></tr></table></figure>
 <p>이후 hexo에 대한 기본적인 설정으로 package.json 파일이 생성되고 필요한 dependencies가 설치되고 폴더 경로가 구성된다.</p>
 <h2 id="테마부터-골라보자"><a href="#테마부터-골라보자" class="headerlink" title="테마부터 골라보자"></a>테마부터 골라보자</h2><p>이왕에 migration을 진행하는데 있어서 보기 좋은 떡이 좋다는 말이 있듯이 일단 테마부터 고르려고 했다. 기본적인 설정만 마친 후 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">theme 페이지</a>로 이동하여 테마를 골라보았다. 우선적으로 고려한 사항들은 영문 문서의 존재여부였다. hexo는 대만의 개발자를 주도로 개발되었던 만큼 중국 커뮤니티의 참여가 많았고, 테마들도 중문 문서들이 대다수였다. 영문 문서가 있는 테마들 중에서 두 번째로 고려한 것은 반응형의 여부였다. 이 두 가지 상황을 고려하여 테마를 고르고 migration을 진행하였다.</p>
 <h2 id="게시글-옮기기"><a href="#게시글-옮기기" class="headerlink" title="게시글 옮기기"></a>게시글 옮기기</h2><p>우선적으로 게시글들을 옮기기 위해 markdown 구성을 살펴보니 큰 차이가 없어서 게시글 자체는 설정만 바꾸면 바로 적용할 수 있었다. 게시글을 옮기고 난 이후에는 정상적으로 블로그 페이지가 동작하는지 로컬서버에서 확인하는 명령어 역시 hexo에서 지원하고 있다. 로컬서버에서 블로그를 동작하기 위한 명령어는 다음과 같다.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo server</span></span></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line"><span class="comment"># hexo server</span></span><br></pre></td></tr></table></figure>
 <p>로컬 서버에서 테마를 적용해보니 미처 영문으로 번역되지 않은 중문항목이 있어 해당 내용을 배포 전에 수정할 수 있었다.</p>
-<h2 id="게시글-작성하기"><a href="#게시글-작성하기" class="headerlink" title="게시글 작성하기"></a>게시글 작성하기</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new post &#123;게시글 이름&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo new draft &#123;게시글 이름&#125;</span></span></pre></td></tr></table></figure>
+<h2 id="게시글-작성하기"><a href="#게시글-작성하기" class="headerlink" title="게시글 작성하기"></a>게시글 작성하기</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new post &#123;게시글 이름&#125;</span><br><span class="line"><span class="comment"># hexo new draft &#123;게시글 이름&#125;</span></span><br></pre></td></tr></table></figure>
 <p><code>{게시글 이름}</code>을 제목으로 가진 markdown 파일이 init 설정된 root 폴더 내 <code>/source/_posts</code> 경로 내에 새로이 생성된다. 바로 반영되는 post 게시글 이외에도 draft라는 초안 파일을 생성해 블로그에 직접 적용이 되지 않지만 게시글을 작성하는 기능도 있다. 현재 게시글 역시 post를 cli로 생성하여 내용을 작성하였다.</p>
 <h2 id="배포하기"><a href="#배포하기" class="headerlink" title="배포하기"></a>배포하기</h2><p>마지막으로 블로그를 실제 github pages에 배포하는 작업을 진행하기 위해서 <code>hexo init</code>시 생성된 <code>_config.yml</code> 파일에 배포에 대한 설정을 입력한다. 현재 블로그는 git으로 버젼을 관리하기 때문에 다음과 같은 설정을 하였다.</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/gonewbie/gonewbie.github.io.git</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/gonewbie/gonewbie.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
 
 <p>기존 블로그와 마찬가지로 <code>{Github ID}.github.io</code>라는 원격 repository에 블로그 파일을 배포하기 위해 해당 주소를 입력하였다. 이후에는 해당 원격 repository에 파일을 build 한 후 deploy하기 위한 절차가 필요한데, 이 역시 cli가 있어 간단하게 배포가 가능하다. 빌드 및 배포에 대한 명령어는 다음과 같다.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment"># 빌드하기</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment"># 빌드하기</span></span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>배포를 완료하고 보니 깜짝 놀라는 현상이 발생하였다. gonewbie.github.io repository가 깨끗히 날라가고 hexo가 빌드된 파일만 올라와 있는 것이 아니겠는가?!</p>
 <p><img src="https://gonewbie.github.io/img/repository_shots.png" alt="repository_shots"></p>
 <p>당황스러워 해당 내용을 검색해보니 hexo는 배포된 레포지토리에서는 코드 변경을 관리하지 않기 때문에 페이지 코드 변경을 관리하기 위해 별도의 repository가 하나 더 필요하다는 것을 알게 되었다. 이후 블로그에 대한 설정 및 코드 관리를 위한 repository를 하나 더 생성하여 문제를 해결할 수 있었다.</p>
@@ -512,7 +512,7 @@ height:50vh;
     
         
             
-                <a href="mailto:gounewbie@gmail.com" target="_blank" rel="noopener" class="iconfont-archer email" title=email ></a>
+                <a href="mailto:gounewbie@gmail.com" class="iconfont-archer email" title=email ></a>
             
         
     
@@ -735,9 +735,40 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 15
         </div>
         <!-- search  -->
         
@@ -750,6 +781,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-argements-rest-spread/" >es6-argements-rest-spread</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -845,8 +881,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="TIL"><span class="iconfont-archer">&#xe606;</span>TIL</span>
     
-        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
         <span class="sidebar-tag-name" data-tags="webdev"><span class="iconfont-archer">&#xe606;</span>webdev</span>
     
         <span class="sidebar-tag-name" data-tags="eslint"><span class="iconfont-archer">&#xe606;</span>eslint</span>
@@ -861,13 +895,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="portfolio"><span class="iconfont-archer">&#xe606;</span>portfolio</span>
     
-        <span class="sidebar-tag-name" data-tags="mariadb"><span class="iconfont-archer">&#xe606;</span>mariadb</span>
-    
-        <span class="sidebar-tag-name" data-tags="sequelize"><span class="iconfont-archer">&#xe606;</span>sequelize</span>
-    
         <span class="sidebar-tag-name" data-tags="javascript"><span class="iconfont-archer">&#xe606;</span>javascript</span>
     
         <span class="sidebar-tag-name" data-tags="es6"><span class="iconfont-archer">&#xe606;</span>es6</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="mariadb"><span class="iconfont-archer">&#xe606;</span>mariadb</span>
+    
+        <span class="sidebar-tag-name" data-tags="sequelize"><span class="iconfont-archer">&#xe606;</span>sequelize</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -904,11 +940,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="development"><span class="iconfont-archer">&#xe60a;</span>development</span>
     
+        <span class="sidebar-category-name" data-categories="development/group-stude"><span class="iconfont-archer">&#xe60a;</span>development/group-stude</span>
+    
         <span class="sidebar-category-name" data-categories="blog"><span class="iconfont-archer">&#xe60a;</span>blog</span>
     
         <span class="sidebar-category-name" data-categories="development/database"><span class="iconfont-archer">&#xe60a;</span>development/database</span>
-    
-        <span class="sidebar-category-name" data-categories="development/group-stude"><span class="iconfont-archer">&#xe60a;</span>development/group-stude</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
