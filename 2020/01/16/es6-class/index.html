@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="gonewbie">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="gonewbie">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>es6-class · gonewbie&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-154573634-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >gonewbie&#39;s notepad</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">es6-class</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>gonewbie's notepad</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            es6-class
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.1k</span>Reading time: <span class="post-count reading-time">7 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/01/16</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h1><p>객체지향으로 유명한 언어들은 대체로 Class를 기반으로 객체 지향을 구현하였다.<br>하지만 javascript의 경우 prototype 기반의 객체 지향 프로그래밍을 구현하였기 때문에 기존의 class 기반의 언어들과는 상속 방식에 있어 차이가 있었다.<br>이러한 요구에 부응한 것인지, ES6에 들어서면서 javscript에도 class가 도입되었다.<br>하지만 자바스크립트는 prototype 기반으로 구성되어 있기 때문에 class 역시 기본적으로 prototype으로 상속을 구현되어 있다.<br>때문에 누군가는 단순히 class를 syntax sugar라고 칭하기도 한다. 그렇다면 이를 이해하기 위해 class의 기본적인 사용법과 차이점에 대해 알아보자.</p>
+<h2 id="class의-기본-사용법"><a href="#class의-기본-사용법" class="headerlink" title="class의 기본 사용법"></a>class의 기본 사용법</h2><p>ES6의 class는 다른 객체지향 언어들처럼 기본적인 선언과 상속이 지원된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> me = <span class="keyword">new</span> Person(<span class="string">'jung'</span>, <span class="number">17</span>); <span class="comment">// reference error</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// class declarations</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class expressions</span></span><br><span class="line"><span class="keyword">const</span> location = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(lat, lng) &#123;</span><br><span class="line">    <span class="keyword">this</span>.lat = lat;</span><br><span class="line">    <span class="keyword">this</span>.lng = lng;   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> me = <span class="keyword">new</span> Person(<span class="string">'jung'</span>, <span class="number">17</span>);</span><br></pre></td></tr></table></figure>
+<p>클래스를 선언하면 기본적으로 new로 선언해야 한다.<br>클래스 선언할 때는 함수를 선언할 때와 유사하게 <code>class [이름] {...};</code>와 같이 선언 가능하다.<br>하지만 클래스 선언식은 함수 선언식과 다르게 hoisting이 발생하기 않아 선언 전에 호출할 경우 reference error가 발생한다. </p>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><p>생성자는 인스턴스를 생성할 때 클래스 내부 변수들을 초기화 하는 등의 목적을 위해 사용하는 메서드이다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// syntax error</span></span><br><span class="line">  <span class="comment">// constructor(name, age) &#123;</span></span><br><span class="line">  <span class="comment">//   this.name = name;</span></span><br><span class="line">  <span class="comment">//   this.age = age;</span></span><br><span class="line">  <span class="comment">// &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Driver</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age, car) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name, age);</span><br><span class="line">    <span class="keyword">this</span>.car = car;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>클래스에는 생성과 동시에 초기화를 돕는 생성자를 <code>하나</code>씩 선언할 수 있다.<br>두 개 이상의 생성자를 선언하려고 하면 <code>SyntaxError</code>가 발생할 것이다.<br>extends를 통해 부모 클래스를 상속받게 된다. 또한 이러한 부모 클래스에게도 값을 전달하는 super()라는 메소드가 있는데 생성자에서 이를 선언할 수 있다.</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Polygon</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(width, height) &#123;</span><br><span class="line">    <span class="keyword">this</span>.width = width;</span><br><span class="line">    <span class="keyword">this</span>.height = height;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  showSize() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`width: <span class="subst">$&#123;<span class="keyword">this</span>.width&#125;</span>, height: <span class="subst">$&#123;<span class="keyword">this</span>.height&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// getter</span></span><br><span class="line">  <span class="keyword">get</span> area() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.height * <span class="keyword">this</span>.width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// setter</span></span><br><span class="line">  <span class="keyword">set</span> size(&#123;width, height&#125;) &#123;</span><br><span class="line">    <span class="keyword">this</span>.width = width;</span><br><span class="line">    <span class="keyword">this</span>.height = height;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// static </span></span><br><span class="line">  <span class="keyword">static</span> getDistance(a, b) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.hypot(a.x-b.x, a.y-b.y);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> rectangle = <span class="keyword">new</span> Polygon(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rectangleArea = rectangle.area;</span><br><span class="line"></span><br><span class="line">rectangle.size = &#123;<span class="attr">width</span>: <span class="number">4</span>, <span class="attr">height</span>: <span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line">Polygon.getDistance(&#123;<span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span>&#125;, &#123;<span class="attr">x</span>: <span class="number">2</span>, <span class="attr">y</span>: <span class="number">3</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>기본적으로 클래스를 내에는 다양한 방식의 메서드를 사용할 수 있다.<br>기본적인 getter, setter 메서드, 일반적으로 public하게 접근할 수 있는 메서드도 있다.<br>getter 메서드는 값을 가져오는 것이고<br>setter는 메서드의 파라미터 값을 지정하는 메서드이다.<br>또한 ES6에 들어서면서 메서드 표현식도 간결해졌다.<br>기존에 메서드로 지정하기 위해 함수 표현식과 같이 사용할 메서드의 이름과 함수를 나눠서 선언해야 했다면, ES6 이후로 표현을 간결하게 할 수 있다.</p>
+<p>static으로 선언한 메서드는 새로운 인스턴스로 선언하면 클래스 내에 선언된 메서드를 사용할 수 없다.<br>이렇게 선언된 메서드 static 메서드는 클래스를 이용해서 사용할 수 있는데 이러한 방식을 통해 주로 utility 함수 등을 만들어 사용한다.</p>
+<h2 id="Prototype-vs-Class"><a href="#Prototype-vs-Class" class="headerlink" title="Prototype vs Class"></a>Prototype vs Class</h2><p>혹자는 ES6에서 새로이 생성된 문법들에 대해 의구심을 가지고 Class는 단순한 문법 설탕에 불과하다고 말한다.<br>문법 설탕이란 것은 기본적으로 이전의 문법을 통해 수고를 들이지 않고 해당 구현사항을 만족할 수 있는 것이다.<br>하지만 실제로 class는 기존의 Prototype만으로 구현한 것과 차이를 가지고 있다.<br>이러한 차이에 대해 알아보자.</p>
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a><code>new</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PersonES5</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!(<span class="keyword">this</span> <span class="keyword">instanceof</span> PersonES5)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PersonES5();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonES6</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> meES5 = PersonES5(name);</span><br><span class="line"><span class="keyword">const</span> meES6 = PersonES6(name); <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+<p>ES6 이전에는 생성자 함수는 기본적으로 함수이기 때문에 new 없이 호출이 가능했다.<br>따라서 이러한 문제를 방지하기 위해 위와 같이 new를 호출하지 않은 경우를 걸러서 새로이 new를 붙여서 호출한다.<br>하지만 ES6는 클래스의 인스턴스를 생성할 떄, new를 붙이지 않으면 <code>TypeError</code>를 반환한다.</p>
+<h3 id="extends-amp-super"><a href="#extends-amp-super" class="headerlink" title="extends &amp; super"></a><code>extends</code> &amp; <code>super</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ParentES5</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ChildES5</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> parentObj = <span class="built_in">Object</span>.getPrototypeOf(<span class="keyword">this</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> parentObj)&#123;</span><br><span class="line">    <span class="keyword">this</span>[i] = parentObj[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.b = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line">ChildES5.prototype = <span class="keyword">new</span> ParentES5();</span><br><span class="line">ChildES5.prototype.constructor = ChildES5;</span><br><span class="line"><span class="keyword">const</span> myChild = <span class="keyword">new</span> ChildES5();</span><br><span class="line"><span class="built_in">console</span>.log(myChild.a, myChild.b);          <span class="comment">// 1 2</span></span><br><span class="line"><span class="built_in">console</span>.log(myChild.hasOwnProperty(<span class="string">'a'</span>));   <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(myChild.hasOwnProperty(<span class="string">'b'</span>));   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParentES6</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildES6</span> <span class="keyword">extends</span> <span class="title">ParentES6</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.b = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> yourChild = <span class="keyword">new</span> ChildES6();</span><br><span class="line"><span class="built_in">console</span>.log(yourChild.a, yourChild.b);        <span class="comment">// 1 2</span></span><br><span class="line"><span class="built_in">console</span>.log(yourChild.hasOwnProperty(<span class="string">'a'</span>));   <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(yourChild.hasOwnProperty(<span class="string">'b'</span>));   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(yourChild).a);  <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(yourChild).hasOwnProperty(<span class="string">'a'</span>));  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>ES5에서는 상속을 표현하기 위해 Prototype Chain을 이용해서 구현하였다.<br>ES5에서는 또한 부모의 attribute를 가져오기 위해 <code>getPrototypeOf</code> 메서드로 Prototype으로 연결된 부모의 속성을 복사해서 가져온다.<br>따라서 실질적으로 상속의 개념이라기보단 부모 메서드 복사에 가깝다.</p>
+<p>하지만, ES6에서는 <code>super</code> 메서드로 이를 좀 더 간결하게 가져올 수 있다.<br>또한 ES6에서의 상속은 Prototype 체인이 아니라 단순히 메서드나 속성만 상속하는 진정한 의미의 상속이라고 볼 수 있다.</p>
+<h2 id="Hoisting-amp-Temporal-Dead-Zone"><a href="#Hoisting-amp-Temporal-Dead-Zone" class="headerlink" title="Hoisting &amp; Temporal Dead Zone"></a>Hoisting &amp; Temporal Dead Zone</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hoisted as 'var a = undefined;'</span></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'a'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// ReferenceError</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="string">'b'</span>;</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">Hoisting은 ES6에 들어서면서 생긴 개념으로 `</span><span class="keyword">var</span><span class="string">`과 `</span><span class="keyword">let</span><span class="string">`, `</span><span class="keyword">const</span><span class="string">`의 차이에서 발생한 개념이다.</span></span><br><span class="line"><span class="string">기본적으로 ES5에서의 `</span><span class="keyword">var</span><span class="string">`은 해당 변수가 선언과 동시에 `</span><span class="literal">undefined</span><span class="string">`로 초기화된다.</span></span><br><span class="line"><span class="string">따라서 선언 이전에 값을 호출한다 하더라도 오류가 발생하지 않는다.</span></span><br><span class="line"><span class="string">하지만 ES6부터 도입된 `</span><span class="keyword">let</span><span class="string">`과 `</span><span class="keyword">const</span><span class="string">`는 선언 이전에 호출을 하면 `</span><span class="built_in">ReferenceError</span><span class="string">`가 발생한다.</span></span><br><span class="line"><span class="string">이러한 문제가 function 선언식과 class 선언식에서도 적용된다.</span></span><br><span class="line"><span class="string">class 선언식도 선언 이전에 호출을 이룰 경우 `</span><span class="built_in">ReferenceError</span><span class="string">`가 발생한다.</span></span><br><span class="line"><span class="string">이러한 내용에 대해서 흔히 hoisting이 이루어지지 않아 발생한 에러라고 알고 있지만 실상은 다르다.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123; <span class="keyword">this</span>.a = <span class="number">1</span>; &#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> A());  <span class="comment">// A &#123;a: 2&#125;</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123; <span class="keyword">this</span>.a = <span class="number">2</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123; <span class="keyword">this</span>.a = <span class="number">1</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> B());  <span class="comment">// Uncaught ReferenceError: B is not defined</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123; <span class="keyword">this</span>.a = <span class="number">2</span>; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위의 예제를 보면, 생성자 함수 A에서는 console.log()로 호출 이전에 선언하더라도 함수 선언식은 hoisting으로 인해 값이 덮어 씌워진다.<br>하지만 class인 B를 살펴보자. 만일 hoisting이 이루어지지 않았다면 단순히 console.log()에서는 사전에 선언된 class B가 나와야 한다.<br>하지만 실제로는 <code>ReferenceError</code>가 발생하게 되는데, 이는 객체 내 class가 hoisting 되지만 선언 전에 호출되므로 발생하는 에러이다.</p>
+<p>이렇게 hoisting은 실제로 이루어지지만 실제 참조할 때 에러를 뱉는 구간을 <code>Temporal Dead Zone(이하 TDZ)</code>라고 한다.<br>let, const 등 ES6 이후에 생긴 class나 generator 등과 같은 것들은 전부 TDZ를 가지고 있다고 한다.<br>hoisting을 통해 실제 값 선언은 hoisting되어 올라가지만 초기화되지 않으므로 이러한 값으로의 접근을 제한한다.<br>하지만 이런 값에 접근하는 순간 <code>ReferenceError</code>가 발생하는 것이고 이러한 오류가 발생하는 구간을 TDZ라고 하는 것이다.</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>ES6에서 새로 도입된 class를 기존에는 단순하게 사용하기만 했다면 이번 기회를 통해 좀 더 깊게 알아볼 수 있는 시간이었다.<br>기본적인 method나 사용법에서부터 prototype chaining과의 차이점까지 알 수 있는 시간이었다.<br>또한 기본적으로 참조했던 블로그들에 언급된 내용들에 대해 더 자세히 나와 있기 떄문에 시간되시면 꼭 한 번 읽어볼 것을 추천한다.</p>
+<blockquote>
+<p>참조</p>
+<ul>
+<li><a href="https://beomy.tistory.com/15" target="_blank" rel="noopener">ES6 class</a></li>
+<li><a href="https://gomugom.github.io/is-class-only-a-syntactic-sugar/" target="_blank" rel="noopener">클래스는 단순한 문법 설탕인가</a></li>
+<li><a href="https://evan-moon.github.io/2019/06/18/javascript-let-const/" target="_blank" rel="noopener">hoisting &amp; TDZ</a></li>
+</ul>
+</blockquote>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/01/16/es6-class/">https://gonewbie.github.io/2020/01/16/es6-class/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/01/16/es6-class/">January 16th 2020, 7:57:41 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/01/16/es6-class/">January 19th 2020, 1:27:27 am</a>
+            <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/01/16/es6-module-system/" title= "es6-module-system">
+                    <div class="nextTitle">es6-module-system</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/01/12/es6-argements-rest-spread/" title= "es6) 매개변수, rest parameter, spread 문법">
+                    <div class="prevTitle">es6) 매개변수, rest parameter, spread 문법</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        
+        var disqus_config = function () {
+        this.page.url = "https://gonewbie.github.io/2020/01/16/es6-class/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "es6-class"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://gonewbie.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:gounewbie@gmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/gonewbie" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Class"><span class="toc-number">1.</span> <span class="toc-text">Class</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#class의-기본-사용법"><span class="toc-number">1.1.</span> <span class="toc-text">class의 기본 사용법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constructor-NaN"><span class="toc-number">1.2.</span> <span class="toc-text">constructor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method"><span class="toc-number">1.3.</span> <span class="toc-text">Method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prototype-vs-Class"><span class="toc-number">1.4.</span> <span class="toc-text">Prototype vs Class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.4.1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extends-amp-super"><span class="toc-number">1.4.2.</span> <span class="toc-text">extends &amp; super</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hoisting-amp-Temporal-Dead-Zone"><span class="toc-number">1.5.</span> <span class="toc-text">Hoisting &amp; Temporal Dead Zone</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#마치며"><span class="toc-number">2.</span> <span class="toc-text">마치며</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 17
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href= "/2020/01/16/es6-module-system/" >es6-module-system</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href= "/2020/01/16/es6-class/" >es6-class</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-argements-rest-spread/" >es6) 매개변수, rest parameter, spread 문법</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-arrow-function/" >ES6) Arrow Function (화살표 함수)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/2019/12/16/how-to-optimize-mongodb-query-aggregate/" >mongodb aggregate 쿼리 최적화</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2019/12/03/blog-migration-from-jekyll-to-hexo/" >jekyll에서 hexo로 blog migration 변경기</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span><a class="archive-post-title" href= "/2019/10/20/Today-I-Learned-191020/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/Today-I-Learned-191018/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/Today-I-Learned-191017/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/Today-I-Learned-191016/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/Today-I-Learned-191015/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href= "/2019/10/14/Today-I-Learned-191014/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span><a class="archive-post-title" href= "/2019/10/13/Today-I-Learned-191013/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/mongodb-local-seoul-2019/" >mongoDB.local seoul 2019에 참가</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/30</span><a class="archive-post-title" href= "/2019/08/30/making-github-blog-pages-with-jekyll/" >jekyll을 이용해서 github 블로그를 만들어보자</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/2019/08/26/mariaDB-root-password-settings-at-first/" >macOS에서 mariaDB 설정</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2019/08/22/configure-vscode-eslint-in-macOS/" >VS Code에서 eslint 인식 오류 문제 해결 (masOS)</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="typescript"><span class="iconfont-archer">&#xe606;</span>typescript</span>
+    
+        <span class="sidebar-tag-name" data-tags="mongodb"><span class="iconfont-archer">&#xe606;</span>mongodb</span>
+    
+        <span class="sidebar-tag-name" data-tags="nestjs"><span class="iconfont-archer">&#xe606;</span>nestjs</span>
+    
+        <span class="sidebar-tag-name" data-tags="typeorm"><span class="iconfont-archer">&#xe606;</span>typeorm</span>
+    
+        <span class="sidebar-tag-name" data-tags="TIL"><span class="iconfont-archer">&#xe606;</span>TIL</span>
+    
+        <span class="sidebar-tag-name" data-tags="webdev"><span class="iconfont-archer">&#xe606;</span>webdev</span>
+    
+        <span class="sidebar-tag-name" data-tags="eslint"><span class="iconfont-archer">&#xe606;</span>eslint</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="jekyll"><span class="iconfont-archer">&#xe606;</span>jekyll</span>
+    
+        <span class="sidebar-tag-name" data-tags="github"><span class="iconfont-archer">&#xe606;</span>github</span>
+    
+        <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="portfolio"><span class="iconfont-archer">&#xe606;</span>portfolio</span>
+    
+        <span class="sidebar-tag-name" data-tags="javascript"><span class="iconfont-archer">&#xe606;</span>javascript</span>
+    
+        <span class="sidebar-tag-name" data-tags="es6"><span class="iconfont-archer">&#xe606;</span>es6</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="mariadb"><span class="iconfont-archer">&#xe606;</span>mariadb</span>
+    
+        <span class="sidebar-tag-name" data-tags="sequelize"><span class="iconfont-archer">&#xe606;</span>sequelize</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="development"><span class="iconfont-archer">&#xe60a;</span>development</span>
+    
+        <span class="sidebar-category-name" data-categories="blog"><span class="iconfont-archer">&#xe60a;</span>blog</span>
+    
+        <span class="sidebar-category-name" data-categories="development/database"><span class="iconfont-archer">&#xe60a;</span>development/database</span>
+    
+        <span class="sidebar-category-name" data-categories="development/group-study"><span class="iconfont-archer">&#xe60a;</span>development/group-study</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "gonewbie"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
