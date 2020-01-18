@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>TIL(Today I Learned) · gonewbie&#39;s Studio</title>
+    <title>es6-module-system · gonewbie&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -228,7 +228,7 @@
                 <a href="/" >gonewbie&#39;s notepad</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">TIL(Today I Learned)</a>
+                <a href="#" class="post-name">es6-module-system</a>
             </div>
     </div>
     
@@ -258,7 +258,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            TIL(Today I Learned)
+            es6-module-system
             <!-- 404 -->
             
         </h1>
@@ -275,24 +275,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "typescript">typescript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "nestjs">nestjs</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "typeorm">typeorm</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">603</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">0</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/10/15</span>
+                    <span class="post-intro-time">2020/01/16</span>
                     
                     <span class="shareWrapper">
                         <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -411,33 +401,15 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>현재 진행 중인 프로젝트와 참고 중인 예제 RealWorld(NestJS + TypeORM)는 다음과 같습니다.</p>
-<p>github 주소: <a href="https://github.com/gonewbie/typescript_project" target="_blank" rel="noopener">Gonewbie’s github</a></p>
-<p>Realworld(NestJS) github 주소: <a href="https://github.com/lujakob/nestjs-realworld-example-app" target="_blank" rel="noopener">RealWorld(NestJS)</a></p>
-<h1 id="UserModule-완성"><a href="#UserModule-완성" class="headerlink" title="UserModule 완성"></a>UserModule 완성</h1><p>회원가입, 로그인 유저 정보 확인 두 개의 기능이 구현되었고 나머지 3개의 기능으로 회원 정보 수정, 로그인, 회원 삭제 기능을 구현하여 UserModule을 마무리 할 예정이다.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user.controller.ts</span></span><br><span class="line"><span class="meta">@Controller</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly userService: UserService</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  <span class="meta">@UsePipes</span>(<span class="keyword">new</span> ValidationPipe())</span><br><span class="line">  <span class="meta">@Post</span>(<span class="string">'users/login'</span>)</span><br><span class="line">  <span class="keyword">async</span> login(<span class="meta">@Body</span>(<span class="string">'user'</span>) loginUserDto: LoginUserDto): <span class="built_in">Promise</span>&lt;UserRO&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> _user = <span class="keyword">await</span> <span class="keyword">this</span>.userService.findOne(loginUserDto);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> errors = &#123;User: <span class="string">' not found'</span>&#125;;</span><br><span class="line">    <span class="keyword">if</span> (!_user) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> HttpException(&#123;errors&#125;, HttpStatus.UNAUTHORIZED);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> token = <span class="keyword">await</span> <span class="keyword">this</span>.userService.generateJWT(_user);</span><br><span class="line">    <span class="keyword">const</span> &#123; email, username, bio, image &#125; = _user;</span><br><span class="line">    <span class="keyword">const</span> user = &#123; email, token, username, bio, image &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123; user &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>로그인과 관련된 UserDto 정보를 DTO로 선언하여 해당 객체로 접근하고 user를 검색하여 검색 결과가 없으면 에러를 그게 아닐 경우 token을 새로 생성하여 user를 반환한다.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user.service.ts</span></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(UserEntity)</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> readonly userRepository: Repository&lt;UserEntity&gt;,</span></span><br><span class="line"><span class="params">  </span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> findOne(loginUserDto: LoginUserDto): <span class="built_in">Promise</span>&lt;UserEntity&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> findOneOptions = &#123;</span><br><span class="line">      email: loginUserDto.email,</span><br><span class="line">      password: crypto.createHmac(<span class="string">'sha256'</span>, loginUserDto.password).digest(<span class="string">'hex'</span>),</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.userRepository.findOne(findOneOptions);</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>로그인 된 유저가 DB에 접근할 떄, email과 password로 검색을 하되, password는 암호화 방식으로 변경되어 저장되므로 암호화 후에 저장하였다.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user.controller.ts</span></span><br><span class="line"><span class="meta">@Controller</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly userService: UserService</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  <span class="meta">@Put</span>(<span class="string">'user'</span>)</span><br><span class="line">  <span class="keyword">async</span> update(<span class="meta">@User</span>(<span class="string">'id'</span>) userId: <span class="built_in">number</span>, <span class="meta">@Body</span>(<span class="string">'user'</span>) userData: UpdateUserDto) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.userService.update(userId, userData);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Delete</span>(<span class="string">'users/:slug'</span>)</span><br><span class="line">  <span class="keyword">async</span> <span class="keyword">delete</span>(<span class="meta">@Param</span>() params) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.userService.delete(params.slug);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>ts</span><br><span class="line"><span class="comment">// user.service.ts</span></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(UserEntity)</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> readonly userRepository: Repository&lt;UserEntity&gt;,</span></span><br><span class="line"><span class="params">  </span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">async</span> update(id: <span class="built_in">number</span>, dto: UpdateUserDto): <span class="built_in">Promise</span>&lt;UserEntity&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> toUpdate = <span class="keyword">await</span> <span class="keyword">this</span>.userRepository.findOne(id);</span><br><span class="line">    <span class="keyword">delete</span> toUpdate.password;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> updated = <span class="built_in">Object</span>.assign(toUpdate, dto);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.userRepository.save(updated);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> <span class="keyword">delete</span>(email: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;DeleteResult&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.userRepository.delete(&#123; email &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>업데이트 및 삭제의 경우, 특정 사용자에 대해 업데이트 삭제가 이루어지게 된다. 삭제의 경우는 url 내 parameter를 통해서 삭제할 계정 정보를 가져온다.</p>
-<p>마지막으로 현재 백엔드에 대한 API 문서화를 자동으로 생성해주는 Swagger를 적용해보도록 하곘다.<br>우선 프로젝트 전체에 Swagger에 대한 설정은 지정해야 한다.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; NestFactory &#125; <span class="keyword">from</span> <span class="string">'@nestjs/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppModule &#125; <span class="keyword">from</span> <span class="string">'./app.module'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; DocumentBuilder, SwaggerModule &#125; <span class="keyword">from</span> <span class="string">'@nestjs/swagger'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> appOptions = &#123;cors: <span class="literal">true</span>&#125;;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(AppModule, appOptions);</span><br><span class="line">  app.setGlobalPrefix(<span class="string">'api'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> options = <span class="keyword">new</span> DocumentBuilder()</span><br><span class="line">    .setTitle(<span class="string">'NestJS App'</span>)</span><br><span class="line">    .setDescription(<span class="string">'RealWorld API Description'</span>)</span><br><span class="line">    .setVersion(<span class="string">'1.0'</span>)</span><br><span class="line">    .setBasePath(<span class="string">'api'</span>)</span><br><span class="line">    .addBearerAuth()</span><br><span class="line">    .build();</span><br><span class="line">  <span class="keyword">const</span> <span class="built_in">document</span> = SwaggerModule.createDocument(app, options);</span><br><span class="line">  SwaggerModule.setup(<span class="string">'/docs'</span>, app, <span class="built_in">document</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> app.listen(<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br><span class="line">bootstrap();</span><br></pre></td></tr></table></figure>
-<p>우선 Swagger에서 문서 생성시 사용할 옵션에 대해 builder 패턴을 통해 옵션을 지정한다. 해당 옵션으로 모듈을 생성하고 url 경로와 함께 Nest와 연결하면 간편하게 설정이 완료된다.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user.controller.ts</span></span><br><span class="line"><span class="meta">@ApiBearerAuth</span>()</span><br><span class="line"><span class="meta">@ApiUseTags</span>(<span class="string">'user'</span>)</span><br><span class="line"><span class="meta">@Controller</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly userService: UserService</span>) &#123;&#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>마지막으로 decorator를 이용하여 User의 Controller에 두 개의 설정을 추가해주면 Swagger 문서 생성이 자동으로 완성된다. 완성된 swagger 페이지는 <code>main.ts</code>에서 선언했던대로 /docs url을 입력하면 확인 할 수 있다.</p>
-<p>이후에는 Profile 관련 모듈을 생성할 예정이다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; nest g module profile</span><br><span class="line">&gt; nest g controller profile</span><br><span class="line">&gt; nest g service profile</span><br></pre></td></tr></table></figure>
-<p>nest-cli를 통해  boilerplate 코드들을 생성한 이후 코드를 완성할 예정이다.</p>
-
+        
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
-            <p>link：<a href="https://gonewbie.github.io/2019/10/15/Today-I-Learned-191015/">https://gonewbie.github.io/2019/10/15/Today-I-Learned-191015/</a>
-            <p>create date：<a href="https://gonewbie.github.io/2019/10/15/Today-I-Learned-191015/">October 15th 2019, 8:33:07 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2019/10/15/Today-I-Learned-191015/">December 2nd 2019, 11:53:14 pm</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/01/16/es6-module-system/">https://gonewbie.github.io/2020/01/16/es6-module-system/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/01/16/es6-module-system/">January 16th 2020, 7:57:57 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/01/16/es6-module-system/">January 16th 2020, 7:57:57 pm</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -445,17 +417,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/10/16/Today-I-Learned-191016/" title= "TIL(Today I Learned)">
-                    <div class="nextTitle">TIL(Today I Learned)</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/10/14/Today-I-Learned-191014/" title= "TIL(Today I Learned)">
-                    <div class="prevTitle">TIL(Today I Learned)</div>
+                <a href= "/2020/01/12/es6-argements-rest-spread/" title= "es6) 매개변수, rest parameter, spread 문법">
+                    <div class="prevTitle">es6) 매개변수, rest parameter, spread 문법</div>
                 </a>
             
         </li>
@@ -472,8 +439,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://gonewbie.github.io/2019/10/15/Today-I-Learned-191015/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "TIL(Today I Learned)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://gonewbie.github.io/2020/01/16/es6-module-system/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "es6-module-system"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -581,7 +548,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UserModule-완성"><span class="toc-number">1.</span> <span class="toc-text">UserModule 완성</span></a></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
