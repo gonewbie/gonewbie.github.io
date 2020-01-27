@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="gonewbie">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="gonewbie">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>ES6) Promise부터 함수형 프로그래밍까지 · gonewbie&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-154573634-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >gonewbie&#39;s notepad</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">ES6) Promise부터 함수형 프로그래밍까지</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>gonewbie's notepad</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            ES6) Promise부터 함수형 프로그래밍까지
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "functional-programming">functional-programming</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">2.6k</span>Reading time: <span class="post-count reading-time">16 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/01/27</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>이 글은 Promise에 대한 사용법보다 발생 배경 및 callback 함수와의 차이점 및 함수형 프로그래밍에 대한 이론적인 내용을 주로 다루고자 합니다.<br>따라서 Promise에 대한 구체적인 사용법이나 개념 이해가 필요하신 분은 게시글 맨 밑의 참조부분을 확인해주시길 바랍니다.</p>
+<hr/>
+
+<p>자바스크립트는 기본적으로 non-block, single thread 기반이기 때문에 어떤 부분에서 함수의 동작이 오래걸린다고 해서 동작을 기다리지 않고 다음 코드로 넘어간다.<br>이러한 비동기 코드를 순차적으로 제어하기 위해 ES6 이전에는 callback 함수를 이용했다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  <span class="keyword">var</span> loginData = &#123;<span class="attr">email</span>: <span class="string">'gonewbie@github.com'</span>, <span class="attr">password</span>: <span class="string">'p@ssw0rd'</span>&#125;;</span><br><span class="line">  <span class="comment">// callback function</span></span><br><span class="line">  xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.status === <span class="number">200</span> || xhr.status === <span class="number">201</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">      <span class="keyword">var</span> token = <span class="built_in">JSON</span>.parse(xhr.responseText).token;</span><br><span class="line">      <span class="comment">// -- nested ajax ----</span></span><br><span class="line">      <span class="keyword">var</span> xhr2 = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        xhr2.setRequestHeader(<span class="string">'Authorization'</span>, token);</span><br><span class="line">        xhr2.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// callback function</span></span><br><span class="line">          <span class="keyword">if</span> (xhr2.status === <span class="number">200</span> || xhr2.status === <span class="number">201</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(xhr2.responseText);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.error(xhr2.responseText);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        xhr2.open(<span class="string">'GET'</span>, <span class="string">'https://blahblah.blah/api/profile'</span>);</span><br><span class="line">      <span class="comment">// ------------------</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(xhr.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  xhr.open(<span class="string">'POST'</span>, <span class="string">'https://blahblah.blah/api/login'</span>);</span><br><span class="line">  xhr.send(<span class="built_in">JSON</span>.stringify(loginData)); <span class="comment">// 폼 데이터 객체 전송</span></span><br></pre></td></tr></table></figure>
+
+<p>하지만 이렇게 콜백 함수의 depth가 깊어지면 callback을 벗어나기도 힘들어지는 callback hell과 더불어 코드 가독성이 현저하게 떨어지게 된다.<br>이를 해결하기 위해 나타난 개념이 promise이다.<br>promise란, 실행 시간이 어느 정도 걸리는 함수를 wrapping하여 성공, 실패 여부에 따른 리턴을 결정한다.<br>ES6에 정식적으로 spec으로 추가 되기 전에는 <code>bluebird.js</code>,<code>jQuery의 ajax</code> 등에서 별도로 구현하곤 했다.<br>이후에 ES6에 정식으로 도입된 promise가 표준으로 도입됨으로써 별도의 라이브러리 없이 vanilla js로 구현이 가능해졌다.<br>아래는 promise를 기반으로 작성된 fetch API로 수정된 AJAX이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://blahblah.blah/api/login'</span>, &#123;</span><br><span class="line">  method: <span class="string">'POST'</span>,</span><br><span class="line">  body: &#123;<span class="attr">email</span>: <span class="string">'gonewbie@github.com'</span>, <span class="attr">password</span>: <span class="string">'p@ssw0rd'</span>&#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">  fetch(<span class="string">'https://blahblah.blah/api/profile'</span>, &#123;</span><br><span class="line">    headers: &#123;</span><br><span class="line">      Authorization: data.token,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">profile</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(profile);</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.error(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>fetch는 Promise로 작성된 AJAX API</p>
+</blockquote>
+<h2 id="Promise가-뭣이-중헌데"><a href="#Promise가-뭣이-중헌데" class="headerlink" title="Promise가 뭣이 중헌데?"></a>Promise가 뭣이 중헌데?</h2><p>Promise는 callback으로 비동기함수를 제어하는 데에서 발생할 수 있는 문제들에 대해 개발자들에게 더 우아한 해결책을 제시해준다.</p>
+<h3 id="depth를-1로-관리"><a href="#depth를-1로-관리" class="headerlink" title="depth를 1로 관리"></a>depth를 1로 관리</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> login = <span class="function"><span class="keyword">function</span>(<span class="params">id, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (id === <span class="string">'gonewbie'</span>) &#123;</span><br><span class="line">    callback(<span class="literal">null</span>, &#123;<span class="attr">nickname</span>: <span class="string">'gonewbie'</span>, <span class="attr">token</span>: <span class="string">'sdf.data.dsfsdf'</span>&#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    callback(<span class="string">`<span class="subst">$&#123;id&#125;</span> is not found`</span>, <span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> getProfile = <span class="function"><span class="keyword">function</span>(<span class="params">data, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> token = data.token;</span><br><span class="line">  <span class="keyword">var</span> datas = token.split(<span class="string">'.'</span>)[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span> (datas === <span class="string">'data'</span>) &#123;</span><br><span class="line">    callback(<span class="literal">null</span>, &#123;<span class="attr">bio</span>: <span class="string">'blahblah'</span>, <span class="attr">image</span>: <span class="string">'...'</span>&#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    callback(<span class="string">`<span class="subst">$&#123;data&#125;</span> is not found`</span>, <span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">login(<span class="string">'gonewbie'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">  getProfile(data, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">    <span class="comment">// .. 비동기 함수의 depth가 깊어질수록 실수 발생 가능성 증가</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>ES5까지는, 코드 베이스가 커지고 이에 따라 비동기 함수의 순서를 관리하기 위해 callback 함수를 중첩되게(nested) 입력하는 경우가 많게 되었다.<br>하지만, 이러한 depth의 깊이 증가는 가독성을 떨어뜨리고 depth를 잘못 파악하여 callback 함수의 주도권을 잘못 파악하게 되는 문제가 발생할 수 있다.<br>ES6에 들어서 도입된 Promise는 이러한 시간이 소요되는 함수에 대해 Promise로 wrapping하여 depth를 관리하기 용이하게 된다.<br>Promise는 nested하게 되더라도 기본적으로 depth는 1로 유지되며, 이러한 것의 장점은 개발자는 depth를 관리해줄 필요가 없다는 것이다.<br>이렇듯 Promise의 depth가 1인 것은 method chaining이 가능하다는 것인데 이것에 대한 장점은 후술하겠다.</p>
+<h3 id="에러-처리의-우아함"><a href="#에러-처리의-우아함" class="headerlink" title="에러 처리의 우아함"></a>에러 처리의 우아함</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> login = <span class="function"><span class="keyword">function</span> (<span class="params">id, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (id === <span class="string">'gonewbie'</span>) &#123;</span><br><span class="line">    callback(<span class="literal">null</span>, &#123;<span class="attr">nickname</span>: <span class="string">'gonewbie'</span>, <span class="attr">token</span>: <span class="string">'sdf.data.dsfsdf'</span>&#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    callback(<span class="string">`<span class="subst">$&#123;id&#125;</span> is not found`</span>, <span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">login(<span class="string">'gonewbie'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);</span><br><span class="line">  <span class="keyword">else</span> <span class="built_in">console</span>.log(data);</span><br><span class="line">  <span class="comment">// business logic</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'unexpected Error'</span>); <span class="comment">// Uncaught Error...</span></span><br><span class="line">&#125;);</span><br><span class="line">login(<span class="string">'kimchi'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);</span><br><span class="line">  <span class="keyword">else</span> <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>기존에 callback 함수가 포함된 비동기 함수에서 에러를 처리할 때 가장 큰 문제점은 callback 함수 내에서 error가 발생할 때, 이를 catch하는 것이 어렵다는 것이다.<br><code>Promise.prototype.then</code>내부 로직은 callback 함수의 에러 처리와 유사하게 <code>.then(onFulfilled, onRejected)</code> 이루어져 있다.<br>첫 번째 인자로 받는 함수는 Promise가 <code>fulfilled</code>인 상태일 때 수행하는 함수이고, 두 번째 인자가 있을 경우 <code>rejected</code>인 상태일 때 수행하는 함수이다.<br>하지만 이렇게 then에서 이전 Promise의 <code>fulfill/reject</code> 여부에 따라 구분하여 해결할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  resolve(<span class="string">"성공!"</span>);</span><br><span class="line">  <span class="comment">// 또는</span></span><br><span class="line">  <span class="comment">// reject("오류!");</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p1.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value); <span class="comment">// 성공!</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(reason); <span class="comment">// 오류!</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>하지만 <code>Promise.prototype.then</code>에서도 에러가 발생할 수 있다. 이 때는 어떻게 에러 처리를 해야 할까?<br><code>Promise.prototype.then</code>을 잘 살펴보면 그 답을 알 수 있다.<br><code>Promise.prototype</code> 함수들은 모두 Promise 객체를 다시 반환한다. 즉 반환된 결과에 다시 Promise의 메서드들을 쓸 수 있다는 것이다.<br>이는 추후에도 다룰 method chaining에 관련된 개념이다. 여기서 우리가 주목할 것은 <code>Promise.prototype.catch</code> 메서드이다.<br>이 메서드는 이전에 chaining된 Promise 중에서 rejected된 응답이 있을 경우 이를 catch해서 처리하는 함수이다.<br>따라서, Promise chaining 중에 발생한 오류를 한 번에 포착하여 처리할 수도 있고, then으로 반환된 Promise 객체 내 오류까지 잡을 수 있다.<br>따라서, catch에 에러 처리를 모두 일임하고, Promise와 then에서는 resolve, reject에 관련된 처리만 하는 것이 바람직하다. </p>
+<h3 id="만능-해결사-Method-Chaining"><a href="#만능-해결사-Method-Chaining" class="headerlink" title="만능 해결사, Method Chaining"></a>만능 해결사, Method Chaining</h3><p>자바스크립트의 Array는 강력한 built-in 함수들이 많이 내장되어 있다.<br>우리가 흔히 알고 있는 map, filter, reduce와 같은 고차함수들은 함수형 프로그래밍의 특징 중의 하나인 선언적이라는 특징을 살릴 수 있다.<br>게다가, 입력과 반환이 모두 Array이기 때문에 Array에 관련된 built-in method를 연속해서 쓸 수 있다.<br>만일 반환되는 값이 Array가 아니라면 map, filter, reduce 등을 연속해서 쓸 수 없을 것이다.<br>아래는 method chaining을 이용하여 배열 내 짝수들의 합의 2배를 구하는 함수의 예이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isEven = <span class="function"><span class="params">val</span> =&gt;</span> val % <span class="number">2</span> === <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> doubleNumber = <span class="function"><span class="params">val</span> =&gt;</span> val * <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> addAll = <span class="function">(<span class="params">acc, cur</span>) =&gt;</span> acc + cur;</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">.filter(isEven)</span><br><span class="line">.map(doubleNumber)</span><br><span class="line">.reduce(addAll, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>이렇듯 method를 이어서 연속적으로 쓰는 것을 method chaining이라고 한다.<br>method chaining에 대해 이렇게 설명하는 것은 Promise 역시 이러한 특징을 살릴 수 있기 때문이다.<br>Promise로 작성된 함수의 return 값은 Promise로 wrapping되어 반환된다.<br>즉, 입력과 출력이 모두 Promise이기 때문에 method chaining이 가능한 것이다.<br>Promise에는 then, catch, finally 와 같은 method를 사용할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> login = <span class="function">(<span class="params">id</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> user = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span>(id === <span class="string">'gonewbie'</span>) user = &#123;<span class="attr">nickname</span>: <span class="string">'gonewbie'</span>, <span class="attr">token</span>: <span class="string">'sdf.data.dsfsdf'</span>&#125;;</span><br><span class="line">    <span class="keyword">else</span> reject(<span class="string">`<span class="subst">$&#123;id&#125;</span> is not found`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(user);</span><br><span class="line">    resolve(user);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> getProfile = <span class="function">(<span class="params">data</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> profile = &#123;&#125;;</span><br><span class="line">    <span class="keyword">const</span> token = data.token;</span><br><span class="line">    <span class="keyword">const</span> sendedData = token.split(<span class="string">'.'</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (sendedData === <span class="string">'data'</span>) profile = &#123;<span class="attr">bio</span>: <span class="string">'blahblah'</span>, <span class="attr">image</span>: <span class="string">'...'</span>&#125;;</span><br><span class="line">    <span class="keyword">else</span> reject(<span class="string">`<span class="subst">$&#123;data&#125;</span> is not found`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(profile);</span><br><span class="line">    resolve(profile);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// login</span></span><br><span class="line">login(<span class="string">'gonewbie'</span>)</span><br><span class="line">.then(getProfile)</span><br><span class="line">.catch(<span class="built_in">console</span>.error)</span><br><span class="line">.finally(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'job is done'</span>));</span><br><span class="line"></span><br><span class="line">login(<span class="string">'kimchi'</span>)</span><br><span class="line">.then(getProfile)</span><br><span class="line">.catch(<span class="built_in">console</span>.error)</span><br><span class="line">.finally(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'job is done'</span>));</span><br></pre></td></tr></table></figure>
+<p>Promise로 선언된 함수는 실제 호출될 경우 <code>pending</code> 상태의 Promise를 반환한다.<br>이후 <code>then</code> method를 만나거나 ES7 이후 도입된 <code>await</code>를 만나면 resolve 혹은 reject 상태가 된다.<br>또한 위에서 언급된 내용들처럼, chaining을 통해 Promise 객체를 단일 depth로 반환하고, <code>catch</code>를 통한 에러 처리가 가능한 점이 있다.</p>
+<h2 id="Promise-합성하기"><a href="#Promise-합성하기" class="headerlink" title="Promise 합성하기"></a>Promise 합성하기</h2><p>Promise를 method chaining를 통해 함수들을 좀 더 선언적으로 사용할 수 있는 측면을 이전에 살펴보았다.<br>여기에 함수를 합성하는 방법을 통해 좀 더 함수형 프로그래밍에 접근해보자.<br>이전에 스터디에도 다뤘듯이 함수를 합성하는 방법으로 흔히 reduce를 활용하여 다음과 같이 작성한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pipe = <span class="function">(<span class="params">...functions</span>) =&gt;</span></span><br><span class="line">  initialValue =&gt;</span><br><span class="line">    functions.reduce(</span><br><span class="line">      (acc, func) =&gt; func(acc),</span><br><span class="line">      initialValue</span><br><span class="line">    );</span><br><span class="line"><span class="keyword">const</span> isEven = <span class="function"><span class="params">arr</span> =&gt;</span> arr.filter(<span class="function"><span class="params">elem</span> =&gt;</span> elem % <span class="number">2</span> === <span class="number">0</span>);</span><br><span class="line"><span class="keyword">const</span> doubleNumber = <span class="function"><span class="params">arr</span> =&gt;</span> arr.map(<span class="function"><span class="params">elem</span> =&gt;</span> elem * <span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> addAll = <span class="function"><span class="params">arr</span> =&gt;</span> arr.reduce(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> acc + cur, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getTotalDoubledEvenNum = pipe(isEven, doubleNumber, addAll);</span><br><span class="line"><span class="keyword">const</span> result = getTotalDoubledEvenNum([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// 24</span></span><br></pre></td></tr></table></figure>
+<p>여기서 custom하게 작성한 pipe함수는 함수를 합성하기만 할 뿐 실제 실행 시에 동작하는 lazy evaluation의 특징이 있다.<br>Promise도 이와 같이 합성이 가능하다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pipePromise = <span class="function">(<span class="params">...functions</span>) =&gt;</span> <span class="function"><span class="params">initialValue</span> =&gt;</span></span><br><span class="line">  functions.reduce(</span><br><span class="line">    (acc, func) =&gt; <span class="built_in">Promise</span>.resolve(acc).then(func),</span><br><span class="line">    initialValue</span><br><span class="line">  );</span><br><span class="line"><span class="keyword">const</span> login = <span class="function">(<span class="params">id</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> user = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span>(id === <span class="string">'gonewbie'</span>) user = &#123;<span class="attr">nickname</span>: <span class="string">'gonewbie'</span>, <span class="attr">token</span>: <span class="string">'sdf.data.dsfsdf'</span>&#125;;</span><br><span class="line">    <span class="keyword">else</span> reject(<span class="string">`<span class="subst">$&#123;id&#125;</span> is not found`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(user);</span><br><span class="line">    resolve(user);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> getProfile = <span class="function">(<span class="params">data</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> profile = &#123;&#125;;</span><br><span class="line">    <span class="keyword">const</span> token = data.token;</span><br><span class="line">    <span class="keyword">const</span> sendedData = token.split(<span class="string">'.'</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (sendedData === <span class="string">'data'</span>) profile = &#123;<span class="attr">bio</span>: <span class="string">'blahblah'</span>, <span class="attr">image</span>: <span class="string">'...'</span>&#125;;</span><br><span class="line">    <span class="keyword">else</span> reject(<span class="string">`<span class="subst">$&#123;data&#125;</span> is not found`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(profile);</span><br><span class="line">    resolve(profile);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> loginAndGetProfiles = pipePromise(login, getProfile);</span><br><span class="line">loginAndGetProfiles(<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="string">'gonewbie'</span>)));</span><br><span class="line"></span><br><span class="line">loginAndGetProfiles(<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="string">'kimchi'</span>)));</span><br></pre></td></tr></table></figure>
+<p><code>pipePromise</code>함수를 통해 Promise를 왼쪽에서 오른쪽으로 합성하였다.<br>물론 입력 값도 Promise여야 하므로 값을 wrapping해야 하는 점이 문제지만 Promise 로직을 합성하고 lazy하게 평가하며 재사용성을 높일 수 있게 되었다. 오예!</p>
+<h2 id="Promise는-monad인가"><a href="#Promise는-monad인가" class="headerlink" title="Promise는 monad인가?"></a>Promise는 monad인가?</h2><p>Promise는 기본적으로 값을 Promise 객체로 wrapping하며 depth도 우아하게 관리하며 성공과 실패에 대해 동일한 Promise 객체에서 처리한다.<br>이를 통해 실패(Left)와 성공(Right) 값을 가지는 <code>Either</code> Monad의 요소를 가진다고 볼 수도 있다.<br>이는 멀티 패러다임 언어이자 함수형 프로그래밍이 가능한 Scala에 구현된 <code>Either</code>와 비교하여 동작을 확인해보자.</p>
+<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>Promise를 <code>resolve</code>, <code>reject</code> 생성자를 통해 초기화하는 것은 scala의 <code>Right</code>, <code>Left</code>에 대응된다 볼 수 있다.<br>Javascript</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// javascript</span></span><br><span class="line"><span class="keyword">const</span> r = <span class="built_in">Promise</span>.resolve(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">const</span> l = <span class="built_in">Promise</span>.reject(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// scala</span></span><br><span class="line"><span class="keyword">val</span> r: <span class="type">Either</span>[<span class="type">Int</span>, <span class="type">Int</span>] = <span class="type">Right</span>(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">val</span> l: <span class="type">Either</span>[<span class="type">Int</span>, <span class="type">Int</span>] = <span class="type">Left</span>(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Promise-prototype-then-f"><a href="#Promise-prototype-then-f" class="headerlink" title="Promise.prototype.then(f)"></a>Promise.prototype.then(f)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// javascript</span></span><br><span class="line">r.then(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">10</span>);  <span class="comment">// Resolve(11)</span></span><br><span class="line">l.then(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">10</span>);  <span class="comment">// Reject(0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// nested promise</span></span><br><span class="line">r.then(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(<span class="number">3</span>));  <span class="comment">// Resolve(3)</span></span><br><span class="line">r.then(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.reject(<span class="number">3</span>));  <span class="comment">// Reject(3)</span></span><br><span class="line">l.then(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(<span class="number">3</span>));  <span class="comment">// Reject(0)</span></span><br><span class="line">l.then(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.reject(<span class="number">3</span>));   <span class="comment">// Reject(0)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// scala</span></span><br><span class="line">r.map(_ + <span class="number">10</span>);  <span class="comment">// Right(11)</span></span><br><span class="line">l.map(_ + <span class="number">10</span>);  <span class="comment">// Left(0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// nested Either</span></span><br><span class="line">r.flatMap((x: <span class="type">Int</span>) =&gt; <span class="type">Right</span>[<span class="type">Int</span>, <span class="type">Int</span>](<span class="number">3</span>));  <span class="comment">// Right(3)</span></span><br><span class="line">r.flatMap((x: <span class="type">Int</span>) =&gt; <span class="type">Left</span>[<span class="type">Int</span>, <span class="type">Int</span>](<span class="number">3</span>));   <span class="comment">// Left(3)</span></span><br><span class="line">l.flatMap((x: <span class="type">Int</span>) =&gt; <span class="type">Right</span>[<span class="type">Int</span>, <span class="type">Int</span>](<span class="number">3</span>));  <span class="comment">// Left(0)</span></span><br><span class="line">l.flatMap((x: <span class="type">Int</span>) =&gt; <span class="type">Left</span>[<span class="type">Int</span>, <span class="type">Int</span>](<span class="number">3</span>));   <span class="comment">// Left(0)</span></span><br></pre></td></tr></table></figure>
+<p>then으로 들어오는 함수는 우리가 Array.prototype.map으로 익숙한 map 고차함수와 같이 mapping하는 함수이다.<br>만일 Promise 내에 Promise가 들어오거나 scala에서는 Either내에 Either가 들어오는 등 nested한 형태로 데이터가 들어올 경우 flatMap과 같은 역할을 한다.<br>여기서 주목할 점은 Promise던 Either건 Reject, Left 등의 에러에 해당하는 형태가 들어오면 이를 전파(propagation)하여 해당 에러 데이터로 값을 감싼다.</p>
+<h3 id="Promise-prototype-catch-f"><a href="#Promise-prototype-catch-f" class="headerlink" title="Promise.prototype.catch(f)"></a>Promise.prototype.catch(f)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// javascript</span></span><br><span class="line">r.catch(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">10</span>);  <span class="comment">// Resolve(1)</span></span><br><span class="line">l.catch(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="number">10</span>);  <span class="comment">// Resolve(10)</span></span><br><span class="line"></span><br><span class="line">r.catch(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(x + <span class="number">10</span>));  <span class="comment">// Resolve(1)</span></span><br><span class="line">r.catch(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.reject(x + <span class="number">10</span>));   <span class="comment">// Resolve(1)</span></span><br><span class="line">l.catch(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(x + <span class="number">10</span>));  <span class="comment">// Resolve(10)</span></span><br><span class="line">l.catch(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">Promise</span>.reject(x + <span class="number">10</span>));   <span class="comment">// Reject(10)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// scala</span></span><br><span class="line">r.left.flatMap(((x: <span class="type">Int</span>) =&gt; x + <span class="number">10</span>) andThen <span class="type">Right</span>[<span class="type">Int</span>, <span class="type">Int</span>]);  <span class="comment">// Right(1)</span></span><br><span class="line">l.left.flatMap(((x: <span class="type">Int</span>) =&gt; x + <span class="number">10</span>) andThen <span class="type">Right</span>[<span class="type">Int</span>, <span class="type">Int</span>]);  <span class="comment">// Right(10)</span></span><br><span class="line"></span><br><span class="line">r.left.flatMap(x =&gt; <span class="type">Right</span>[<span class="type">Int</span>, <span class="type">Int</span>](x + <span class="number">10</span>));  <span class="comment">// Right(1)</span></span><br><span class="line">r.left.flatMap(x =&gt; <span class="type">Left</span>[<span class="type">Int</span>, <span class="type">Int</span>](x + <span class="number">10</span>));   <span class="comment">// Right(1)</span></span><br><span class="line">l.left.flatMap(x =&gt; <span class="type">Right</span>[<span class="type">Int</span>, <span class="type">Int</span>](x + <span class="number">10</span>));  <span class="comment">// Right(10)</span></span><br><span class="line">l.left.flatMap(x =&gt; <span class="type">Left</span>[<span class="type">Int</span>, <span class="type">Int</span>](x + <span class="number">10</span>));   <span class="comment">// Left(10)</span></span><br></pre></td></tr></table></figure>
+<p>catch를 통해 <code>Reject</code> 상태의 Promise를 처리하게 되면 Promise는 <code>Resolve</code> 상태하게 된다.<br>또한 Resolve 상태의 값은 catch를 통해 값이 변하지 않으므로 내부 데이터는 초기값 1이 유지된다.<br>하지만 nested한 Reject Promise는 catch를 통해 Resolve되지 않고 Reject상태의 Promise를 반환한다.</p>
+<p>Scala에서는 catch에 상응하는 left.flatMap 함수를 통해 depth 1에서는 오류가 나던 안나던 처리가 완료된 Right에 값이 감싸져 데이터를 준다.<br>Scala 역시 Right의 값에서는 데이터가 유지되고 Left의 경우 처리된 값이 Right으로 감싸져 나온다.<br>Scala도 JS와 마찬가지로 nested된 Left Monad에서는 Left로 감싸진 값을 반환하게 된다.</p>
+<h3 id="그럼-Promise도-Monad인가"><a href="#그럼-Promise도-Monad인가" class="headerlink" title="그럼 Promise도 Monad인가?"></a>그럼 Promise도 Monad인가?</h3><blockquote>
+<p>Warning! 현재 분류는 수학적인 개념 및 함수형 개념이 약간 섞여 있습니다. 수학에 S자도 생각하기 싫으신 분은 다음 분류로 넘어가셔도 됩니다.</p>
+</blockquote>
+<p>우선 결론부터 말하자면 Promise는 Monad가 아니다!<br>이유는 아래 stackoverflow에 자세히 나와 있다.</p>
+<blockquote>
+<ul>
+<li><a href="https://stackoverflow.com/questions/45712106/why-are-promises-monads" target="_blank" rel="noopener">Why are Promises Monad?</a></li>
+</ul>
+</blockquote>
+<p>가장 upvote를 많이 받은 답을 기준으로 간단하게 살펴보면<br>우선 Promise는 Functor가 아닌데 그 이유는 Functor의 composition preservation law를 위반하기 때문이다.<br>수학적인 개념으로 보면 <code>Promise는 Functor이다.</code>라는 명제의 반례가 하나 이상일 경우 해당 명제가 거짓이라는 것을 반례를 통해 증명한 것이다.</p>
+<blockquote>
+<p>promise.then(x =&gt; g(f(x))) !== promise.then(f).then(g)</p>
+</blockquote>
+<p>위의 예가 맞지 않기 때문에 Functor가 아닌 것이다.<br>우리가 궁금한 것은 Functor가 아니라 Monad인데요?<br>하지만, Promise는 Applicative도 심지어 Monad도 아니다. 아래의 법칙을 만족하지 않기 때문이다.</p>
+<blockquote>
+<p>Promise.resolve(g(x)) !== Promise.resolve(x).then(g)</p>
+</blockquote>
+<p>Applicative 중 하나인 Pointed Functor의 natural transform law를 위반하기 때문에 Applicative, Monad도 만족하지 않는다.</p>
+<blockquote>
+<p>Functor, Applicatives, Monad 개념 참고</p>
+<ul>
+<li><a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="noopener">Functors, Applicatives, And Monads In Pictures</a><br>, <a href="https://lazyswamp.tistory.com/entry/functorsapplicativesandmonadsinpictures" target="_blank" rel="noopener">번역</a></li>
+</ul>
+</blockquote>
+<h3 id="그럼-어쩌란-말인가"><a href="#그럼-어쩌란-말인가" class="headerlink" title="그럼 어쩌란 말인가?"></a>그럼 어쩌란 말인가?</h3><p>JS는 기본적으로 multi paradigm 언어이다. 절차 지향, 객체 지향, 함수형 프로그래밍을 모두 구현 가능한 만큼 함수형을 완벽하게 구사하는 것이 불가능하기도 하고 그것이 JS의 주 목적은 아닐 것이다.<br>함수형을 엄격하게 수행하기 위해서는 지금 당장 JS를 버리고 Haskell을 배워야 할 것이다.<br>하지만 고차함수, Currying 등을 오래전부터 지원해왔고 이러한 요소들을 통해 함수형 프로그래밍이 가능하다.<br>함수형 프로그래밍을 통해, 함수를 재사용 가능한 가장 작은 요소로 분리하여 재사용을 통해 문제를 해결하는 <code>Divide and Conquer</code> 원칙으로 문제를 해결할 수 있다.<br>실제로 웹 프론트엔드 라이브러리 React나 상태 관리 저장소 Redux 등은 함수형 프로그래밍 요소도 제공하는 등 실제로도 주변에서 많이 볼 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todos = <span class="function">(<span class="params">state = [], action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>:</span><br><span class="line">      <span class="keyword">return</span> [</span><br><span class="line">        ...state,</span><br><span class="line">        &#123;</span><br><span class="line">          id: action.id,</span><br><span class="line">          text: action.text,</span><br><span class="line">          completed: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'TOGGLE_TODO'</span>:</span><br><span class="line">      <span class="keyword">return</span> state.map(<span class="function"><span class="params">todo</span> =&gt;</span></span><br><span class="line">        (todo.id === action.id)</span><br><span class="line">          ? &#123;...todo, <span class="attr">completed</span>: !todo.completed&#125;</span><br><span class="line">          : todo</span><br><span class="line">      )</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> todos</span><br></pre></td></tr></table></figure>
+<p>위는 Redux의 TODO App 예제의 reducer 중 하나이다. action의 type은 Algebraic Data Type(이하 ADT) 중 Sum Type이다.<br>Sum Type은 <code>enum</code>과 같이 type이 여러 개 중 하나를 만족하도록 하는 것이다.<br>즉, action의 type 역시 위 3개의 조건 중 하나로 구성되어 있다는 것을 알 수 있다.<br>또한 return으로 반환하는 state는 …(spread 연산자)를 통해 새로 배열을 선언하여 다시 반환되는 것을 알 수 있다.<br>여기에는, 함수형 프로그래밍에서 흔히 쓰이는 Immutable한 데이터 처리 방식을 따랐다.<br>JS는 기본적으로 객체와 같은 type은 참조를 하기 때문에 객체 내부 데이터를 일일히 따져서 비교하기 보다는 새로 선언되어 다른 메모리에 할당된 데이터를 파악하여 state를 관리하는 방식을 채택한 것이다.</p>
+<p>즉, 우리가 사용하는 framework이나 library들이 FP를 기반으로 작성되기도 하고 실무에서도 FP를 이용하여 DRY(Don’t Repeat Yourself)하게 작성된 코드를 볼 수 있을 것이다.<br>따라서 FP에 대해 막연한 두려움을 가지기 보단, 자신이 아는 개념을 활용해서 차근차근 이해하고 이를 코드에 적용하는 것이 좋다.</p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p>Promise의 정말 기본적인 동작부터 Promise를 이용한 선언적 프로그래밍, 함수 합성과 이를 기반으로 함수형 프로그래밍의 원론적인 지식을 가볍게 다뤄보았다.<br>Promise는 비동기 함수를 우아하게 처리하는 훌륭한 요소인 만큼 FP 요소들과 접목해서 사용하면 좀 더 강력하고 읽기 쉬운 코드 작성이 가능할 것이다.<br>마지막으로, 함수형 프로그래밍 어렵지 않습니다. 덜 익숙한 것일 뿐.</p>
+<blockquote>
+<p>참조</p>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise MDN</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" target="_blank" rel="noopener">Promise.then() MDN</a></li>
+<li><a href="https://joshua1988.github.io/web-development/javascript/promise-for-beginners/" target="_blank" rel="noopener">Promise 쉽게 이해하기</a></li>
+<li><a href="https://scotch.io/tutorials/javascript-promises-for-dummies" target="_blank" rel="noopener">Promises for Dummies</a></li>
+<li><a href="https://hackernoon.com/lets-compose-promises-309a63225f8a" target="_blank" rel="noopener">Let’s compose Promises!</a></li>
+<li><a href="https://www.vobour.com/%EB%A6%AC%EB%8D%95%EC%8A%A4-redux-%EC%9D%98-%EB%A6%AC%EB%93%80%EC%84%9C-reducer-%EA%B0%80-%EC%88%9C%EC%88%98-%ED%95%A8%EC%88%98%EC%97%AC%EC%95%BC%EB%A7%8C-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0" target="_blank" rel="noopener">Redux의 Reducer가 순수함수여야 하는 이유</a></li>
+<li><a href="https://medium.com/@lazysoul/%EB%8C%80%EC%88%98%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85%EC%9D%B4-algebraic-data-type-%EC%9D%B4%EB%9E%80-26d9e73d96b6" target="_blank" rel="noopener">대수적 데이터 타입(algebraic data type)이란? With Kotlin</a></li>
+</ul>
+</blockquote>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/01/27/es6-promise/">https://gonewbie.github.io/2020/01/27/es6-promise/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/01/27/es6-promise/">January 27th 2020, 6:02:07 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/01/27/es6-promise/">January 27th 2020, 6:02:34 pm</a>
+            <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/01/19/es6-module-system/" title= "ES6) module 시스템">
+                    <div class="prevTitle">ES6) module 시스템</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        
+        var disqus_config = function () {
+        this.page.url = "https://gonewbie.github.io/2020/01/27/es6-promise/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "ES6) Promise부터 함수형 프로그래밍까지"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://gonewbie.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:gounewbie@gmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/gonewbie" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-number">1.</span> <span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise가-뭣이-중헌데"><span class="toc-number">1.1.</span> <span class="toc-text">Promise가 뭣이 중헌데?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#depth를-1로-관리"><span class="toc-number">1.1.1.</span> <span class="toc-text">depth를 1로 관리</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#에러-처리의-우아함"><span class="toc-number">1.1.2.</span> <span class="toc-text">에러 처리의 우아함</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#만능-해결사-Method-Chaining"><span class="toc-number">1.1.3.</span> <span class="toc-text">만능 해결사, Method Chaining</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-합성하기"><span class="toc-number">1.2.</span> <span class="toc-text">Promise 합성하기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise는-monad인가"><span class="toc-number">1.3.</span> <span class="toc-text">Promise는 monad인가?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor-NaN"><span class="toc-number">1.3.1.</span> <span class="toc-text">constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-prototype-then-f"><span class="toc-number">1.3.2.</span> <span class="toc-text">Promise.prototype.then(f)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-prototype-catch-f"><span class="toc-number">1.3.3.</span> <span class="toc-text">Promise.prototype.catch(f)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#그럼-Promise도-Monad인가"><span class="toc-number">1.3.4.</span> <span class="toc-text">그럼 Promise도 Monad인가?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#그럼-어쩌란-말인가"><span class="toc-number">1.3.5.</span> <span class="toc-text">그럼 어쩌란 말인가?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#마치며"><span class="toc-number">1.4.</span> <span class="toc-text">마치며..</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 18
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/27</span><a class="archive-post-title" href= "/2020/01/27/es6-promise/" >ES6) Promise부터 함수형 프로그래밍까지</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2020/01/19/es6-module-system/" >ES6) module 시스템</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2020/01/19/es6-class/" >ES6) Class</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-argements-rest-spread/" >es6) 매개변수, rest parameter, spread 문법</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-arrow-function/" >ES6) Arrow Function (화살표 함수)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/2019/12/16/how-to-optimize-mongodb-query-aggregate/" >mongodb aggregate 쿼리 최적화</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2019/12/03/blog-migration-from-jekyll-to-hexo/" >jekyll에서 hexo로 blog migration 변경기</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span><a class="archive-post-title" href= "/2019/10/20/Today-I-Learned-191020/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/Today-I-Learned-191018/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/Today-I-Learned-191017/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/Today-I-Learned-191016/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/Today-I-Learned-191015/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href= "/2019/10/14/Today-I-Learned-191014/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span><a class="archive-post-title" href= "/2019/10/13/Today-I-Learned-191013/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/mongodb-local-seoul-2019/" >mongoDB.local seoul 2019에 참가</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/30</span><a class="archive-post-title" href= "/2019/08/30/making-github-blog-pages-with-jekyll/" >jekyll을 이용해서 github 블로그를 만들어보자</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/2019/08/26/mariaDB-root-password-settings-at-first/" >macOS에서 mariaDB 설정</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2019/08/22/configure-vscode-eslint-in-macOS/" >VS Code에서 eslint 인식 오류 문제 해결 (masOS)</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="typescript"><span class="iconfont-archer">&#xe606;</span>typescript</span>
+    
+        <span class="sidebar-tag-name" data-tags="mongodb"><span class="iconfont-archer">&#xe606;</span>mongodb</span>
+    
+        <span class="sidebar-tag-name" data-tags="nestjs"><span class="iconfont-archer">&#xe606;</span>nestjs</span>
+    
+        <span class="sidebar-tag-name" data-tags="typeorm"><span class="iconfont-archer">&#xe606;</span>typeorm</span>
+    
+        <span class="sidebar-tag-name" data-tags="TIL"><span class="iconfont-archer">&#xe606;</span>TIL</span>
+    
+        <span class="sidebar-tag-name" data-tags="webdev"><span class="iconfont-archer">&#xe606;</span>webdev</span>
+    
+        <span class="sidebar-tag-name" data-tags="eslint"><span class="iconfont-archer">&#xe606;</span>eslint</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="jekyll"><span class="iconfont-archer">&#xe606;</span>jekyll</span>
+    
+        <span class="sidebar-tag-name" data-tags="github"><span class="iconfont-archer">&#xe606;</span>github</span>
+    
+        <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="portfolio"><span class="iconfont-archer">&#xe606;</span>portfolio</span>
+    
+        <span class="sidebar-tag-name" data-tags="javascript"><span class="iconfont-archer">&#xe606;</span>javascript</span>
+    
+        <span class="sidebar-tag-name" data-tags="es6"><span class="iconfont-archer">&#xe606;</span>es6</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="mariadb"><span class="iconfont-archer">&#xe606;</span>mariadb</span>
+    
+        <span class="sidebar-tag-name" data-tags="sequelize"><span class="iconfont-archer">&#xe606;</span>sequelize</span>
+    
+        <span class="sidebar-tag-name" data-tags="functional-programming"><span class="iconfont-archer">&#xe606;</span>functional-programming</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="development"><span class="iconfont-archer">&#xe60a;</span>development</span>
+    
+        <span class="sidebar-category-name" data-categories="blog"><span class="iconfont-archer">&#xe60a;</span>blog</span>
+    
+        <span class="sidebar-category-name" data-categories="development/database"><span class="iconfont-archer">&#xe60a;</span>development/database</span>
+    
+        <span class="sidebar-category-name" data-categories="development/group-study"><span class="iconfont-archer">&#xe60a;</span>development/group-study</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "gonewbie"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
