@@ -78,8 +78,6 @@
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -214,8 +212,10 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="home-body">
     
-<header class="header">
+    
+<header class="header index-header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -231,21 +231,34 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            gonewbie's notepad
+            <!-- 文章页  -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
+            
+            
+                it's better to burn out than to fade away
+            
+            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -357,272 +370,29 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/09/es6-symbol/" >
+        <a class="abstract-title" href = "/2019/08/22/configure-vscode-eslint-in-macOS/" >
             
-                <span>es6-symbol</span>
+                <span>VS Code에서 eslint 인식 오류 문제 해결 (masOS)</span>
         </a>
         <div class="abstract-content">
-            #SymbolES5 이전의 자바스크립트는 String, Number, Boolean, null, undefined, 6개의 원시(Primitive) 타입이 존재했다.하지만 ES6가 도입되면서 새로운 원시타입이 도입되었는데 그것이 Symbol이다. Symbol의 도입 배경과 특징 Well-known Symbol 등에 대해 알아보자.
-도입 배경ES6 이후로 자바스크립트는 모던 자바스크립트로의 변모를 진행하였다. 이후 다시 살펴볼 예정이지만 우선 for .. of 예로 들어보자.객체 내의 iterator를 참조하여 함수 로직을 구현...
+            최근에 개인프로젝트로 React를 프론트로 적용시키기 위해 강좌를 보면서 해당 강좌를 따라 진행하는 도중 VS Code 내에서 eslint 플러그인이 정상적으로 동작하지 않는 것을 확인하고 수정하는 과정이다.
+eslint가 적용되지 않는다?!보통 텍스트 에디터 등에 eslint를 적용하면 설정된 코딩 컨벤션이나 규칙 등에 따라 에디터에서 이에 맞지 않는 코드를 발견할 경우 Error나 Warning 등의 알람을 보여주어 사용자가 감지할 수 있게 한다.
+.eslintrc 내에 설정을 적용하고, 저장을 하는 순간 eslint가 적...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/09</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/22</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "webdev">webdev</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "eslint">eslint</a>
     
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/09/es6-iteration-for-of/" >
-            
-                <span>es6-iteration-for-of</span>
-        </a>
-        <div class="abstract-content">
-            iterationES6 이후부터는 iteration에 대한 개념이 적립됨에 따라, 순회를 좀 더 효율적으로 수행할 수 있게 되었다.
-iterator와 iterableiterator 프로토콜을 구현하기 위해서는 다음과 같은 조건이 필요하다.
-
-
-iterator.next를 가진다.
-{value: …, done: Boolean}의 구조(interface)를 만족해야 한다.
-
-
-12345678910111213141516const makeIterator = function(array) &#123;  let nextIndex = 0;  ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "functional-programming">functional-programming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/02/es6-function/" >
-            
-                <span>ES6) 함수형 프로그래밍을 위한 Lambda, Closure, Recursion</span>
-        </a>
-        <div class="abstract-content">
-            Functions객체지향 프로그래미에서는 class를 기반으로 상속을 통한 재사용성을 높인다.함수형 프로그래밍에서는 함수를 재사용 가능한 단위로 두고 이러한 함수를 합성하는 방식을 통해 재사용성을 높힌다.
-함수를 재사용 가능한 가장 작은 단위로 두고자 한다면 함수가 자바스크립트에서 어떻게 동작하는지, 이를 함수형으로 어떻게 적용하는지에 대해서 정확하게 이용해야 한다.
-Lambda Expression람다 표현식은 수학적 개념인 람다 대수(Lambda Calculus)를 프로그래밍 언어에 도입한 개념이다.람다 대수에 대한 개념 중...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "functional-programming">functional-programming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/27/es6-promise/" >
-            
-                <span>ES6) Promise부터 함수형 프로그래밍까지</span>
-        </a>
-        <div class="abstract-content">
-            Promise이 글은 Promise에 대한 사용법보다 발생 배경 및 callback 함수와의 차이점 및 함수형 프로그래밍에 대한 이론적인 내용을 주로 다루고자 합니다.따라서 Promise에 대한 구체적인 사용법이나 개념 이해가 필요하신 분은 게시글 맨 밑의 참조부분을 확인해주시길 바랍니다.
-
-
-자바스크립트는 기본적으로 non-block, single thread 기반이기 때문에 어떤 부분에서 함수의 동작이 오래걸린다고 해서 동작을 기다리지 않고 다음 코드로 넘어간다.이러한 비동기 코드를 순차적으로 제어하기 위해 ES6 이전에는...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "functional-programming">functional-programming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/19/es6-module-system/" >
-            
-                <span>ES6) module 시스템</span>
-        </a>
-        <div class="abstract-content">
-            Module 시스템자바스크립트는 기존에 정적 페이지 요소를 수정하는 언어로 시작해서 발전을 거듭했다.어느 프로젝트던 규모가 커짐에 따라 파일을 모듈화하여 분리하고 관리하려고 할 것이고 이는 자바스크립트에서도 예외가 아니다.자바스크립트 V8 엔진의 런타임 환경인 NodeJS는 이러한 모듈 시스템을 이미 구축하고 있었고,브라우저 환경에서도 이러한 모듈시스템의 도입 필요성이 생겼고 ES6에 이르러 모듈 시스템을 도입하였다.
-
-모든 스크립트 상세 예제는 다음을 참조
-
-mdn modules example
-
-
-Export &amp; Im...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/19/es6-class/" >
-            
-                <span>ES6) Class</span>
-        </a>
-        <div class="abstract-content">
-            Class객체지향으로 유명한 언어들은 대체로 Class를 기반으로 객체 지향을 구현하였다.하지만 javascript의 경우 prototype 기반의 객체 지향 프로그래밍을 구현하였기 때문에 기존의 class 기반의 언어들과는 상속 방식에 있어 차이가 있었다.이러한 요구에 부응한 것인지, ES6에 들어서면서 javscript에도 class가 도입되었다.하지만 자바스크립트는 prototype 기반으로 구성되어 있기 때문에 class 역시 기본적으로 prototype으로 상속을 구현되어 있다.때문에 누군가는 단순히 class를 sy...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/12/es6-argements-rest-spread/" >
-            
-                <span>es6) 매개변수, rest parameter, spread 문법</span>
-        </a>
-        <div class="abstract-content">
-            1. ArgumentES6로 들어서면서 자바스크립트에서는 매개변수에 대해서 좀 더 우아하게 처리하는 것이 가능하다. 다음의 예를 살펴보면서 이를 확인해보자.
-1-1. 매개변수 기본 값1234const sum = (a, b) =&gt; a + b;console.log(sum(1)); // 1 + undefined = NaNconsole.log(sum(4,5)); // 9
-기존의 자바스크립트에서는 함수에서 인수를 전달받지 않은 경우에는 이러한 변수들을 undefined로 설정하여 처리하였다.따라서 이로 인해서 위의 예제처럼 함수에...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/12/es6-arrow-function/" >
-            
-                <span>ES6) Arrow Function (화살표 함수)</span>
-        </a>
-        <div class="abstract-content">
-            1. Arrow FunctionES6에 들어서면서 JS 스펙에서 함수를 선언하는 새로운 방법으로 화살표 함수(Arrow Function)이 추가되었다.화살표 함수는 함수를 선언하는 방식이 기존보다 간결해졌을 뿐만 아니라 일반 함수 선언방식과 차이를 가지는 만큼 이러한 차이를 정확히 인지하고 사용해야 한다.
-1-1. 화살표 함수 선언12345678910111213// paremeter 선언 방식// ES5function hiDeprecated (firstName, lastName) &#123;    console.log('Hi,...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "vscode">vscode</a>
     
 </div>
             
@@ -631,8 +401,102 @@ Export &amp; Im...
     
     <!-- paginator  -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/page/2/">&lt; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+    
 </main>
             <!-- profile -->
+            
+            <div class="profile">
+    <img class="profile-avatar" alt="avatar" src= /avatar/pug.png >
+    <div class="profile-name">gonewbie</div>
+    
+    <div class="profile-signature">
+        witness me
+    </div>
+    
+    
+    <div class="profile-social">
+        
+    
+        
+            
+                <a href="mailto:gounewbie@gmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/gonewbie" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    
+        <div class="friends">
+            <div>FRIENDS</div>
+            
+                
+                    <span>
+                        <a href= //www.google.com target="_black">friendA</a>
+                    </span>
+                
+            
+                
+                    <span>
+                        <a href= //www.naver.com target="_black">friendB</a>
+                    </span>
+                
+            
+                
+            
+        </div>
+    
+    
+        <div class="about-me">
+            <a href = "/about" >ABOUT ME</a>
+        </div>
+    
+</div>
             
         </div>
         <footer class="footer footer-unloaded">
