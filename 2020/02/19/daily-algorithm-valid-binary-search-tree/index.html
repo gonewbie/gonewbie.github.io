@@ -285,7 +285,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">200</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">286</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,7 +416,8 @@ height:50vh;
 <h2 id="solving"><a href="#solving" class="headerlink" title="solving"></a>solving</h2><p>재귀를 통해 입력되는 값들을 분할하여 처리한다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isValidBST = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!root) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">    <span class="keyword">if</span> (root.val &gt;= upperBound || root.val &lt;= lowerBound) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> isValidBST(root.left, <span class="built_in">Math</span>.min(upperBound, root.val), lowerBound) &amp;&amp;</span><br><span class="line">           isValidBST(root.right, upperBound, <span class="built_in">Math</span>.max(lowerBound, root.val));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>O(n)의 복잡도를 갖는 무난한 풀이 방법이다.</p>
-<h2 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h2><p>처음에 입력 값이 배열처럼 표시되어 있어 배열로 계산하느라 생각보다 시간이 오래 걸렸다.<br>하지만 기본적인 BST의 기본을 다룰 수 있는 좋은 문제였다고 생각한다.<br>시간 여유가 있다면 배열 입력도 해결할 수 있는 알고리즘으로 짜는 거도 좋은 것 같다.</p>
+<h1 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h1><p>처음에 입력 값이 배열처럼 표시되어 있어 배열로 계산하느라 생각보다 시간이 오래 걸렸다.<br>하지만 기본적인 BST의 기본을 다룰 수 있는 좋은 문제였다고 생각한다.<br>시간 여유가 있다면 배열 입력도 해결할 수 있는 알고리즘으로 짜는 거도 좋은 것 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 코드 작성 중</span></span><br><span class="line"><span class="keyword">var</span> isValidBST = <span class="function"><span class="keyword">function</span>(<span class="params">root, count = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root[count]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(count, !!root[count + <span class="number">2</span> ** count], !!root[count + <span class="number">2</span> ** count + <span class="number">1</span>], root[count] &lt;= root[count + <span class="number">2</span> ** count], root[count] &gt;= root[count + <span class="number">2</span> ** count + <span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">if</span> ((!!root[count + <span class="number">2</span> ** count] &amp; root[count] &lt;= root[count + <span class="number">2</span> ** count]) || (!!root[count + <span class="number">2</span> ** count + <span class="number">1</span>] &amp; root[count] &gt;= root[count + <span class="number">2</span> ** count + <span class="number">1</span>])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    count++;</span><br><span class="line">    <span class="keyword">return</span> isValidBST(root, <span class="number">2</span> ** count - <span class="number">1</span>) &amp;&amp; isValidBST(root, <span class="number">2</span> ** count);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license  -->
@@ -425,7 +426,7 @@ height:50vh;
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
             <p>link：<a href="https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/">https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/</a>
             <p>create date：<a href="https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/">February 19th 2020, 11:28:10 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/">February 19th 2020, 11:41:42 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/">February 19th 2020, 11:44:41 pm</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -564,7 +565,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#이진-검색-트리-Binary-Search-Tree"><span class="toc-number">1.</span> <span class="toc-text">이진 검색 트리(Binary Search Tree)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solving"><span class="toc-number">1.2.</span> <span class="toc-text">solving</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#소감"><span class="toc-number">1.3.</span> <span class="toc-text">소감</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#이진-검색-트리-Binary-Search-Tree"><span class="toc-number">1.</span> <span class="toc-text">이진 검색 트리(Binary Search Tree)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solving"><span class="toc-number">1.2.</span> <span class="toc-text">solving</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#소감"><span class="toc-number">2.</span> <span class="toc-text">소감</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
