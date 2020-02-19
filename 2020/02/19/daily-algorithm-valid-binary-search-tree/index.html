@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>VS Code에서 eslint 인식 오류 문제 해결 (masOS) · gonewbie&#39;s Studio</title>
+    <title>daily-algorithm-valid-binary-search-tree · gonewbie&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -228,7 +228,7 @@
                 <a href="/" >gonewbie&#39;s notepad</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">VS Code에서 eslint 인식 오류 문제 해결 (masOS)</a>
+                <a href="#" class="post-name">daily-algorithm-valid-binary-search-tree</a>
             </div>
     </div>
     
@@ -258,7 +258,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            VS Code에서 eslint 인식 오류 문제 해결 (masOS)
+            daily-algorithm-valid-binary-search-tree
             <!-- 404 -->
             
         </h1>
@@ -277,22 +277,20 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "webdev">webdev</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "eslint">eslint</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "vscode">vscode</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "algorithm">algorithm</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">411</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">200</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/22</span>
+                    <span class="post-intro-time">2020/02/19</span>
                     
                     <span class="shareWrapper">
                         <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -411,43 +409,23 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>최근에 개인프로젝트로 React를 프론트로 적용시키기 위해 강좌를 보면서 해당 강좌를 따라 진행하는 도중 VS Code 내에서 eslint 플러그인이 정상적으로 동작하지 않는 것을 확인하고 수정하는 과정이다.</p>
-<h2 id="eslint가-적용되지-않는다"><a href="#eslint가-적용되지-않는다" class="headerlink" title="eslint가 적용되지 않는다?!"></a>eslint가 적용되지 않는다?!</h2><p>보통 텍스트 에디터 등에 eslint를 적용하면 설정된 코딩 컨벤션이나 규칙 등에 따라 에디터에서 이에 맞지 않는 코드를 발견할 경우 Error나 Warning 등의 알람을 보여주어 사용자가 감지할 수 있게 한다.</p>
-<p>.eslintrc 내에 설정을 적용하고, 저장을 하는 순간 eslint가 적용되어야 정상이다. 하지만 VS Code 내 하단의 작업표시줄에 ESLint 옆에 경고 아이콘이 뜨고 있었다.</p>
-<p>경고 내용을 검색해보니 eslint를 인식하고 있지 않아서 발생하는 문제임을 확인하고 global로 eslint를 설치하였다.</p>
-<blockquote>
-<p>yarn global add eslint<br>(필자는 yarn을 node package 관리 도구로 사용하고 있다.)</p>
-</blockquote>
-<p>하지만 전역 설치를 수행하였음에도 불구하고, 해당 에러는 계속해서 발생하였다. 혹시나 하여 VS Code내 터미널에 eslint를 입력하였지만 이를 인식하지 못하였다. 그렇다면 터미널에서 이를 인식하지 못하는 문제인데 터미널과 관련하여 설정이 필요하다는 것을 깨닫게 되었다.</p>
-<p>하지만 터미널 관련해서는 이전에 macOS를 설치하고 대대적인(?) 설정 과정에서 새로운 터미널을 깔고 변경한 것 이외에는 변경점이 없었다.</p>
-<h2 id="It’s-the-Terminal-Stupid-문제는-터미널이야-바보야"><a href="#It’s-the-Terminal-Stupid-문제는-터미널이야-바보야" class="headerlink" title="It’s the Terminal, Stupid. (문제는 터미널이야. 바보야)"></a>It’s the Terminal, Stupid. (문제는 터미널이야. 바보야)</h2><p>대부분의 IT 기업들이 macOS를 사용하고 있는 추세이므로, 개인 노트북이 없던 필자는 개인 노트북 구매와 macOS 적용을 위해 맥북 프로 최신형을 대담하게 구입하였다. 당연히 맥북에 대해서는 아는 것이 전무하다보니 맥북 초기 개발환경 설정을 아래의 사이트를 따라 진행하면서 환경을 설정하였다.</p>
-<blockquote>
-<p>Link: <a href="https://subicura.com/2017/11/22/mac-os-development-environment-setup.html" target="_blank" rel="noopener">본격 macOS에 개발 환경 구축하기</a></p>
-</blockquote>
-<p>해당 링크에서 개발 환경을 구축하면서 터미널을 기존의 터미널에서 iTerm2로, bash를 zsh로 변경하였고 이에 대한 설정을 따라서 진행했지만 완전한 이해를 기반으로 진행한 점이 아니었다..(후덜덜)</p>
-<p>따라서 zsh에서 yarn의 패키지 경로를 별도로 추가하여야 yarn에서 전역으로 설치한 패키지들을 cli 형식으로 사용할 수 있는 것이다. 이를 위해서 zsh 설정파일에서 해당 경로를 추가해야 한다.</p>
-<blockquote>
-<p>vim ~/.zshrc</p>
-</blockquote>
-<blockquote>
-<p>export PATH=”$PATH:/Users/‘’{시용자 이름}’’/.npm-packages/bin”</p>
-</blockquote>
-<p>해당 설정을 완료한 후 터미널을 다시 실행하여 cli 적용을 확인하고 VS Code를 다시 실행하여 문제가 해결된 것을 확인하였다.</p>
-<h2 id="끝날-때까지-끝난게-아니야"><a href="#끝날-때까지-끝난게-아니야" class="headerlink" title="끝날 때까지 끝난게 아니야.."></a>끝날 때까지 끝난게 아니야..</h2><p>한동안 무리 없이 사용하고 있다가, VS Code 내에서 Tab 간격을 기본 4칸에서 2칸으로 변경하면서 코드 관리를 위해 VS Code 플러그인 중에 Prettier 플러그인을 사용하였다.</p>
-<p>하지만 Prettier 플러그인을 적용하면서 또 다시 eslint를 사용할 수 없는 문제가 발생하였다. 이를 해결하기 위해 구글링하던 도중 동일한 이슈를 발견하였다.</p>
-<blockquote>
-<p><a href="https://github.com/microsoft/vscode-eslint/issues/696" target="_blank" rel="noopener">ESLint fails to load plugins when using ESLint 6.x</a><br>(정확히는 이 이슈가 아니라 다른 이슈지만 찾지 못했습니다..)</p>
-</blockquote>
-<p>eslint 6에서 prettier와 같이 사용할 경우 이러한 문제가 발생할 수 있는 것 같았다. 따라서 미봉책으로 eslint 5 버전으로 다운그레이드하여 실행한 결과 동작하는 것을 확인했다.<br>해당 이슈를 지속적으로 확인하면서 추후에 문제가 해결되면 eslint의 버전을 올릴 예정이다.</p>
+        <h1 id="이진-검색-트리-Binary-Search-Tree"><a href="#이진-검색-트리-Binary-Search-Tree" class="headerlink" title="이진 검색 트리(Binary Search Tree)"></a>이진 검색 트리(Binary Search Tree)</h1><p>이진 검색 트리는 검색에 있어 속도를 빠르게 하기 위해 고유한 키값을 가지고 부모 노드를 기준으로 작은 값은 자식 노드의 왼쪽에, 큰 값은 자식 노드의 오른쪽에 배치한다.<br>이러한 BST의 원리를 통해 데이터베이스에서 index를 생성하고 검색 속도를 개선하게 된다.</p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>주어진 입력이 올바른 이진 트리인지 확인하여 true, false를 판별한다. <a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank" rel="noopener">LeetCode 문제 출처</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.val = val;</span><br><span class="line">  <span class="keyword">this</span>.left = <span class="keyword">this</span>.right = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;TreeNode&#125;</span> <span class="variable">root</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isValidBST = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Input: [2, 1, 3] (Binary Tree), Output: true<br>Input: [5, 1, 4, null, null, 3, 6], Output: false</p>
+<h2 id="solving"><a href="#solving" class="headerlink" title="solving"></a>solving</h2><p>재귀를 통해 입력되는 값들을 분할하여 처리한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isValidBST = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!root) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">    <span class="keyword">if</span> (root.val &gt;= upperBound || root.val &lt;= lowerBound) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> isValidBST(root.left, <span class="built_in">Math</span>.min(upperBound, root.val), lowerBound) &amp;&amp;</span><br><span class="line">           isValidBST(root.right, upperBound, <span class="built_in">Math</span>.max(lowerBound, root.val));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>O(n)의 복잡도를 갖는 무난한 풀이 방법이다.</p>
+<h2 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h2><p>처음에 입력 값이 배열처럼 표시되어 있어 배열로 계산하느라 생각보다 시간이 오래 걸렸다.<br>하지만 기본적인 BST의 기본을 다룰 수 있는 좋은 문제였다고 생각한다.<br>시간 여유가 있다면 배열 입력도 해결할 수 있는 알고리즘으로 짜는 거도 좋은 것 같다.</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
-            <p>link：<a href="https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/">https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/</a>
-            <p>create date：<a href="https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/">August 22nd 2019, 11:23:07 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/">December 2nd 2019, 11:50:49 pm</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/">https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/">February 19th 2020, 11:28:10 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/">February 19th 2020, 11:41:42 pm</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -455,13 +433,13 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/08/26/mariaDB-root-password-settings-at-first/" title= "macOS에서 mariaDB 설정">
-                    <div class="nextTitle">macOS에서 mariaDB 설정</div>
-                </a>
-            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/02/18/daily-algorithm-gray-code/" title= "daily-algorithm-gray-code">
+                    <div class="prevTitle">daily-algorithm-gray-code</div>
+                </a>
             
         </li>
     </ul>
@@ -477,8 +455,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "VS Code에서 eslint 인식 오류 문제 해결 (masOS)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://gonewbie.github.io/2020/02/19/daily-algorithm-valid-binary-search-tree/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "daily-algorithm-valid-binary-search-tree"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -586,7 +564,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint가-적용되지-않는다"><span class="toc-number">1.</span> <span class="toc-text">eslint가 적용되지 않는다?!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#It’s-the-Terminal-Stupid-문제는-터미널이야-바보야"><span class="toc-number">2.</span> <span class="toc-text">It’s the Terminal, Stupid. (문제는 터미널이야. 바보야)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#끝날-때까지-끝난게-아니야"><span class="toc-number">3.</span> <span class="toc-text">끝날 때까지 끝난게 아니야..</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#이진-검색-트리-Binary-Search-Tree"><span class="toc-number">1.</span> <span class="toc-text">이진 검색 트리(Binary Search Tree)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solving"><span class="toc-number">1.2.</span> <span class="toc-text">solving</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#소감"><span class="toc-number">1.3.</span> <span class="toc-text">소감</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
