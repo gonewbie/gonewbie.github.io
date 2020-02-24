@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>VS Code에서 eslint 인식 오류 문제 해결 (masOS) · gonewbie&#39;s Studio</title>
+    <title>daily-algorithm-find-medium-from-data-stream · gonewbie&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -228,7 +228,7 @@
                 <a href="/" >gonewbie&#39;s notepad</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">VS Code에서 eslint 인식 오류 문제 해결 (masOS)</a>
+                <a href="#" class="post-name">daily-algorithm-find-medium-from-data-stream</a>
             </div>
     </div>
     
@@ -258,7 +258,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            VS Code에서 eslint 인식 오류 문제 해결 (masOS)
+            daily-algorithm-find-medium-from-data-stream
             <!-- 404 -->
             
         </h1>
@@ -277,22 +277,20 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "webdev">webdev</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "eslint">eslint</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "vscode">vscode</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "algorithm">algorithm</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">411</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">482</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/22</span>
+                    <span class="post-intro-time">2020/02/24</span>
                     
                     <span class="shareWrapper">
                         <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -411,43 +409,23 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>최근에 개인프로젝트로 React를 프론트로 적용시키기 위해 강좌를 보면서 해당 강좌를 따라 진행하는 도중 VS Code 내에서 eslint 플러그인이 정상적으로 동작하지 않는 것을 확인하고 수정하는 과정이다.</p>
-<h2 id="eslint가-적용되지-않는다"><a href="#eslint가-적용되지-않는다" class="headerlink" title="eslint가 적용되지 않는다?!"></a>eslint가 적용되지 않는다?!</h2><p>보통 텍스트 에디터 등에 eslint를 적용하면 설정된 코딩 컨벤션이나 규칙 등에 따라 에디터에서 이에 맞지 않는 코드를 발견할 경우 Error나 Warning 등의 알람을 보여주어 사용자가 감지할 수 있게 한다.</p>
-<p>.eslintrc 내에 설정을 적용하고, 저장을 하는 순간 eslint가 적용되어야 정상이다. 하지만 VS Code 내 하단의 작업표시줄에 ESLint 옆에 경고 아이콘이 뜨고 있었다.</p>
-<p>경고 내용을 검색해보니 eslint를 인식하고 있지 않아서 발생하는 문제임을 확인하고 global로 eslint를 설치하였다.</p>
-<blockquote>
-<p>yarn global add eslint<br>(필자는 yarn을 node package 관리 도구로 사용하고 있다.)</p>
-</blockquote>
-<p>하지만 전역 설치를 수행하였음에도 불구하고, 해당 에러는 계속해서 발생하였다. 혹시나 하여 VS Code내 터미널에 eslint를 입력하였지만 이를 인식하지 못하였다. 그렇다면 터미널에서 이를 인식하지 못하는 문제인데 터미널과 관련하여 설정이 필요하다는 것을 깨닫게 되었다.</p>
-<p>하지만 터미널 관련해서는 이전에 macOS를 설치하고 대대적인(?) 설정 과정에서 새로운 터미널을 깔고 변경한 것 이외에는 변경점이 없었다.</p>
-<h2 id="It’s-the-Terminal-Stupid-문제는-터미널이야-바보야"><a href="#It’s-the-Terminal-Stupid-문제는-터미널이야-바보야" class="headerlink" title="It’s the Terminal, Stupid. (문제는 터미널이야. 바보야)"></a>It’s the Terminal, Stupid. (문제는 터미널이야. 바보야)</h2><p>대부분의 IT 기업들이 macOS를 사용하고 있는 추세이므로, 개인 노트북이 없던 필자는 개인 노트북 구매와 macOS 적용을 위해 맥북 프로 최신형을 대담하게 구입하였다. 당연히 맥북에 대해서는 아는 것이 전무하다보니 맥북 초기 개발환경 설정을 아래의 사이트를 따라 진행하면서 환경을 설정하였다.</p>
-<blockquote>
-<p>Link: <a href="https://subicura.com/2017/11/22/mac-os-development-environment-setup.html" target="_blank" rel="noopener">본격 macOS에 개발 환경 구축하기</a></p>
-</blockquote>
-<p>해당 링크에서 개발 환경을 구축하면서 터미널을 기존의 터미널에서 iTerm2로, bash를 zsh로 변경하였고 이에 대한 설정을 따라서 진행했지만 완전한 이해를 기반으로 진행한 점이 아니었다..(후덜덜)</p>
-<p>따라서 zsh에서 yarn의 패키지 경로를 별도로 추가하여야 yarn에서 전역으로 설치한 패키지들을 cli 형식으로 사용할 수 있는 것이다. 이를 위해서 zsh 설정파일에서 해당 경로를 추가해야 한다.</p>
-<blockquote>
-<p>vim ~/.zshrc</p>
-</blockquote>
-<blockquote>
-<p>export PATH=”$PATH:/Users/‘’{시용자 이름}’’/.npm-packages/bin”</p>
-</blockquote>
-<p>해당 설정을 완료한 후 터미널을 다시 실행하여 cli 적용을 확인하고 VS Code를 다시 실행하여 문제가 해결된 것을 확인하였다.</p>
-<h2 id="끝날-때까지-끝난게-아니야"><a href="#끝날-때까지-끝난게-아니야" class="headerlink" title="끝날 때까지 끝난게 아니야.."></a>끝날 때까지 끝난게 아니야..</h2><p>한동안 무리 없이 사용하고 있다가, VS Code 내에서 Tab 간격을 기본 4칸에서 2칸으로 변경하면서 코드 관리를 위해 VS Code 플러그인 중에 Prettier 플러그인을 사용하였다.</p>
-<p>하지만 Prettier 플러그인을 적용하면서 또 다시 eslint를 사용할 수 없는 문제가 발생하였다. 이를 해결하기 위해 구글링하던 도중 동일한 이슈를 발견하였다.</p>
-<blockquote>
-<p><a href="https://github.com/microsoft/vscode-eslint/issues/696" target="_blank" rel="noopener">ESLint fails to load plugins when using ESLint 6.x</a><br>(정확히는 이 이슈가 아니라 다른 이슈지만 찾지 못했습니다..)</p>
-</blockquote>
-<p>eslint 6에서 prettier와 같이 사용할 경우 이러한 문제가 발생할 수 있는 것 같았다. 따라서 미봉책으로 eslint 5 버전으로 다운그레이드하여 실행한 결과 동작하는 것을 확인했다.<br>해당 이슈를 지속적으로 확인하면서 추후에 문제가 해결되면 eslint의 버전을 올릴 예정이다.</p>
+        <h1 id="medium"><a href="#medium" class="headerlink" title="medium"></a>medium</h1><p>중위값(medium)이라는 것은 통계에서 해당 데이터의 분포 중 정 가운데의 값을 의미한다.<br>흔히, 평균값이 해당 데이터 분포의 중앙값으로 판단하는 경향이 있지만 실제로 양 극단의 분포가 차이가 나는 경우 이가 맞지 않는 경우가 발생한다.<br>값의 분포를 극단적으로 가정하여 평균값과(average) 중위값(median)값의 개념 차이를 비교해보자.<br>9명의 학생이 각각 100원짜리 동전을, 한명의 학생이 500원짜리 동전을 가졌다고 가정해보자.([100, 100, 100, 100, 100, 100, 100, 100, 100, 500])<br>이들의 평균은 <code>(100 * 9 + 500 * 1) / 10 = 140</code>로 140원이지만 실제로 평균보다 적은 동전을 가진 학생이 9명이 되는 것이다.<br>하지만 중위값으로 보면 이러한 데이터 분포의 정중앙값을 가르키므로 <code>(100 + 100) / 2 =100</code>원이 되고 이는 평균값보다는 진정한 의미의 중간값에 더 가깝다고 볼 수 있다.</p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Data Stream 내에서 숫자를 더하는 메서드(<code>addNum</code>)와 중위값을 구하는 메서드(<code>findMedian</code>)를 구현하여라. (<a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank" rel="noopener">문제 출처</a>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MediumFinder = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MedianFinder.prototype.addNum = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">MedianFinder.prototype.findMedian = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solving"><a href="#Solving" class="headerlink" title="Solving"></a>Solving</h2><p>우선 인스턴스를 선언할 때는 빈 배열을 생성하여 객체를 초기화한다.<br>그리고 <code>addNum</code>에서 배열에 값을 넣고, <code>findMedian</code>에서 데이터를 정렬하고 중위값을 구하고자 하였다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MedianFinder = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.val = [];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">num</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MedianFinder.prototype.addNum = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.val.push(num);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MedianFinder.prototype.findMedian = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> res = [...this.val].sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> a &gt; b ? <span class="number">1</span> : <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (res.length % <span class="number">2</span> === <span class="number">0</span>) <span class="keyword">return</span> (res[res.length/<span class="number">2</span> - <span class="number">1</span>] + res[res.length/<span class="number">2</span>])/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> res[<span class="built_in">Math</span>.floor(res.length/<span class="number">2</span>)];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">하지만 배열에 내장된 함수인 `</span><span class="built_in">Array</span>.prototype.sort<span class="string">` 함수의 시간복잡도가 O(n log n)이라는 것이다.([출처](https://stackoverflow.com/questions/57763205/what-is-array-prototype-sort-time-complexity))</span></span><br><span class="line"><span class="string">따라서 특정 테스트 케이스에서 `</span>Time Limit Exceeded<span class="string">`가 발생하게 된다.</span></span><br><span class="line"><span class="string">즉, `</span>sorting<span class="string">` 알고리즘을 개선해야 했는데 Binary Search에서 착안한 개념을 통해 `</span>sorting<span class="string">` 알고리즘을 O(n)으로 구현한 답이 인상적이었다.</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">var</span> MedianFinder = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.ary = [];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">num</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MedianFinder.prototype.addNum = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> low = <span class="number">0</span> ; </span><br><span class="line">    <span class="keyword">var</span> high = <span class="keyword">this</span>.ary.length<span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> mid = <span class="built_in">Math</span>.floor((high + low)/<span class="number">2</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.ary[mid]  &lt; num)</span><br><span class="line">                &#123;</span><br><span class="line">                    low = mid+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    high =mid<span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// insert at  location trick for javascript array.</span></span><br><span class="line">    <span class="keyword">this</span>.ary.splice(low, <span class="number">0</span>, num);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MedianFinder.prototype.findMedian = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.ary.length % <span class="number">2</span> ==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> mid = <span class="keyword">this</span>.ary.length/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">this</span>.ary[mid] + <span class="keyword">this</span>.ary[mid<span class="number">-1</span>])/<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> mid = <span class="built_in">Math</span>.floor(<span class="keyword">this</span>.ary.length/<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">this</span>.ary[mid]);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>이 문제풀이에서는 addNum 메서드에서 <code>sorting</code>을 진행하였는데, binary search의 방식으로 해당 데이터의 저장 위치를 파악하여 데이터를 저장하였다.</p>
+<h1 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h1><p>문제 자체는 hard 였으나 문제 풀이도 직관적으로 떠올릴 수 있었고 물론 시간 복잡도를 줄이는 방법을 바로 떠올리진 못했지만 방향성은 잡을 수 있었던 문제였다.<br>이러한 문제 접근 방식에 대한 감각과 더불어 문제 풀이 실력도 늘 수 있었으면 좋곘다..</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
-            <p>link：<a href="https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/">https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/</a>
-            <p>create date：<a href="https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/">August 22nd 2019, 11:23:07 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/">December 2nd 2019, 11:50:49 pm</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/02/24/daily-algorithm-find-medium-from-data-stream/">https://gonewbie.github.io/2020/02/24/daily-algorithm-find-medium-from-data-stream/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/02/24/daily-algorithm-find-medium-from-data-stream/">February 24th 2020, 11:51:40 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/02/24/daily-algorithm-find-medium-from-data-stream/">February 25th 2020, 12:27:46 am</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -455,13 +433,13 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/08/26/mariaDB-root-password-settings-at-first/" title= "macOS에서 mariaDB 설정">
-                    <div class="nextTitle">macOS에서 mariaDB 설정</div>
-                </a>
-            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/02/22/daily-algorithm-palindrome-linked-list/" title= "daily-algorithm-palindrome-linked-list">
+                    <div class="prevTitle">daily-algorithm-palindrome-linked-list</div>
+                </a>
             
         </li>
     </ul>
@@ -477,8 +455,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://gonewbie.github.io/2019/08/22/configure-vscode-eslint-in-macOS/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "VS Code에서 eslint 인식 오류 문제 해결 (masOS)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://gonewbie.github.io/2020/02/24/daily-algorithm-find-medium-from-data-stream/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "daily-algorithm-find-medium-from-data-stream"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -586,7 +564,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint가-적용되지-않는다"><span class="toc-number">1.</span> <span class="toc-text">eslint가 적용되지 않는다?!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#It’s-the-Terminal-Stupid-문제는-터미널이야-바보야"><span class="toc-number">2.</span> <span class="toc-text">It’s the Terminal, Stupid. (문제는 터미널이야. 바보야)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#끝날-때까지-끝난게-아니야"><span class="toc-number">3.</span> <span class="toc-text">끝날 때까지 끝난게 아니야..</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#medium"><span class="toc-number">1.</span> <span class="toc-text">medium</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving"><span class="toc-number">1.2.</span> <span class="toc-text">Solving</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#소감"><span class="toc-number">2.</span> <span class="toc-text">소감</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
