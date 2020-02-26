@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>gonewbie&#39;s Studio</title>
+    <title>daily-algorithm-best-time-to-buy-and-sell-stock · gonewbie&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -214,12 +214,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >gonewbie&#39;s notepad</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">daily-algorithm-best-time-to-buy-and-sell-stock</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>gonewbie's notepad</a>
 </header>
@@ -231,24 +242,71 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            daily-algorithm-best-time-to-buy-and-sell-stock
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "algorithm">algorithm</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">331</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/26</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -349,47 +407,82 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/13/Today-I-Learned-191013/" >
-            
-                <span>TIL(Today I Learned)</span>
-        </a>
-        <div class="abstract-content">
-            기본 자바스크립트에 강타입의 장점과 컴파일 타임의 오류를 잡아낼 수 있는 등의 장점을 가진 Typescript에 대해 알아보고 이를 활용한 웹 Backend 페이지를 구현해보고자 한다.
-Typescript와 ES6+의 특성을 충분히 활용한 백엔드 프레임워크로는 NestJS가 있었고 이를 활용하여 RESTful API를 구현하고자 한다.
-우선적인 목표는 NestJS CLI를 통해 프로젝트를 생성하고 TypeORM을 활용하여 DB와 연결하는 작업을 진행하고, Real World 프로젝트의 NestJS 버전 코드를 직접보면서 따라하...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "typescript">typescript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "nestjs">nestjs</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "typeorm">typeorm</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "TIL">TIL</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="동적-프로그래밍"><a href="#동적-프로그래밍" class="headerlink" title="동적 프로그래밍"></a>동적 프로그래밍</h1><p>알고리즘 해결에 있어서 문제를 해결하는 가장 기본적인 방법은 분할 정복(Divide &amp; Conquer)이다. 즉, 커다란 문제를 여러 개의 작은 문제로 나누어 처리하는 것이다.<br>프로그래밍 관점에서 보자면, 하나의 거대한 비즈니스 로직을 수행하기 위해 작은 문제들로 쪼개서 작은 단위의 문제를 해결하고 해결된 결과를 조합해서 문제를 해결한다.<br>그러면 작은 문제를 해결하는 함수를 작성하고 이 작성된 함수를 재사용한다면 문제를 좀 더 효율적이고 적은 리소스로 해결할 수 있을 것이다.<br>동적 프로그래밍(Dynamic Programming, DP)이 그런 개념에서 시작되었다. 문제를 작은 단위로 나눠서 해결하되, 이런 작은 크기의 문제를 다음 문제에서 활용해서 시간적, 공간적인 자원을 절약한다.<br>특히 이러한 기법을 memoization이라고 하며, 그 이름에서 뜻을 유추해보면 이전의 문제 풀이 결과를 저장해두고 다음 문제를 해결할 때, 이전에 저장된 문제 풀이 답과 비교해서 문제를 해결하는 것이다.</p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>특정 주식의 가격이 일 단위로 배열의 형식으로 변화하고 있다. 즉, <code>i</code>개의 숫자를 인수로 가지는 배열은 <code>i</code>일 동안의 주식의 가격 변화이다.<br>이러한 주식 가격 흐름을 알고 있을 때, 아래의 조건을 만족하는 하에 주식을 사고 파는 것을 통해 가장 이득을 본 금액을 구하여라.(<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" target="_blank" rel="noopener">문제 출처</a>)</p>
+<blockquote>
+<ul>
+<li>주식 거래를 동시에 수행할 수 없다. (예. 주식을 다시 사기 위해 주식을 팔아야 한다.)</li>
+<li>주식을 판 이후에는, 바로 다음날에 주식을 살 수 없다. (예. cooldown 1일)</li>
+</ul>
+</blockquote>
+<p>ex)<br>Input: [1, 2, 3, 0, 2]<br>Output: 3<br>Explanation: [buy, sell, cooldown, buy, sell]</p>
+<h2 id="Solving"><a href="#Solving" class="headerlink" title="Solving"></a>Solving</h2><p>문제를 효율적으로 해결하기 위해서는 최소한의 루프로 문제를 해결하면서 memoization을 통해 이전의 결과를 활용하면서 문제를 해결해야 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">prices</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> maxProfit = <span class="function"><span class="keyword">function</span>(<span class="params">prices</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> buy = -<span class="literal">Infinity</span>;</span><br><span class="line">  <span class="keyword">let</span> cooldown = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> prices.reduce(<span class="function">(<span class="params">sell, price</span>) =&gt;</span> &#123;</span><br><span class="line">    buy = <span class="built_in">Math</span>.max(buy, cooldown - price);</span><br><span class="line">    cooldown = <span class="built_in">Math</span>.max(cooldown, sell);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(sell, buy + price);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>Array.prototype.reduce</code>가 포함된 로직을 보면 루프를 수행하면서 각 줄 별로, <code>buy</code>, <code>cooldown</code>, <code>sell</code> 값을 갱신한다.<br>그리고 최적 판매 금액을 반환하는 형식이다. <code>Math.max()</code>를 통해 이전 계산 결과와 비교하여 값을 갱신하는 것을 알 수 있는데 이러한 풀이를 동적 프로그래밍이라 한다.</p>
+<h1 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h1><p>동적 프로그래밍에 대해서 개념만 알고 실제 적용 예제를 찾기 못했는데 이번 기회를 통해 알 수 있어서 좋았다.</p>
+
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/">https://gonewbie.github.io/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/">February 26th 2020, 10:07:44 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/">February 26th 2020, 11:12:35 pm</a>
+            <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/02/26/daily-algorithm-invert-binary-tree/" title= "daily-algorithm-invert-binary-tree">
+                    <div class="prevTitle">daily-algorithm-invert-binary-tree</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        
+        var disqus_config = function () {
+        this.page.url = "https://gonewbie.github.io/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "daily-algorithm-best-time-to-buy-and-sell-stock"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://gonewbie.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -460,6 +553,24 @@ Typescript와 ES6+의 특성을 충분히 활용한 백엔드 프레임워크로
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#동적-프로그래밍"><span class="toc-number">1.</span> <span class="toc-text">동적 프로그래밍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving"><span class="toc-number">1.2.</span> <span class="toc-text">Solving</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#소감"><span class="toc-number">2.</span> <span class="toc-text">소감</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1132,6 +1243,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
