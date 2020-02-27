@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>ES6) Iteration을 우아하게 하는 법 · gonewbie&#39;s Studio</title>
+    <title>daily-algorithm-word-break · gonewbie&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -228,7 +228,7 @@
                 <a href="/" >gonewbie&#39;s notepad</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">ES6) Iteration을 우아하게 하는 법</a>
+                <a href="#" class="post-name">daily-algorithm-word-break</a>
             </div>
     </div>
     
@@ -258,7 +258,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            ES6) Iteration을 우아하게 하는 법
+            daily-algorithm-word-break
             <!-- 404 -->
             
         </h1>
@@ -279,20 +279,18 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "functional-programming">functional-programming</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "algorithm">algorithm</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">989</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                        <span>Word count: <span class="post-count word-count">408</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/02/11</span>
+                    <span class="post-intro-time">2020/02/27</span>
                     
                     <span class="shareWrapper">
                         <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -411,62 +409,45 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="iteration"><a href="#iteration" class="headerlink" title="iteration"></a>iteration</h1><p>ES6 이후부터는 iteration에 대한 개념이 적립됨에 따라, 순회를 좀 더 효율적으로 수행할 수 있게 되었다.</p>
-<h2 id="iterator와-iterable"><a href="#iterator와-iterable" class="headerlink" title="iterator와 iterable"></a>iterator와 iterable</h2><p>iterator 프로토콜을 구현하기 위해서는 다음과 같은 조건이 필요하다.</p>
-<blockquote>
-<ul>
-<li>iterator.next를 가진다.</li>
-<li>{value: …, done: Boolean}의 구조(interface)를 만족해야 한다.</li>
-</ul>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeIterator = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nextIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> nextIndex &lt; array.length ?</span><br><span class="line">        &#123; <span class="attr">value</span>: array[nextIndex++], <span class="attr">done</span>: <span class="literal">false</span> &#125; :</span><br><span class="line">        &#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> hi = makeIterator([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(hi.next()); <span class="comment">// &#123;value: 4, done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(hi.next()); <span class="comment">// &#123;value: 3, done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(hi.next()); <span class="comment">// &#123;value: 2, done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(hi.next()); <span class="comment">// &#123;value: 1, done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(hi.next()); <span class="comment">// &#123;value: undefined, done: true&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>iterable 프로토콜을 구현하기 위해서는 다음과 같은 조건이 필요하다.</p>
-<blockquote>
-<ul>
-<li><code>Symbol.iterator</code>를 가지고 있으며 그 값이 iterator여야 한다.</li>
-</ul>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> makeIterable = <span class="function"><span class="keyword">function</span> (<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nextIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">      [<span class="built_in">Symbol</span>.iterator]() &#123; <span class="keyword">return</span> <span class="keyword">this</span> &#125;,</span><br><span class="line">      next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> nextIndex &lt; array.length ?</span><br><span class="line">          &#123; <span class="attr">value</span>: array[nextIndex++], <span class="attr">done</span>: <span class="literal">false</span> &#125; :</span><br><span class="line">          &#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> hello = makeIterable([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> data <span class="keyword">of</span> hello) &#123; <span class="built_in">console</span>.log(data); &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="iterable-프로토콜의-특징"><a href="#iterable-프로토콜의-특징" class="headerlink" title="iterable 프로토콜의 특징"></a>iterable 프로토콜의 특징</h2><p>iterable 프로토콜을 구현하기 위해서는 위와 같은 조건을 만족해야 한다. 하지만 이러한 프로토콜을 구현하는 번거로움이 있는 데도 구현할 이유가 있을까?<br>물론 그만한 이득을 가지고 있다. 다음의 특징들을 살펴보며, iterable 프로토콜이 갖는 특징들을 파악해보자.</p>
-<h3 id="다양한-ES6-연산자-활용-가능"><a href="#다양한-ES6-연산자-활용-가능" class="headerlink" title="다양한 ES6 연산자 활용 가능"></a>다양한 ES6 연산자 활용 가능</h3><p>iterable 프로토콜을 만족할 경우, <code>for .. of</code>, <code>spread</code>, <code>rest</code> 연산자를 적용하여 우아하게 순회 및 분해 할당이 가능해진다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reverseIterable = <span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> cur = list.length;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        next: <span class="function"><span class="params">()</span> =&gt;</span> cur-- &gt; <span class="number">0</span> ?</span><br><span class="line">          &#123; <span class="attr">value</span>: list[cur], <span class="attr">done</span>: <span class="literal">false</span> &#125; :</span><br><span class="line">          &#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> originArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, &#123;<span class="attr">val</span>: <span class="number">4</span>&#125;];</span><br><span class="line"><span class="keyword">const</span> arr = reverseIterable(originArr);</span><br><span class="line"><span class="keyword">const</span> newArr = [...arr];</span><br><span class="line"><span class="keyword">const</span> [x, y, ...xs] = reverseIterable(originArr);</span><br><span class="line"><span class="built_in">console</span>.log(newArr, x, y, xs); <span class="comment">// [4, 3, 2, 1] 4 3 [2, 1]</span></span><br><span class="line">x.val = <span class="number">5</span>; <span class="comment">// originArr is mutated because destructing assignment is SHALLOW COPY!</span></span><br><span class="line"><span class="built_in">console</span>.log(originArr, newArr); <span class="comment">// [1, 2, 3, &#123;val: 5&#125;] [&#123;val: 5&#125;, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
-<p>Spread 연산자는 iterable 프로토콜을 만족하는 Collection들을 배열로 나열시키는 역할을 한다.<br>구조 분해 할당(Destructing assignment), Rest parameter 역시 iterable 프로토콜을 만족하면 가능한 연산이다.<br>하지만 이러한 연산자들은 참조된 값인 경우 참조를 복사하기 때문에(Shallow Copy) 원본이 복사될 가능성도 있어 주의해야 한다.</p>
-<h3 id="iterable로-구현된-자료형"><a href="#iterable로-구현된-자료형" class="headerlink" title="iterable로 구현된 자료형"></a>iterable로 구현된 자료형</h3><p>Array(TypedArray), String 등 같은 경우 내부적으로 iterable이 구현되어 있다. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>.prototype[<span class="built_in">Symbol</span>.iterator]); <span class="comment">// ƒ [Symbol.iterator]() &#123; [native code] &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype[<span class="built_in">Symbol</span>.iterator]); <span class="comment">// ƒ values() &#123; [native code] &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> iterable1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span> iterator1 = iterable1[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(iterator1.next()); <span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator1.next()); <span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator1.next()); <span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator1.next()); <span class="comment">// &#123; value: 4, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator1.next()); <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>Set, Map 역시 iterable 프로토콜의 데이터를 받기도 하고, 각각 iterable 프로토콜을 지키는 자료형으로 반환한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// Set, Map can get Iterable data</span></span><br><span class="line"><span class="keyword">const</span> mySet = <span class="keyword">new</span> <span class="built_in">Set</span>([...arr]);</span><br><span class="line"><span class="keyword">const</span> userMap = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'id'</span>, <span class="string">'gonewbie'</span>], [<span class="string">'language'</span>, <span class="string">'javascript'</span>]]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log([...mySet]); <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> prop <span class="keyword">of</span> userMap) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(prop); <span class="comment">// ['id', 'gonewbie'], ['language', 'javascript']</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>또한, 브라우저 영역에서 기존의 유사 배열(array-like)로 알려져 있던 NodeList, arguments 등도 iterable 프로토콜을 따르도록 구현하는 추세이므로 더 적극적으로 iterable을 이용한 순회가 가능해졌다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nodeLists = [...document.querySelectorAll(<span class="string">'p'</span>)];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> elem <span class="keyword">of</span> nodeLists) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(elem);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="iterable-in-Functional-Programming"><a href="#iterable-in-Functional-Programming" class="headerlink" title="iterable in Functional Programming"></a>iterable in Functional Programming</h2><p>ES6 이후로 iterable 프로토콜을 지키는 자료형이 늘어남에 따라 이러한 iterable 프로토콜을 함수형으로 다루면 어떨까? 하는 마음도 생기기 마련이다.<br>다양한 ES6 연산자를 통해 iterable 프로토콜을 선언적으로 다룰 수 있다.</p>
-<h3 id="iterate-Array-ES6"><a href="#iterate-Array-ES6" class="headerlink" title="iterate Array ES6"></a>iterate Array ES6</h3><p>자바스크립트에서의 배열은 순서를 가진 데이터를 처리하는 자료형으로 ES6 이후에는 다양한 고차함수를 통해 데이터를 좀 더 우아하게 처리할 수 있게 되었다.<br>ES5까지는 다음과 같은 방식을 통해 배열을 순회했다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// this is anti-pattern!! DON'T use like this!! </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index <span class="keyword">in</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index);</span><br><span class="line">  <span class="built_in">console</span>.log(arr[index]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// .forEach() loop mutate each element</span></span><br><span class="line">arr.forEach(<span class="function">(<span class="params">elem, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(elem * <span class="number">2</span>);</span><br><span class="line">  <span class="keyword">return</span> arr[index] = elem * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
-<p><code>for .. in</code> loop를 배열에서 이용하는 것은 매우 바람직하지 않다. 배열 내 index만 순회하는 것뿐 아니라 Array의 prototype chain도 순회하기 때문에 사용하지 말아야 한다.<br>ES5에서 추가된 <code>.forEach()</code> 메서드는 이러한 loop를 잘 추상화하였다. 하지만 <code>forEach</code>에서는 사용을 주의하여야 할 사항들이 있다.<br>바로 원본 배열이 바뀔 수 있다는 것이다. 배열 값이 mutable한 것은 해당 배열을 사용하는 함수들 모두에게 side effect가 전파될 수 있음을 의미한다.</p>
-<p>하지만, ES6부터는 이러한 걱정을 덜어낼 수 있게 되었다. <code>Array.prototype.map</code>, <code>Array.prototype.filter</code>, <code>Array.prototype.reduce</code> 등 순회가 포함된 고차함수를 활용하여 처리가 가능해졌기 때문이다.<br>물론 iterable 프로토콜을 통해 문제를 해결하는 방법도 있다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pipe = <span class="function">(<span class="params">...functions</span>) =&gt;</span></span><br><span class="line">  initValue =&gt; functions.reduce(<span class="function">(<span class="params">acc, func</span>) =&gt;</span> func(acc), initValue);</span><br><span class="line"><span class="keyword">const</span> uniqueDessert = <span class="function"><span class="params">x</span> =&gt;</span> [...new <span class="built_in">Map</span>(x)];</span><br><span class="line"><span class="keyword">const</span> changeForm = <span class="function"><span class="params">obj</span> =&gt;</span> <span class="built_in">Object</span>.values(obj).map(<span class="function"><span class="params">x</span> =&gt;</span> [x.id, x.name]);</span><br><span class="line"><span class="keyword">const</span> names = <span class="function"><span class="params">x</span> =&gt;</span> x.map(<span class="function"><span class="params">elem</span> =&gt;</span> elem[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data = [&#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'chocolate'</span>&#125;, &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>: <span class="string">'cookie'</span>&#125;, &#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'candy'</span>&#125;];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getUniqueDessert = pipe(</span><br><span class="line">  changeForm,</span><br><span class="line">  uniqueDessert,</span><br><span class="line">  names</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> desserts = getUniqueDessert(data);</span><br><span class="line"><span class="built_in">console</span>.log(desserts); <span class="comment">// ['candy', 'cookie']</span></span><br></pre></td></tr></table></figure>
-<p>Map/Set과 같은 경우, unique한 데이터의 입력을 받기 때문에 iterable로 입력된 데이터의 중복을 방지할 수 있는 좋은 방법이다.<br>이러한 특성을 통해 데이터를 정제하고 Map/Set과 같은 데이터는 JSON으로 직렬화되지 않기 때문에 배열 등으로 변경하여 서버와 통신을 하면 된다.    </p>
-<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>자바스크립트에서 iterator/iterable 프로토콜은 loop를 좀 더 선언적으로 만들어주는 강력한 툴이고, 이를 지원할 강력한 연산자들 역시 제공하고 있다.<br>이러한 연산자를 적절하게 사용해서 문제를 해결하는 능력을 기를 수 있는 개발자가 되도록 노력해야겠다.</p>
-<blockquote>
-<p>참조</p>
-<ul>
-<li><a href="https://feel5ny.github.io/2019/02/03/JS_19/" target="_blank" rel="noopener">ES6 Iteration &amp; Generator</a></li>
-<li><a href="https://medium.com/@indongyoo/functional-es-1-%ED%83%80%EC%9E%85%EA%B3%BC-%EA%B0%92-4fc73d4b7023" target="_blank" rel="noopener">Functional.ES - 1.타입과 값</a></li>
-</ul>
-</blockquote>
+        <h1 id="차단-Screening"><a href="#차단-Screening" class="headerlink" title="차단(Screening)"></a>차단(Screening)</h1><p>월드 와이드 웹(www)으로 통용되는 온라인 세상에서는 기본적으로 모든 사용자가 다른 사용자에게 열려 있다.<br>이말은 즉, 한 사용자(혹은 업체)가 다른 사용자에게 유용한 컨텐츠를 제공할 수도 그와 정반대로 불쾌감을 초래하는 무언가를 제공할 수도 있다.<br>이러한 사용자가 보기에 불쾌감을 유발하는(그것이 유익하던 그렇지 않던) 컨텐츠를 차단하는 시스템도 존재한다.<br>각종 메일 서비스 제공 회사에서는 기본적으로 광고 메일 차단 기능을 보유하고 있기도 하고, 넓게는 광고 컨텐츠 자체를 차단하는 시스템도 있다.<br>이러한 차단은 대게는 텍스트에서 특정 단어를 필터링하여 처리하는 것에서부터, 최근에는 이미지에서 특징을 추출하여 부적절한 이미지 자체까지 차단하는 기술들도 등장하고 있다.</p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>입력받은 문자열이 특정 단어 Dictionary 자료 구조 내 단어들을 모두 포함하는 지 여부를 확인하는 코드를 작성하라.(<a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">문제 출처</a>)</p>
+<p>ex)</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s: ‘leetcode’<br/>wordDict: [‘leet’, ‘code’]</td>
+<td>true</td>
+</tr>
+<tr>
+<td>s: ‘applepenapple’<br/>wordDict: [‘apple’, ‘pen’]</td>
+<td>true</td>
+</tr>
+<tr>
+<td>s: ‘catsandog’<br/>wordDict: [‘cats’, ‘dog’, ‘sand’, ‘and’, ‘cat’]</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h2 id="Solving"><a href="#Solving" class="headerlink" title="Solving"></a>Solving</h2><p>문제 해결을 위해서 우선 지난 시간에 풀었던 동적 프로그래밍(<a href="https://gonewbie.github.io/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/">링크</a>)을 참고해서 해결을 진행하고자 헀다.<br>우선 입력받는 단어에서 단어 Dictionary에 포함된 단어를 제거하는 식으로 접근해보았다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wordBreak = <span class="function"><span class="keyword">function</span>(<span class="params">s, wordDict</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> s1 = s;</span><br><span class="line">  <span class="keyword">const</span> left = wordDict.reduce(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(wordDict, <span class="string">'g'</span>);</span><br><span class="line">    <span class="keyword">return</span> s1.replace(regex, <span class="string">''</span>);</span><br><span class="line">  &#125;, <span class="string">''</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> left.length ? <span class="literal">false</span> : <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>하지만 이 풀이법은 단어 Dictionary가 예제1, 2번과 같이 서로 겹치는 부분 집합 요소가 없어야 한다.<br>하지만 예제3과 같이 단어가 부분집합으로 존재하는 경우는 존재하고 그런 경우는 답이 나오지 않았다.</p>
+<p>동적 프로그래밍으로 접근한 풀이법은 잘못되진 않았다 생각하고 동적 프로그래밍시 사용했던 memoization을 활용한 방법을 찾아보았다.<br>그 중에서 BFS와 memoization을 활용한 해결책이 있어 이를 확인하였다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string[]&#125;</span> <span class="variable">wordDict</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> wordBreak = <span class="function"><span class="keyword">function</span>(<span class="params">s, wordDict</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> checked = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  <span class="keyword">const</span> queue = [<span class="string">``</span>]</span><br><span class="line">  <span class="keyword">while</span>(queue.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> base = queue.shift()</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span> possibleNextWord <span class="keyword">of</span> wordDict)&#123;</span><br><span class="line">      <span class="keyword">const</span> possibleStr = base + possibleNextWord</span><br><span class="line">      <span class="keyword">if</span>(possibleStr === s) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">      <span class="keyword">if</span>(s.indexOf(possibleStr) === <span class="number">0</span> &amp;&amp; !checked.has(possibleStr))&#123;</span><br><span class="line">        checked.add(possibleStr)</span><br><span class="line">        queue.push(possibleStr)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>BFS를 통해 입력 받은 문자열의 일부가 되는 단어를 조립하고, 해당 단어들을 Set에 저장하고 memoization의 위해 사용하였다.</p>
+<h1 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h1><p>위와 같은 비교적 단순한 문자열 포함 여부 판단을 판별하는 알고리즘을 통해 특정 단어 조합 요소를 판별할 수 있다면, 이 포스트의 처음에 다뤘던 텍스트 기반 차단 등에서도 활용이 가능할 것이라 생각한다.<br>또한 BFS, DFS 등에 대한 개념들 역시 그래프에서만 국한된 활용예밖에 생각하지 못했는데 이번 문제에서처럼 단어를 조합하여 판별하는 등 BFS 등의 개념을 이해할 수 있는 시간이었다.<br>아직도 갈길이 참 먼거 같다..</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
-            <p>link：<a href="https://gonewbie.github.io/2020/02/11/es6-iteration-for-of/">https://gonewbie.github.io/2020/02/11/es6-iteration-for-of/</a>
-            <p>create date：<a href="https://gonewbie.github.io/2020/02/11/es6-iteration-for-of/">February 11th 2020, 10:32:03 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2020/02/11/es6-iteration-for-of/">February 12th 2020, 5:03:45 pm</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/02/27/daily-algorithm-word-break/">https://gonewbie.github.io/2020/02/27/daily-algorithm-word-break/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/02/27/daily-algorithm-word-break/">February 27th 2020, 11:14:14 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/02/27/daily-algorithm-word-break/">February 27th 2020, 11:55:41 pm</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -474,17 +455,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/02/16/es6-generator-async-await/" title= "ES6) Generator & Async/Await">
-                    <div class="nextTitle">ES6) Generator & Async/Await</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/02/09/es6-symbol/" title= "ES6) Symbol을 Symbol답게 써보자">
-                    <div class="prevTitle">ES6) Symbol을 Symbol답게 써보자</div>
+                <a href= "/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/" title= "daily-algorithm-best-time-to-buy-and-sell-stock">
+                    <div class="prevTitle">daily-algorithm-best-time-to-buy-and-sell-stock</div>
                 </a>
             
         </li>
@@ -501,8 +477,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://gonewbie.github.io/2020/02/11/es6-iteration-for-of/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "ES6) Iteration을 우아하게 하는 법"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://gonewbie.github.io/2020/02/27/daily-algorithm-word-break/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "daily-algorithm-word-break"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -610,7 +586,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#iteration"><span class="toc-number">1.</span> <span class="toc-text">iteration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iterator와-iterable"><span class="toc-number">1.1.</span> <span class="toc-text">iterator와 iterable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iterable-프로토콜의-특징"><span class="toc-number">1.2.</span> <span class="toc-text">iterable 프로토콜의 특징</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#다양한-ES6-연산자-활용-가능"><span class="toc-number">1.2.1.</span> <span class="toc-text">다양한 ES6 연산자 활용 가능</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iterable로-구현된-자료형"><span class="toc-number">1.2.2.</span> <span class="toc-text">iterable로 구현된 자료형</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iterable-in-Functional-Programming"><span class="toc-number">1.3.</span> <span class="toc-text">iterable in Functional Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iterate-Array-ES6"><span class="toc-number">1.3.1.</span> <span class="toc-text">iterate Array ES6</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#마치며"><span class="toc-number">2.</span> <span class="toc-text">마치며</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#차단-Screening"><span class="toc-number">1.</span> <span class="toc-text">차단(Screening)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving"><span class="toc-number">1.2.</span> <span class="toc-text">Solving</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#소감"><span class="toc-number">2.</span> <span class="toc-text">소감</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
