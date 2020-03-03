@@ -285,7 +285,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">20</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">256</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -409,8 +409,18 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>N x N의 행렬(이미지)이 존재한다. 이 이미지를 시계방향으로 90도 회전한 값을 구하여라. (<a href="https://leetcode.com/problems/rotate-image/" target="_blank" rel="noopener">문제 출처</a>)</p>
-<h2 id="Solving"><a href="#Solving" class="headerlink" title="Solving"></a>Solving</h2><p>진행중…</p>
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>N x N의 행렬(이미지)이 존재한다. 이 이미지를 시계방향으로 90도 회전한 값을 구하여라. 단, 반환값 없이 입력갑을 변환하여라. (<a href="https://leetcode.com/problems/rotate-image/" target="_blank" rel="noopener">문제 출처</a>)</p>
+<h2 id="Solving"><a href="#Solving" class="headerlink" title="Solving"></a>Solving</h2><p>가장 처음 이 문제를 접근했을 때는 선형대수적으로 접근하고자 했다. 회전 변환 행렬(Rotating Matrix, <a href="https://ko.wikipedia.org/wiki/%ED%9A%8C%EC%A0%84%EB%B3%80%ED%99%98%ED%96%89%EB%A0%AC" target="_blank" rel="noopener">링크</a>)에 대한 기억을 환기하여 기존 행렬과 회전변환 행의 곱을 통해 구현할 수 있다.<br>이론적으로는 이러한 방식을 통해 구현이 가능하지만 PS에 있어서 행렬곱을 구현하고 회전 변환 행렬과 곱을 구하는 것은 적절하지 않다고 생각했다.<br>다음으로는 행렬을 조작해서 답을 구하는 방법이 있을까 찾아보다가 다음의 방법을 통해 해결할 수 있는 것을 알게 되었다.</p>
+<blockquote>
+<ol>
+<li>기존 행렬의 전치(Transpose) 행렬을 구한다.</li>
+<li>전치 행렬을 세로를 기준으로 바꾼다.</li>
+</ol>
+</blockquote>
+<p>행렬을 직접 회전하는 방법보다는 훨씬 간단하면서도 속도도 빠른 해결책이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">matrix</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span> </span>Do not return anything, modify matrix in-place instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rotate = <span class="function"><span class="keyword">function</span>(<span class="params">matrix</span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// caching for loop optimization</span></span><br><span class="line">    <span class="keyword">const</span> n = matrix.length</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 1. transpose matrix</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;n; i++ )&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j=i; j&lt;n; j++)&#123;</span><br><span class="line">            <span class="keyword">let</span> temp = matrix[i][j]</span><br><span class="line">            matrix[i][j] = matrix[j][i]</span><br><span class="line">            matrix[j][i] = temp</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. flip vertically</span></span><br><span class="line">    matrix.forEach(<span class="function"><span class="params">row</span> =&gt;</span> row = row.reverse())</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>시간 복잡도는 O(N^2)이면서 공간복잡도는 O(1)(입력값만 변환했으므로)로 문제를 해결할 수 있다.</p>
+<h1 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h1><p>2D 그래픽을 실제로 많이 다루는 컴퓨터 그래픽 관련 지식을 가지고 있는 사람들은 행렬을 조작하는데에 좀 더 능숙하겠지만, 아쉽게도 행렬을 다루는데 미숙한 만큼 2가지 방법으로 쪼개서 문제를 해결하는 등의 창의적인 방법을 생각하지 못했다.<br>이번 기회를 통해 행렬에 좀 더 익숙해지고 행렬을 다루는 데 익숙해질 수 있는 기회가 생겨서 좋았다.</p>
 
     </article>
     <!-- license  -->
@@ -419,7 +429,7 @@ height:50vh;
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
             <p>link：<a href="https://gonewbie.github.io/2020/03/03/daily-algorithm-rotate-image/">https://gonewbie.github.io/2020/03/03/daily-algorithm-rotate-image/</a>
             <p>create date：<a href="https://gonewbie.github.io/2020/03/03/daily-algorithm-rotate-image/">March 3rd 2020, 11:48:01 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2020/03/03/daily-algorithm-rotate-image/">March 3rd 2020, 11:52:11 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/03/03/daily-algorithm-rotate-image/">March 4th 2020, 1:36:58 am</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -558,7 +568,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving"><span class="toc-number">2.</span> <span class="toc-text">Solving</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving"><span class="toc-number">2.</span> <span class="toc-text">Solving</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#소감"><span class="toc-number"></span> <span class="toc-text">소감</span></a>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
