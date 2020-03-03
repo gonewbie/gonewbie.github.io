@@ -17,7 +17,7 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="gonewbie">
     
-    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog,javascript">
     
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -376,8 +376,19 @@ height:50vh;
         </a>
         <div class="abstract-content">
             Problemn 자리의 정수 배열이 입력으로 주어진다. 그 중에서 3개를 골라 합이 0이 되는 유일한 배열 목록을 구하여라. (문제 출처)
-Solving…진행중
 
+
+
+Input
+Output
+
+
+
+[-1, 0, 1, 2, -1, -4]
+[&nbsp;&nbsp;[-1, 0, 1],&nbsp;&nbsp;[-1, -1, 2]]
+
+
+Solving가장 간단하지만 시간 비효율적인 방법은 3중 포문을 통해 배열 전체를 순회한 후 값을 비교하여 가져오는 것이다.하지만 이러한 방식은 O(N^3)의 시간복잡도로 인해 매우 비효율적인 방법일 것이다.그렇다면 loop를 ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -712,7 +723,7 @@ solvingn = 1과 n = 2일때를 비교하면서 규칙을 찾아보자.n = 1...
     <div class="profile-name">gonewbie</div>
     
     <div class="profile-signature">
-        witness me
+        need more coffee
     </div>
     
     
