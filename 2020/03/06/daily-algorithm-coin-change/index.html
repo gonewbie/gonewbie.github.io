@@ -285,7 +285,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">43</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">293</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -409,7 +409,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>잔돈을 거슬러 주는 동전의 금액 종류를 배열로 주어졌을 때, 특정 금액이 주어졌을 때 환불 되는 동전의 갯수를 구하여라(<a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener">문제 출처</a>)</p>
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>잔돈을 거슬러 주는 동전의 금액 종류를 배열로 주어졌을 때, 특정 금액이 주어졌을 때 잔돈으로 주는 동전의 갯수를 구하여라(<a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener">문제 출처</a>)</p>
 <table>
 <thead>
 <tr>
@@ -426,7 +426,10 @@ height:50vh;
 <td>Output: -1</td>
 </tr>
 </tbody></table>
-<h2 id="Solving"><a href="#Solving" class="headerlink" title="Solving"></a>Solving</h2><p>진행 중…</p>
+<h2 id="Solving"><a href="#Solving" class="headerlink" title="Solving"></a>Solving</h2><p>흔히 잔돈 교환은 Greedy Algorithm을 통해 해결하는 방법도 있는 것으로 알고 있다. 현재 남은 금액이 큰 것부터 잔돈을 거슬러주면 되는 것이다.<br>하지만, 이러한 현재의 최적해만을 구하는 것은 전체로 따졌을 때 최적해가 아닐 수 있다.<br>coins: [1, 7, 10], amount: 14의 경우 Greedy로는 5(10 + 1 + 1 + 1 + 1)가 나오지만 실제로는 2(7+ 7)가 맞게 된다.<br>그렇다면, <code>Greedy Algorithm</code>보다 좀 더 최적해를 구할 방법은 없을까 해보니 DP로 해결할 수 있다고 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> coinChange = <span class="function"><span class="keyword">function</span>(<span class="params">coins, amount</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(amount + <span class="number">1</span>).fill(<span class="built_in">Number</span>.MAX_VALUE - <span class="number">1</span>);</span><br><span class="line">  dp[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; coins.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(coins[j] &lt;= i) &#123;</span><br><span class="line">        dp[i] = <span class="built_in">Math</span>.min(dp[i-coins[j]] + <span class="number">1</span>, dp[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dp[amount] === <span class="built_in">Number</span>.MAX_VALUE - <span class="number">1</span> ? <span class="number">-1</span> : dp[amount];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>잔돈이 0일 때부터 목표 잔돈 금액까지 DP를 위한 저장 공간을 할당한다. 이후, 각 잔돈 금액마다 동전 목록들을 순회하며 해당 잔돈보다 작은 동전 단위가 나오면 이 전에 계산된 갯수와 현재 갯수를 비교해서 더 적은 값을 가져온다.<br>이런 방식으로 DP를 통해 목표 금액까지 순회를 완료하면 무의미한 값이 아니면 해당 값을 아니면 -1을 반환하는 것이다.</p>
+<h1 id="소감"><a href="#소감" class="headerlink" title="소감"></a>소감</h1><p>동전 교환 문제는 대학 시절 알고리즘 강의에서 한 번 다뤄본 적이 있었지만, 그 때는 알고리즘에 대한 이해가 부족했기도 했고 관심도 적어서 그냥 그렇구나 하고 넘어갔었다.<br>하지만 이번 기회에 Greedy Algorithm과 DP를 통해 문제를 해결할 수 있다는 것에 대한 기억을 환기시키고 이번 기회에 제대로 된 이해를 할 수 있는 시간이었다. </p>
 
     </article>
     <!-- license  -->
@@ -435,7 +438,7 @@ height:50vh;
             <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
             <p>link：<a href="https://gonewbie.github.io/2020/03/06/daily-algorithm-coin-change/">https://gonewbie.github.io/2020/03/06/daily-algorithm-coin-change/</a>
             <p>create date：<a href="https://gonewbie.github.io/2020/03/06/daily-algorithm-coin-change/">March 6th 2020, 11:50:18 pm</a>
-            <p>update date：<a href="https://gonewbie.github.io/2020/03/06/daily-algorithm-coin-change/">March 6th 2020, 11:56:01 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/03/06/daily-algorithm-coin-change/">March 7th 2020, 1:06:25 am</a>
             <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
         </div>
     
@@ -574,7 +577,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving"><span class="toc-number">2.</span> <span class="toc-text">Solving</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving"><span class="toc-number">2.</span> <span class="toc-text">Solving</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#소감"><span class="toc-number"></span> <span class="toc-text">소감</span></a>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
