@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="gonewbie">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="gonewbie">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog,javascript">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>es6-babel-webpack · gonewbie&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-154573634-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >gonewbie&#39;s notepad</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">es6-babel-webpack</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>gonewbie's notepad</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            es6-babel-webpack
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "javascript">javascript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "es6">es6</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">2.2k</span>Reading time: <span class="post-count reading-time">13 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/08</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="모던-자바스크립트란"><a href="#모던-자바스크립트란" class="headerlink" title="모던 자바스크립트란?"></a>모던 자바스크립트란?</h1><p>자바 스크립트는 ES2015 스펙 발표 이후로 급격하게 많은 것들이 추가되고 발전하게 되었다.<br>이제 변수는 블록 스코프 단위로 선언되며 호출될 것이며, 기존 함수 선언을 람다 표현식으로 바꿔 간결하게 표현할 수 있는 화살표 함수가 등장했다. 다른 언어에서 OOP 개발을 위해 사용되었던 class가 도입되었으며, 전역 네임스페이스 오염 방지하고 모듈 내부의 독립된 스코프를 보장하는 모듈 시스템의 도입, 비동기 콜백 함수의 콜백 지옥에서 벗어나게 해준 Promise도 있으며, ES5 이전 라이브러리와의 property 중복으로 인한 문제 해결을 위해 등장한 새로운 타입인 Symbol도 있다.<br>여기서 끝이 아니다. 반복을 좀 더 우아하게 처리해 줄 수있는 이터레이터/이터러블 프로토콜의 적립과 이터레이터/이터러블 프로토콜을 만족하며 제어권을 넘겨주는 코루틴적인 특성을 가진 제네레이터, 비동기 동작을 동기처럼 수행하게 도와주는 await/async 등 기존에 없던 새로운 문법이 등장했다.<br>비록 제네레이터나 await/async 문법은 ES2015 이후에 적립되었지만 그 전에 있는 것들은 모두 ES2015에서 정의된 스펙이다.<br>매년 TC39팀에서는 자바스크립트 스펙을 정의하여 발표하는 데, ES2015를 기준으로 다양한 기능을 추가하였기 때문에 이 시점을 기준으로 모던 자바스크립트라고 불리게 된다.</p>
+<h2 id="같은-코드가-항상-같은-결과를-보여주진-않는다"><a href="#같은-코드가-항상-같은-결과를-보여주진-않는다" class="headerlink" title="같은 코드가 항상 같은 결과를 보여주진 않는다."></a>같은 코드가 항상 같은 결과를 보여주진 않는다.</h2><p>모던 자바스크립트의 등장은 모던이라는 수식어가 붙을만큼 자바스크립트를 더 우아하게 만드는 많은 변화가 있었다.<br>하지만, 이러한 스펙 발표와는 별개로 각각의 브라우저에서 해당 문법을 사용하기 위해서는 브라우저 개발자 측에서 해당 스펙을 구현해야 한다.<br>하지만, 각 브라우저 개발사마다 저마다의 개발 우선 순위가 있기도 하고 기반이 되는 브라우저 동작 방식도 다르는 등 해당 스펙을 구현하는 방식이 제각각 다를 수 밖에 없다.<br>물론 이러한 스펙들을 훌륭하게 구현하는 브라우저도 있는 반면, 개발 지원 중단 등의 이유로 JS 스펙의 구현 등이 중단된 브라우저도 있다.</p>
+<p>따라서, 이러한 브라우저 간 호환성을 만족시켜주면서 기존 JS 바닐라 코드들을 간결하게 추상화한 jQuery가 엄청난 유행을 끌기도 했다. 이렇듯, 모든 브라우저에서 같은 코드가 동일한 기능으로 동작하게 하는 것은 개발자들의 가장 큰 고민거리 중 하나였다.<br>모던 자바스크립트 개발 환경에서는 이러한 호환성을 전문적으로 관리해주는 도구가 생겼다. 이러한 도구들의 등장으로 인해 이제는 해당 코드가 특정 브라우저에서 구현되지 않았다고 해도 이를 감지하고 변환해준다.<br>이러한 기능을 트랜스파일(transpile)이라고 하며 브라우저 간의 호환이나 구현되지 않은 함수를 구현하는 등의 기능을 수행한다.</p>
+<blockquote>
+<p>Transpile vs Compile<br>트랜스파일(transpile): 비슷한 수준의 추상화를 가진 다른 언어로 변경 (ES6 =&gt; ES5, C++ =&gt; C)<br>컴파일(Compile): 서로 다른 수준의 언어로 변경 (JAVA =&gt; Bytecode, C =&gt; Assembly, Dart =&gt; Javascript)</p>
+</blockquote>
+<h2 id="책임은-늘어나도-언제나-빨라야-한다"><a href="#책임은-늘어나도-언제나-빨라야-한다" class="headerlink" title="책임은 늘어나도 언제나 빨라야 한다."></a>책임은 늘어나도 언제나 빨라야 한다.</h2><p>구글의 V8 엔진으로 인해 자바스크립트의 속도가 비약적으로 빨라졌고, ES2015의 등장으로 좀 더 세련되면서 모던한 자바스크립트의 개발이 가능하게 되었다. 또한 Node.JS의 등장으로 자바스크립트는 브라우저 밖에서도 눈부신 활약을 할 토대를 얻게 되었다.<br>또한 자바스크립트는 현재 세계에서 가장 거대한 오픈소스 라이브러리 저장소 NPM을 통해 바퀴를 재창조하지 않고도 어플리케이션을 조립해서 완성할 수 있게 되었다.<br>이러한 순풍들을 타고 자바스크립트는 기존의 DOM 조작을 넘어서 훨씬 더 많은 일들을 수행하게 되었다. 페이지의 한계에서 어플리케이션으로 확대된 자바스크립트는 필연적으로 더 무거워지고 레거시 코드들의 파편화 등의 문제를 끌어앉게 되었다.<br>비즈니스 로직 수행을 위해 여러 개의 모듈을 불러와 페이지를 구현할 경우 HTTP 특성 상 파일이 많아지면 초기 로딩이 지연되기도 하고, 특정 기능을 수행하기 위해 특정 모듈을 이용해 기능을 구현하였다가 이후 기능 수정으로 해당 함수를 사용하지 않더라도 해당 함수의 사이드 이펙트 등의 문제로 쉽사리 제거하지 못하고 파편화되기도 한다.<br>이러한 문제점들로 인해 브라우저가 느려진다면 우리는 더 복잡하고 느린 아키텍처를 도입할 이유가 사라질 것이다. 다행스럽게도 이러한 문제점을 해결하기 위한 도구 역시 존재한다.<br>각 모듈들의 의존관리를 분석하고 이를 하나의 파일로 묶어주는 번들링(Bundling) 역할을 수행함으로 인해 개발자는 각 모듈들을 최소한의 책임을 가지도록 충분히 작게 만들더라도 번들링으로 파일들을 묶어줄 수 있다.</p>
+<h1 id="그래서-그것들이-대체-뭔가요"><a href="#그래서-그것들이-대체-뭔가요" class="headerlink" title="그래서 그것들이 대체 뭔가요?"></a>그래서 그것들이 대체 뭔가요?</h1><p>모던 자바스크립트 개발 환경에서 빠질 수 없는 두 축으로 앞에서 언급된 바와 같이 <code>트랜스파일러(Transpiler)</code>와 <code>번들러(Bundler)</code>가 있다.<br>먼저 트랜스파일러부터 살펴보자면 바닐라 JS 에서 가장 많이 쓰이는 <code>Babel</code>과 타입 추론과 제네릭 등의 강력한 타입 체킹 시스템이 있는<code>Typescript(Compiler)</code>가 있다.<br>모듈러를 살펴보면, 가장 많이 쓰이는 <code>Webpack</code>과 Zero Config를 표방하여 등장했던(Webpack도 4버전 이후부터는 Zero Config 지향), <code>ES Module</code> 형식을 지원하는 <code>Rollup</code> 등이 있다.<br>우리는 이중에서 각각 <code>Babel</code>과 <code>Webpack</code>을 통해 트랜스파일러와 번들러의 원리를 이해하고자 한다.</p>
+<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><blockquote>
+<p>The Compiler for writing next generation Javascript</p>
+</blockquote>
+<p>위에도 써있듯이 바벨은 개발자가 최신의 자바스크립트를 쓸 수 있도록 도와주는 컴파일러라고 소개하고 있다. 바벨은 이와 같이 아직 도입되지 않은 (stage 0 ~ 3) 기능들을 사용하게 할 수 있다.<br>그렇다면 바벨은 어떻게 코드를 컴파일하는 것일까?</p>
+<h3 id="AST-Abstract-Syntax-Tree"><a href="#AST-Abstract-Syntax-Tree" class="headerlink" title="AST (Abstract Syntax Tree)"></a>AST (Abstract Syntax Tree)</h3><p>미리 답을 말하자면 코드를 분석해서 AST를 만들고 이를 이용해서 처리한다. 이는 우리가 아는 일반적인 컴파일러들이 수행하는 동작이다.<br>그럼 그 중에서 AST를 만드는 과정에 대해 알아보자.<br><img src="https://gonewbie.github.io/img/es6-babel-webpack/scratch-the-surface-of-compiler.png" alt="scratch the surface of compiler"><br>[출처: <a href="https://gyujincho.github.io/2018-06-19/AST-for-JS-devlopers]" target="_blank" rel="noopener">https://gyujincho.github.io/2018-06-19/AST-for-JS-devlopers]</a></p>
+<p>컴파일러에서 AST를 만드는 과정만을 살펴보자. 고차 언어로부터 <code>Lexical analyzer</code>, <code>Syntax analyzer</code>를 거쳐 AST가 나오는 것을 알 수 있다.</p>
+<h4 id="Lexical-analyzer-scanner"><a href="#Lexical-analyzer-scanner" class="headerlink" title="Lexical analyzer (scanner)"></a>Lexical analyzer (scanner)</h4><p>스캐너라고 불리는 어휘 분석기는 코드를 읽어들여 정의된 규칙에 따라 문자 스트림(코드)를 읽고 이를 토큰으로 결합한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="comment">// [&#123;value: 'const', type: 'keyword'&#125;, &#123;value: 'a', type: 'identifier'&#125;, ...]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Syntax-analyzer-parser"><a href="#Syntax-analyzer-parser" class="headerlink" title="Syntax analyzer (parser)"></a>Syntax analyzer (parser)</h4><p>파서라고 불리는 구문 분석기는 어휘 분석기를 통해 변환된 플랫한 토큰으로부터 검증 과정을 거친 후, (에러가 있으면 에러를 표시해주는) AST를 만든다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"VariableDeclaration"</span>,</span><br><span class="line">  <span class="attr">"declarations"</span>: [&#123;</span><br><span class="line">    <span class="attr">"type"</span>: <span class="string">"VariableDeclarator"</span>,</span><br><span class="line">    <span class="attr">"kind"</span>: <span class="string">"const"</span>,</span><br><span class="line">    <span class="attr">"id"</span>: &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"identifier"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"a"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"init"</span>: &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"literal"</span>,</span><br><span class="line">      <span class="attr">"value"</span>: <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>컴파일러에서 AST로 생성하는 구조는 대략적으로 위와 같다. 이를 개념적으로만 접근해보기보다는 실제 활용 예제를 알아보자.</p>
+<h3 id="Babel-parser"><a href="#Babel-parser" class="headerlink" title="@Babel/parser"></a>@Babel/parser</h3><p>과거 babylon으로 불리었지만 babel v7에 들어서면서 완전히 포함되어 <code>@babel/parser</code>가 되었다. babel의 하위 프로젝트인 만큼 강력한 지원을 받고 있는 만큼 대부분의 최신 문법을 지원할 것이다.</p>
+<h3 id="다시-돌아와서-Babel"><a href="#다시-돌아와서-Babel" class="headerlink" title="다시 돌아와서 Babel"></a>다시 돌아와서 Babel</h3><p>그렇다면 Babel은 어떻게 동작하는 걸까? AST로 변환된 정보가 어떻게 코드를 변환하는 걸까? babel은 3가지 단계를 통해 코드를 source-to-source compile(transpile)을 수행한다.<br>각각 <code>parse</code>, <code>transform</code>, <code>generate</code> 단계를 거치게 된다. 여기서 각 단계 별로 AST 트리를 생성하고, 적용된 플러그인에 따라 AST를 수정하고, 최종적으로 AST에서 코드를 생성하는 과정을 수행한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// parse</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> parser <span class="keyword">from</span> <span class="string">'@babel/parser'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> code = <span class="string">`</span></span><br><span class="line"><span class="string">  const abc = 5;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ast = parser.parse(code);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// transform</span></span><br><span class="line"><span class="keyword">import</span> traverse <span class="keyword">from</span> <span class="string">'@babel/traverse'</span>;</span><br><span class="line"></span><br><span class="line">traverse(ast, &#123;</span><br><span class="line">  enter(path) &#123;</span><br><span class="line">    <span class="keyword">if</span> (path.node.type === <span class="string">'Identifier'</span>) &#123;</span><br><span class="line">      path.node.name = name.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> generate <span class="keyword">from</span> <span class="string">'@babel/generator'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newCode = generate(ast); <span class="comment">// const cba = 5;</span></span><br></pre></td></tr></table></figure>
+<p>위 과정에서 가장 눈여겨 살펴보아야 할 곳은 <code>transform</code>에 해당되는 부분이다. parsing하여 AST로 만들거나, transform을 통해 원래 코드로 작성하는 것은 일련의 규칙을 통해 이루어진다.<br>하지만 AST 트리를 적절하게 변환하는 것이 ES2015+ 코드를 ES5로 바꿔 호환성을 챙기거나 하는 등의 핵심적인 기능을 수행하는 것이다.</p>
+<p>따라서, Babel 플러그인을 작성하는 것은 transform에 해당되는 부분을 작성하는 것이다. 플러그인은 따라서, Babel 플러그인을 작성하는 것은 transform에 해당되는 부분을 작성하는 것이다. Babel 플러그인은 <code>visitor</code>라는 노드를 순회하며 선언된 부분을 변경하는 함수를 작성만 하면 된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// my-babel-plugin.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    visitor: &#123;</span><br><span class="line">      Identifier(path) &#123;</span><br><span class="line">        <span class="keyword">const</span> name = path.node.name;</span><br><span class="line">        path.node.name = name.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="트랜스파일러의-역할"><a href="#트랜스파일러의-역할" class="headerlink" title="트랜스파일러의 역할"></a>트랜스파일러의 역할</h3><p>코드를 분석하여 변환할 수 있는 강력한 기능은 단순히 ES2015+의 코드를 변환해주는 데에 그치는 것이 아니라, 공백이나 불필요한 option token들을 제거해주는 코드 압축(minification) 기능을 수행할 수 있다.<br>또한, JSX를 변환하거나 Flow와 같은 언어를 위한 플러그인으로도 쓰일 수 있는 등 코드 변환에 필요한 다양한 기능을 수행할 수 있다.</p>
+<blockquote>
+<p>참고(<a href="https://stackoverflow.com/questions/19694448/whats-the-difference-between-concat-and-uglify-and-minify" target="_blank" rel="noopener">출처</a>)</p>
+<ul>
+<li>minification: 공백이나 불필요한 옵션을 제거하는 것.</li>
+<li>uglification: 길이가 긴 변수나 함수, 메서드명 등을 압축하는 것으로 이에 따라서 읽기 어려운 형태로 코드가 변하고 되돌릴 수 없다(irreversible).</li>
+</ul>
+</blockquote>
+<h3 id="polyfill로써의-Babel"><a href="#polyfill로써의-Babel" class="headerlink" title="polyfill로써의 Babel"></a>polyfill로써의 Babel</h3><p>코드를 변환하는 것으로 모든 문제를 해결할 수 있으면 좋겠지만 ES2015 이후에 새로 생긴 메서드나 Symbol같은 자료형은 코드 변환만으로 해결할 수 없다.<br>이렇게 없는 메서드들을 이전의 존재하는 메서드 등으로 해결하는 플러그인도 제공한다. 해당 플러그인을 프로젝트 루트 파일에 한번 import 해주면 된다.</p>
+<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>현대의 <code>Javascript</code> 어플리케이션은 크기도 거대해지고 기능에 따라 분화된 작은 javascript 코드들이 서로 어우러져 동작한다.<br>이러한 거대해진 용량의 파일들을 불러와서 파싱을 수행하고 컴파일되어 최종적으로 실행되기까지 페이지를 작성하기까지의 공백은 이전보다 더 길어지게 되었다.<br>이는 지극히 자연스럽고 효율적인 변화지만 실제 사용자에게 이러한 파일 구조의 파일들을 그대로 제공하는 것은 부적절하다.<br>파일이 여러 개라는 것은 하나의 웹 어플리케이션을 동작하기 위해 적게는 수십, 수백개의 파일들을 네트워크를 통해 불러오거 되고 이는 병목 현상에 의한 지연 시간이 발생하고 이것이 충분히 길어지면 사용자 경험에도 악영향을 준다.<br>이를 해결해주는 Bundling, 즉 여러 개의 자바스크립트 파일들을 하나의 파일로 묶어주면서 동시에 각 모듈 파일들 간의 이름 충돌 등의 문제도 해결해준다.</p>
+<h3 id="Webpack이-동작하는-방식"><a href="#Webpack이-동작하는-방식" class="headerlink" title="Webpack이 동작하는 방식"></a>Webpack이 동작하는 방식</h3><p>Webpack은 어떻게 파일을 모아서 bundling을 수행할까? Webpack은 dependency graph을 생성해서 자바스크립트 파일 간의 의존성을 그린다.<br>이를 통해 중복이 발생하지 않는 최소 단위인 chunk를 만들고 이러한 chunk들이 모여서 하나의 bundle이 되는데 이것을 Webpack이 수행한다.<br>Webpack은 여러 개의 모듈을 chunk로 결합하면서도 어떻게 변수명의 충돌 등을 해결할 수 있었을까? Webpack에서는 각각의 모듈을 IIFE를 활용하여 변수 스코프 문제를 해결하였다.<br>IIFE를 통해 각 모듈내 변수들은 해당 IIFE 내부의 스코프에서만 동작하는 점을 이용한 것이다.<br><img src="https://gonewbie.github.io/img/es6-babel-webpack/bundle-and-chunk.png" alt="bundle and chunk"><br><a href="https://dev.to/websavi/how-to-code-split-redux-store-to-further-improve-your-apps-performance-4gg9" target="_blank" rel="noopener">buldle and chuck</a></p>
+<h3 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h3><p>Webpack도 Babel과 유사하게 핵심적인 부분들이 여러 개로 나뉘어져 구성되어 있다. 이 요소들을 설정 파일을 통해 하나씩 살펴보자.</p>
+<h4 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h4><ul>
+<li>dependency grap를 만들기 위한 <code>Input Source</code>이다.</li>
+<li>직,간접적으로 의존성을 파악하고 있다.</li>
+<li>여러 개가 존재할 수 있다.</li>
+</ul>
+<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><ul>
+<li>Webpack으로 인해 번들링된 결과물이 저장될 위치를 지정한다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h4><ul>
+<li>Webpack은 기본적으로 javascript와 json 파일만을 이해할 수 있다.</li>
+<li>loader를 통해 다른 종류의 파일들을 webpack이 이해할 수 있도록 변경한다.</li>
+</ul>
+<h4 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h4><ul>
+<li>bundle optimization, asset management, injection of environment 등의 기능을 수행한다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, <span class="attr">use</span>: <span class="string">'raw-loader'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h4><ul>
+<li>Webpack이 빌드되는 Profile을 지정한다.</li>
+<li>development, production, none</li>
+</ul>
+<h3 id="최적화를-위한-또다른-기술"><a href="#최적화를-위한-또다른-기술" class="headerlink" title="최적화를 위한 또다른 기술"></a>최적화를 위한 또다른 기술</h3><p><code>Webpack</code>은 Bundling 이외에도 빌드 파일 최적화를 위한 기술들을 가지고 있다. 바로 Code Splitting과 Tree shaking이다.</p>
+<h4 id="Code-Spliting"><a href="#Code-Spliting" class="headerlink" title="Code Spliting"></a>Code Spliting</h4><p>Webpack을 통해 Bundling을 수행하게 되면 어플리케이션이 발전함에 따라 필연적으로 용량이 증가하게 된다. 이러한 거대한 용량의 파일을 한꺼번에 불러오는 것이 병목현상의 원인이 되는 것이다.<br>Code Splitting이란, 이러한 한 뭉치의 코드에서 지연 로딩을 통해 필요한 요소들만 필요할 때 로딩 함으로써 한꺼번에 큰 용량의 파일을 호출하는 것을 방지하는 것이다.<br>지연 로딩을 구현하기 위해서 동적 import를 이용하는 방법이 있다.</p>
+<figure class="highlight jsx"><figcaption><span>harmony</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">import</span>(<span class="string">'./notify'</span>).then(<span class="function">(<span class="params">&#123; <span class="keyword">default</span>: notify &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">      notify();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;Click Me&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Tree-shaking"><a href="#Tree-shaking" class="headerlink" title="Tree shaking"></a>Tree shaking</h4><p>우리가 특정 모듈에서 유용한 함수를 불러오기 위해서 해당 모듈을 import한다. 하지만 해당 모듈의 전체 기능을 모두 사용하지 않는 경우가 대부분이기 때문에 전체 모듈을 불러오는 방식은 비효율적이다.<br>따라서 우리는 import와 <code>Destructing Object</code>를 통해 해당 모듈에서 필요한 파일들만 불러온다. 그렇다면 실제로 Bundling이 진행될 때도 해당 모듈에서 필요한 파일만 가져와서 용량을 줄일까?<br>그럴 수도 있고 아닐 수도 있다. <code>Webpack</code>이 기본적으로 tree shaking을 통해 import되는 모듈들을 다이어트 시켜주긴 하지만, 어디까지나 ES module에 한정된 이야기이다.<br>CommonJS 형식의 모듈을 tree shaking이 진행되지 않기 때문에 별로의 plugin을 이용하거나 es module로 제작성된 모듈을 이용하거나 혹은 파일 디렉토리 구조를 통해 나눠진 모듈에서 필요한 부분만 가져오는 chery picking 방식을 이용하여야 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 설정이 잘 되어있어도 lodash 모든 것들을 가져온다.</span></span><br><span class="line"><span class="keyword">import</span> &#123; sortBy &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sortBy 경로에서 가져온다.</span></span><br><span class="line"><span class="keyword">import</span> sortBy <span class="keyword">from</span> <span class="string">"lodash-es/sortBy"</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTP-2의-등장"><a href="#HTTP-2의-등장" class="headerlink" title="HTTP/2의 등장"></a>HTTP/2의 등장</h3><p>TCP를 기반으로 작성된 HTTP 프로토콜은 시간이 지나면서 꾸준히 발전하였다. 전송 속도를 빠르게 하기 위해 Header 구조를 개선하고 반복되는 Handshaking으로 인한 지연을 방지하기 위해 커넥션을 재사용하도록 하기도 했다.<br>게다가 HTTP/2에 들어서면서 <code>Multiplexed Streams</code>를 통해 동시에 여러 요청을 수행할 수 있게 되었다. 한꺼번에 여러 요청을 수행할 수 있다는 것은 여러 개의 자원이 전송될 때의 RTT(Round Trip Time)도 같이 감소한다는 것을 의미한다.<br>그렇다면 HTTP/2를 도입한 백엔드/프론트엔드 환경에서는 Bundling의 이점이 크게 줄어들게 되고 Webpack을 사용할 필요성이 없어지지 않을까?</p>
+<p>그렇게 됐으면 (개발자) 모두가 좋겠지만, 아쉽게도 개선된 프로토콜만으로 네트워크 병목을 완전히 해결하긴 힘들다.</p>
+<p>다음의 article들을 살펴보고 해당 결과를 요약하면 다음과 같다.</p>
+<blockquote>
+<p><a href="http://engineering.khanacademy.org/posts/js-packaging-http2.htm" target="_blank" rel="noopener">http://engineering.khanacademy.org/posts/js-packaging-http2.htm</a><br><a href="https://medium.com/@asyncmax/the-right-way-to-bundle-your-assets-for-faster-sites-over-http-2-437c37efe3ff" target="_blank" rel="noopener">https://medium.com/@asyncmax/the-right-way-to-bundle-your-assets-for-faster-sites-over-http-2-437c37efe3ff</a></p>
+</blockquote>
+<ul>
+<li>아직 각각의 작은 파일들의 <code>protocol overhead</code>가 하나의 큰 파일에 비해 여전히 존재한다.</li>
+<li>단일 파일의 압축(compression)이 여러 파일들보다 낫다.</li>
+<li><code>서버</code>는 여러 개의 작은 파일을 보내는 것이 하나의 큰 파일을 보내는 것보다 느리다.</li>
+</ul>
+<p>하지만 chunk의 크기가 줄고 갯수가 늘어나는 것은 caching의 관점에서는 충분히 이득이다. 작은 변화에도 하나의 큰 파일이 변경되는 것이랑 작은 파일 몇 개가 수정되는 것은 분명히 차이가 존재한다.<br>그렇다면 우리는 그 중간점인 <code>Sweet spot</code>을 어떻게 찾아서 Bundling 할 수 있을까?</p>
+<p><code>Webpack</code>에서는 다행이도 HTTP/2 프로토콜을 위한 plugin을 제공하고 있다. <code>Webpack</code>의 <code>AggressiveSplittingPlugin</code>은 하나의 이전의 chunk 파일들을 더 작은 범위로 분할한다.<br>개발자가 이 값을 직접 지정할 수도 있기도 하다.</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>프론트엔드 개발을 실무로 직접 뛰면서 모던 JS 개발환경을 몸소 느끼다보니 욕심을 가지고 이것 저것 여러 개의 주제를 참고해서 글을 작성하였지만, 작성자의 짧은 식견으로 인해 각 part들의 깊이가 다소 얕은 감이 있다.<br>당장 1년 뒤에 내가 이 글을 돌아보며 이불을 뻥뻥 찰 수 있게 앞으로도 더 열심히 JS 및 프론트엔드 개발에 노력해야겠다.</p>
+<blockquote>
+<p>참고</p>
+<ul>
+<li><a href="https://ideveloper2.tistory.com/166" target="_blank" rel="noopener">transpile과 Compile의 비교</a> </li>
+<li><a href="https://gyujincho.github.io/2018-06-19/AST-for-JS-devlopers" target="_blank" rel="noopener">JS 개발자를 위한 AST(번역)</a></li>
+<li><a href="https://nesoy.github.io/articles/2019-02/Webpack" target="_blank" rel="noopener">Webpack이란?</a></li>
+<li><a href="https://ui.toast.com/weekly-pick/ko_20180716/" target="_blank" rel="noopener">트리 쉐이킹으로 자바스크립트 페이로드 줄이기</a></li>
+<li><a href="https://velog.io/@doondoony/HTTP2-and-Webpack" target="_blank" rel="noopener">HTTP/2와 Webpack</a></li>
+<li><a href="https://medium.com/webpack/webpack-http-2-7083ec3f3ce6" target="_blank" rel="noopener">webpack &amp; HTTP/2</a></li>
+</ul>
+</blockquote>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="https://gonewbie.github.io">gonewbie</a>
+            <p>link：<a href="https://gonewbie.github.io/2020/03/08/es6-babel-webpack/">https://gonewbie.github.io/2020/03/08/es6-babel-webpack/</a>
+            <p>create date：<a href="https://gonewbie.github.io/2020/03/08/es6-babel-webpack/">March 8th 2020, 3:45:52 pm</a>
+            <p>update date：<a href="https://gonewbie.github.io/2020/03/08/es6-babel-webpack/">March 10th 2020, 12:20:14 am</a>
+            <p>copyright：이 문서는<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"> Creative Commons Attribution-Non-Commercial Use 4.0 국제 라이센스 계약</a>에 따라 라이센스가 부여됩니다.</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/06/daily-algorithm-coin-change/" title= "daily-algorithm-coin-change">
+                    <div class="prevTitle">daily-algorithm-coin-change</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        
+        var disqus_config = function () {
+        this.page.url = "https://gonewbie.github.io/2020/03/08/es6-babel-webpack/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "es6-babel-webpack"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://gonewbie.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:gounewbie@gmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/gonewbie" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#모던-자바스크립트란"><span class="toc-number">1.</span> <span class="toc-text">모던 자바스크립트란?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#같은-코드가-항상-같은-결과를-보여주진-않는다"><span class="toc-number">1.1.</span> <span class="toc-text">같은 코드가 항상 같은 결과를 보여주진 않는다.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#책임은-늘어나도-언제나-빨라야-한다"><span class="toc-number">1.2.</span> <span class="toc-text">책임은 늘어나도 언제나 빨라야 한다.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#그래서-그것들이-대체-뭔가요"><span class="toc-number">2.</span> <span class="toc-text">그래서 그것들이 대체 뭔가요?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Babel"><span class="toc-number">2.1.</span> <span class="toc-text">Babel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AST-Abstract-Syntax-Tree"><span class="toc-number">2.1.1.</span> <span class="toc-text">AST (Abstract Syntax Tree)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lexical-analyzer-scanner"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">Lexical analyzer (scanner)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Syntax-analyzer-parser"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">Syntax analyzer (parser)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Babel-parser"><span class="toc-number">2.1.2.</span> <span class="toc-text">@Babel&#x2F;parser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#다시-돌아와서-Babel"><span class="toc-number">2.1.3.</span> <span class="toc-text">다시 돌아와서 Babel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#트랜스파일러의-역할"><span class="toc-number">2.1.4.</span> <span class="toc-text">트랜스파일러의 역할</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#polyfill로써의-Babel"><span class="toc-number">2.1.5.</span> <span class="toc-text">polyfill로써의 Babel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack"><span class="toc-number">2.2.</span> <span class="toc-text">Webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Webpack이-동작하는-방식"><span class="toc-number">2.2.1.</span> <span class="toc-text">Webpack이 동작하는 방식</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-me-the-code"><span class="toc-number">2.2.2.</span> <span class="toc-text">Show me the code</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#entry"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">entry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#output"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">output</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Loader"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">Loader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plugin"><span class="toc-number">2.2.2.4.</span> <span class="toc-text">plugin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mode"><span class="toc-number">2.2.2.5.</span> <span class="toc-text">mode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#최적화를-위한-또다른-기술"><span class="toc-number">2.2.3.</span> <span class="toc-text">최적화를 위한 또다른 기술</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-Spliting"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">Code Spliting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tree-shaking"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">Tree shaking</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-2의-등장"><span class="toc-number">2.2.4.</span> <span class="toc-text">HTTP&#x2F;2의 등장</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#마치며"><span class="toc-number">3.</span> <span class="toc-text">마치며</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 37
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href= "/2020/03/08/es6-babel-webpack/" >es6-babel-webpack</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/06</span><a class="archive-post-title" href= "/2020/03/06/daily-algorithm-coin-change/" >daily-algorithm-coin-change</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href= "/2020/03/05/daily-algorithm-find-all-number-in-array/" >daily-algorithm-find-all-number-in-array</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href= "/2020/03/04/daily-algorithm-single-number/" >daily-algorithm-single-number</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2020/03/03/daily-algorithm-rotate-image/" >daily-algorithm-rotate-image</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href= "/2020/03/02/daily-algorithm-3sum/" >daily-algorithm-3sum</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href= "/2020/02/28/daily-algorithm-triangle/" >daily-algorithm-triangle</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href= "/2020/02/27/daily-algorithm-word-break/" >daily-algorithm-word-break</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href= "/2020/02/26/daily-algorithm-best-time-to-buy-and-sell-stock/" >daily-algorithm-best-time-to-buy-and-sell-stock</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href= "/2020/02/26/daily-algorithm-invert-binary-tree/" >daily-algorithm-invert-binary-tree</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href= "/2020/02/24/daily-algorithm-find-medium-from-data-stream/" >daily-algorithm-find-medium-from-data-stream</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/22</span><a class="archive-post-title" href= "/2020/02/22/daily-algorithm-palindrome-linked-list/" >daily-algorithm-palindrome-linked-list</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/20</span><a class="archive-post-title" href= "/2020/02/20/daily-algorithm-LRU-cache/" >daily-algorithm-LRU-cache</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "/2020/02/19/daily-algorithm-valid-binary-search-tree/" >daily-algorithm-valid-binary-search-tree</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/18</span><a class="archive-post-title" href= "/2020/02/18/daily-algorithm-gray-code/" >daily-algorithm-gray-code</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "/2020/02/16/es6-generator-async-await/" >ES6) Generator & Async/Await</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span><a class="archive-post-title" href= "/2020/02/11/es6-iteration-for-of/" >ES6) Iteration을 우아하게 하는 법</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/2020/02/09/es6-symbol/" >ES6) Symbol을 Symbol답게 써보자</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/2020/02/02/es6-function/" >ES6) 함수형 프로그래밍을 위한 Lambda, Closure, Recursion</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/27</span><a class="archive-post-title" href= "/2020/01/27/es6-promise/" >ES6) Promise부터 함수형 프로그래밍까지</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2020/01/19/es6-module-system/" >ES6) module 시스템</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2020/01/19/es6-class/" >ES6) Class</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-argements-rest-spread/" >es6) 매개변수, rest parameter, spread 문법</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/es6-arrow-function/" >ES6) Arrow Function (화살표 함수)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/2019/12/16/how-to-optimize-mongodb-query-aggregate/" >mongodb aggregate 쿼리 최적화</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2019/12/03/blog-migration-from-jekyll-to-hexo/" >jekyll에서 hexo로 blog migration 변경기</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span><a class="archive-post-title" href= "/2019/10/20/Today-I-Learned-191020/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/Today-I-Learned-191018/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/Today-I-Learned-191017/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/Today-I-Learned-191016/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/Today-I-Learned-191015/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href= "/2019/10/14/Today-I-Learned-191014/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span><a class="archive-post-title" href= "/2019/10/13/Today-I-Learned-191013/" >TIL(Today I Learned)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/mongodb-local-seoul-2019/" >mongoDB.local seoul 2019에 참가</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/30</span><a class="archive-post-title" href= "/2019/08/30/making-github-blog-pages-with-jekyll/" >jekyll을 이용해서 github 블로그를 만들어보자</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/26</span><a class="archive-post-title" href= "/2019/08/26/mariaDB-root-password-settings-at-first/" >macOS에서 mariaDB 설정</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2019/08/22/configure-vscode-eslint-in-macOS/" >VS Code에서 eslint 인식 오류 문제 해결 (masOS)</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="typescript"><span class="iconfont-archer">&#xe606;</span>typescript</span>
+    
+        <span class="sidebar-tag-name" data-tags="mongodb"><span class="iconfont-archer">&#xe606;</span>mongodb</span>
+    
+        <span class="sidebar-tag-name" data-tags="nestjs"><span class="iconfont-archer">&#xe606;</span>nestjs</span>
+    
+        <span class="sidebar-tag-name" data-tags="typeorm"><span class="iconfont-archer">&#xe606;</span>typeorm</span>
+    
+        <span class="sidebar-tag-name" data-tags="TIL"><span class="iconfont-archer">&#xe606;</span>TIL</span>
+    
+        <span class="sidebar-tag-name" data-tags="webdev"><span class="iconfont-archer">&#xe606;</span>webdev</span>
+    
+        <span class="sidebar-tag-name" data-tags="eslint"><span class="iconfont-archer">&#xe606;</span>eslint</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="jekyll"><span class="iconfont-archer">&#xe606;</span>jekyll</span>
+    
+        <span class="sidebar-tag-name" data-tags="github"><span class="iconfont-archer">&#xe606;</span>github</span>
+    
+        <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="portfolio"><span class="iconfont-archer">&#xe606;</span>portfolio</span>
+    
+        <span class="sidebar-tag-name" data-tags="javascript"><span class="iconfont-archer">&#xe606;</span>javascript</span>
+    
+        <span class="sidebar-tag-name" data-tags="es6"><span class="iconfont-archer">&#xe606;</span>es6</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="mariadb"><span class="iconfont-archer">&#xe606;</span>mariadb</span>
+    
+        <span class="sidebar-tag-name" data-tags="sequelize"><span class="iconfont-archer">&#xe606;</span>sequelize</span>
+    
+        <span class="sidebar-tag-name" data-tags="functional-programming"><span class="iconfont-archer">&#xe606;</span>functional-programming</span>
+    
+        <span class="sidebar-tag-name" data-tags="algorithm"><span class="iconfont-archer">&#xe606;</span>algorithm</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="development"><span class="iconfont-archer">&#xe60a;</span>development</span>
+    
+        <span class="sidebar-category-name" data-categories="blog"><span class="iconfont-archer">&#xe60a;</span>blog</span>
+    
+        <span class="sidebar-category-name" data-categories="development/database"><span class="iconfont-archer">&#xe60a;</span>development/database</span>
+    
+        <span class="sidebar-category-name" data-categories="development/group-study"><span class="iconfont-archer">&#xe60a;</span>development/group-study</span>
+    
+        <span class="sidebar-category-name" data-categories="algorithm"><span class="iconfont-archer">&#xe60a;</span>algorithm</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "gonewbie"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
