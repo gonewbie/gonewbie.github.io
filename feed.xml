@@ -1,0 +1,164 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Sun, 08 Mar 2020 06:45:52 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-babel-webpack</guid>
+    <title>es6-babel-webpack</title>
+    <link>https://gonewbie.github.io/blog/es6-babel-webpack</link>
+    <description>모던 자바스크립트 개발 환경을 위한 Babel과 Webpack</description>
+    <pubDate>Sun, 08 Mar 2020 06:45:52 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-generator-async-await</guid>
+    <title>ES6) Generator &amp; Async/Await</title>
+    <link>https://gonewbie.github.io/blog/es6-generator-async-await</link>
+    <description>Generator 및 Async/Await에 대해 알아보자.</description>
+    <pubDate>Sun, 16 Feb 2020 14:42:18 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-iteration-for-of</guid>
+    <title>ES6) Iteration을 우아하게 하는 법</title>
+    <link>https://gonewbie.github.io/blog/es6-iteration-for-of</link>
+    <description>Iterator를 활용한 반복에 대해 알아보자.</description>
+    <pubDate>Tue, 11 Feb 2020 13:32:03 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-symbol</guid>
+    <title>ES6) Symbol을 Symbol답게 써보자</title>
+    <link>https://gonewbie.github.io/blog/es6-symbol</link>
+    <description>Symbol의 도입 배경과 특징 Well-known Symbol 등에 대해 알아보자.</description>
+    <pubDate>Sun, 09 Feb 2020 13:14:02 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-function</guid>
+    <title>ES6) 함수형 프로그래밍을 위한 Lambda, Closure, Recursion</title>
+    <link>https://gonewbie.github.io/blog/es6-function</link>
+    <description>ES6 함수</description>
+    <pubDate>Sun, 02 Feb 2020 14:30:30 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-promise</guid>
+    <title>ES6) Promise부터 함수형 프로그래밍까지</title>
+    <link>https://gonewbie.github.io/blog/es6-promise</link>
+    <description>ES6 Promise를 살펴보자.</description>
+    <pubDate>Mon, 27 Jan 2020 09:02:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-module-system</guid>
+    <title>ES6) module 시스템</title>
+    <link>https://gonewbie.github.io/blog/es6-module-system</link>
+    <description>ES6 모듈 시스템</description>
+    <pubDate>Sun, 19 Jan 2020 10:39:57 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-class</guid>
+    <title>ES6) Class</title>
+    <link>https://gonewbie.github.io/blog/es6-class</link>
+    <description>es6 class에 대해 알아보자.</description>
+    <pubDate>Sat, 18 Jan 2020 16:27:34 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-argements-rest-spread</guid>
+    <title>es6) 매개변수, rest parameter, spread 문법</title>
+    <link>https://gonewbie.github.io/blog/es6-argements-rest-spread</link>
+    <description>매개변수, rest parameter, spread 문법</description>
+    <pubDate>Sun, 12 Jan 2020 06:03:54 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-arrow-function</guid>
+    <title>ES6) Arrow Function (화살표 함수)</title>
+    <link>https://gonewbie.github.io/blog/es6-arrow-function</link>
+    <description>ES6의 화살표 함수에 대해 알아보자.</description>
+    <pubDate>Sat, 11 Jan 2020 17:17:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/blog-migration-from-jekyll-to-hexo</guid>
+    <title>jekyll에서 hexo로 blog migration 변경기</title>
+    <link>https://gonewbie.github.io/blog/blog-migration-from-jekyll-to-hexo</link>
+    <description>기존에 만들어두었던 블로그는 github에서 호스팅하는 jekyll을 기반으로 만들어져 있었다. 개발 내용을 필기할 블로그 보유를 목적으로 만들었기 때문에 기존에 개발 커뮤니티에서 jekyll을 기반으로 블로그를 만들었다는 글을 보고서 무작정 따라하여 블로그를 개설하였다. 블로그를 막상 개설하고 보니 생각치도 못한 문제가 발생하였다.</description>
+    <pubDate>Tue, 03 Dec 2019 13:51:06 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>hexo</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/mongodb-local-seoul-2019</guid>
+    <title>mongoDB.local seoul 2019에 참가</title>
+    <link>https://gonewbie.github.io/blog/mongodb-local-seoul-2019</link>
+    <description>2019년 09월 06일 진행된 Mongo DB.local Seoul 2019 행사에 참석하고 해당 프레젠테이션을 요약, 정리해보았다.</description>
+    <pubDate>Fri, 06 Sep 2019 00:03:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>mongodb</category><category>seminar</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/making-github-blog-pages-with-jekyll</guid>
+    <title>jekyll을 이용해서 github 블로그를 만들어보자</title>
+    <link>https://gonewbie.github.io/blog/making-github-blog-pages-with-jekyll</link>
+    <description>블로그를 만들고자 검색하던 도중, github 자체적으로 jekyll을 이용하여 정적 페이지를 만드는 것이 가능하다는 것을 알고 이를 적용하기 위한 과정을 적어보는 게시글이다.</description>
+    <pubDate>Fri, 30 Aug 2019 03:50:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>jekyll</category><category>github</category><category>blog</category><category>portfolio</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/mariaDB-root-password-settings-at-first</guid>
+    <title>macOS에서 mariaDB 설정</title>
+    <link>https://gonewbie.github.io/blog/mariaDB-root-password-settings-at-first</link>
+    <description>개인 프로젝트 진행을 위해서 RDB로 mariaDB를 설정하고 이를 기초 설정하는 과정에서 겪은 문제들을 남겨보았다.</description>
+    <pubDate>Mon, 26 Aug 2019 13:32:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>webdev</category><category>mariadb</category><category>sequelize</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/configure-vscode-eslint-in-macOS</guid>
+    <title>VS Code에서 eslint 인식 오류 문제 해결 (masOS)</title>
+    <link>https://gonewbie.github.io/blog/configure-vscode-eslint-in-macOS</link>
+    <description>최근에 개인프로젝트로 React를 프론트로 적용시키기 위해 강좌를 보면서 해당 강좌를 따라 진행하는 도중 VS Code 내에서 eslint 플러그인이 정상적으로 동작하지 않는 것을 확인하고 수정하는 과정이다.</description>
+    <pubDate>Thu, 22 Aug 2019 14:23:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>webdev</category><category>eslint</category><category>vscode</category>
+  </item>
+
+    </channel>
+  </rss>

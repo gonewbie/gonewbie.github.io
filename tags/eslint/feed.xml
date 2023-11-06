@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Thu, 22 Aug 2019 14:23:07 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/tags/eslint/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/configure-vscode-eslint-in-macOS</guid>
+    <title>VS Code에서 eslint 인식 오류 문제 해결 (masOS)</title>
+    <link>https://gonewbie.github.io/blog/configure-vscode-eslint-in-macOS</link>
+    <description>최근에 개인프로젝트로 React를 프론트로 적용시키기 위해 강좌를 보면서 해당 강좌를 따라 진행하는 도중 VS Code 내에서 eslint 플러그인이 정상적으로 동작하지 않는 것을 확인하고 수정하는 과정이다.</description>
+    <pubDate>Thu, 22 Aug 2019 14:23:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>webdev</category><category>eslint</category><category>vscode</category>
+  </item>
+
+    </channel>
+  </rss>

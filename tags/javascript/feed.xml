@@ -1,0 +1,114 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Sun, 12 Jan 2020 06:03:54 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/tags/javascript/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-argements-rest-spread</guid>
+    <title>es6) 매개변수, rest parameter, spread 문법</title>
+    <link>https://gonewbie.github.io/blog/es6-argements-rest-spread</link>
+    <description>매개변수, rest parameter, spread 문법</description>
+    <pubDate>Sun, 12 Jan 2020 06:03:54 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-arrow-function</guid>
+    <title>ES6) Arrow Function (화살표 함수)</title>
+    <link>https://gonewbie.github.io/blog/es6-arrow-function</link>
+    <description>ES6의 화살표 함수에 대해 알아보자.</description>
+    <pubDate>Sat, 11 Jan 2020 17:17:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-babel-webpack</guid>
+    <title>es6-babel-webpack</title>
+    <link>https://gonewbie.github.io/blog/es6-babel-webpack</link>
+    <description>모던 자바스크립트 개발 환경을 위한 Babel과 Webpack</description>
+    <pubDate>Sun, 08 Mar 2020 06:45:52 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-class</guid>
+    <title>ES6) Class</title>
+    <link>https://gonewbie.github.io/blog/es6-class</link>
+    <description>es6 class에 대해 알아보자.</description>
+    <pubDate>Sat, 18 Jan 2020 16:27:34 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-function</guid>
+    <title>ES6) 함수형 프로그래밍을 위한 Lambda, Closure, Recursion</title>
+    <link>https://gonewbie.github.io/blog/es6-function</link>
+    <description>ES6 함수</description>
+    <pubDate>Sun, 02 Feb 2020 14:30:30 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-generator-async-await</guid>
+    <title>ES6) Generator &amp; Async/Await</title>
+    <link>https://gonewbie.github.io/blog/es6-generator-async-await</link>
+    <description>Generator 및 Async/Await에 대해 알아보자.</description>
+    <pubDate>Sun, 16 Feb 2020 14:42:18 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-iteration-for-of</guid>
+    <title>ES6) Iteration을 우아하게 하는 법</title>
+    <link>https://gonewbie.github.io/blog/es6-iteration-for-of</link>
+    <description>Iterator를 활용한 반복에 대해 알아보자.</description>
+    <pubDate>Tue, 11 Feb 2020 13:32:03 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-module-system</guid>
+    <title>ES6) module 시스템</title>
+    <link>https://gonewbie.github.io/blog/es6-module-system</link>
+    <description>ES6 모듈 시스템</description>
+    <pubDate>Sun, 19 Jan 2020 10:39:57 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-promise</guid>
+    <title>ES6) Promise부터 함수형 프로그래밍까지</title>
+    <link>https://gonewbie.github.io/blog/es6-promise</link>
+    <description>ES6 Promise를 살펴보자.</description>
+    <pubDate>Mon, 27 Jan 2020 09:02:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-symbol</guid>
+    <title>ES6) Symbol을 Symbol답게 써보자</title>
+    <link>https://gonewbie.github.io/blog/es6-symbol</link>
+    <description>Symbol의 도입 배경과 특징 Well-known Symbol 등에 대해 알아보자.</description>
+    <pubDate>Sun, 09 Feb 2020 13:14:02 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>group-study</category>
+  </item>
+
+    </channel>
+  </rss>

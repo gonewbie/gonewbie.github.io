@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Fri, 30 Aug 2019 03:50:07 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/tags/blog/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/making-github-blog-pages-with-jekyll</guid>
+    <title>jekyll을 이용해서 github 블로그를 만들어보자</title>
+    <link>https://gonewbie.github.io/blog/making-github-blog-pages-with-jekyll</link>
+    <description>블로그를 만들고자 검색하던 도중, github 자체적으로 jekyll을 이용하여 정적 페이지를 만드는 것이 가능하다는 것을 알고 이를 적용하기 위한 과정을 적어보는 게시글이다.</description>
+    <pubDate>Fri, 30 Aug 2019 03:50:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>jekyll</category><category>github</category><category>blog</category><category>portfolio</category>
+  </item>
+
+    </channel>
+  </rss>

@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://gonewbie.github.io
+Sitemap: https://gonewbie.github.io/sitemap.xml

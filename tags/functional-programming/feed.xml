@@ -1,0 +1,54 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Sun, 02 Feb 2020 14:30:30 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/tags/functional-programming/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-function</guid>
+    <title>ES6) 함수형 프로그래밍을 위한 Lambda, Closure, Recursion</title>
+    <link>https://gonewbie.github.io/blog/es6-function</link>
+    <description>ES6 함수</description>
+    <pubDate>Sun, 02 Feb 2020 14:30:30 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-generator-async-await</guid>
+    <title>ES6) Generator &amp; Async/Await</title>
+    <link>https://gonewbie.github.io/blog/es6-generator-async-await</link>
+    <description>Generator 및 Async/Await에 대해 알아보자.</description>
+    <pubDate>Sun, 16 Feb 2020 14:42:18 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-iteration-for-of</guid>
+    <title>ES6) Iteration을 우아하게 하는 법</title>
+    <link>https://gonewbie.github.io/blog/es6-iteration-for-of</link>
+    <description>Iterator를 활용한 반복에 대해 알아보자.</description>
+    <pubDate>Tue, 11 Feb 2020 13:32:03 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/es6-promise</guid>
+    <title>ES6) Promise부터 함수형 프로그래밍까지</title>
+    <link>https://gonewbie.github.io/blog/es6-promise</link>
+    <description>ES6 Promise를 살펴보자.</description>
+    <pubDate>Mon, 27 Jan 2020 09:02:07 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>javascript</category><category>es6</category><category>functional-programming</category><category>group-study</category>
+  </item>
+
+    </channel>
+  </rss>
