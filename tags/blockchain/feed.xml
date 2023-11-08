@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Sun, 08 Mar 2020 06:45:52 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/tags/blockchain/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/project-nft-farm</guid>
+    <title>프로젝트 소개 - NFT Farm</title>
+    <link>https://gonewbie.github.io/blog/project-nft-farm</link>
+    <description>모던 자바스크립트 개발 환경을 위한 Babel과 Webpack</description>
+    <pubDate>Sun, 08 Mar 2020 06:45:52 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>blockchain</category><category>project</category>
+  </item>
+
+    </channel>
+  </rss>
