@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Wed, 08 Nov 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/tags/network/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/cs-network</guid>
+    <title>CS 기초 - Network</title>
+    <link>https://gonewbie.github.io/blog/cs-network</link>
+    <description>Network에 대해 알아보자</description>
+    <pubDate>Wed, 08 Nov 2023 00:00:00 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>cs</category><category>network</category>
+  </item>
+
+    </channel>
+  </rss>

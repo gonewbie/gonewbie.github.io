@@ -7,9 +7,19 @@
       <language>en-us</language>
       <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
       <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
-      <lastBuildDate>Sun, 08 Mar 2020 06:45:52 GMT</lastBuildDate>
+      <lastBuildDate>Wed, 08 Nov 2023 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://gonewbie.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://gonewbie.github.io/blog/cs-network</guid>
+    <title>CS 기초 - Network</title>
+    <link>https://gonewbie.github.io/blog/cs-network</link>
+    <description>Network에 대해 알아보자</description>
+    <pubDate>Wed, 08 Nov 2023 00:00:00 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>cs</category><category>network</category>
+  </item>
+
   <item>
     <guid>https://gonewbie.github.io/blog/es6-babel-webpack</guid>
     <title>es6-babel-webpack</title>
@@ -18,16 +28,6 @@
     <pubDate>Sun, 08 Mar 2020 06:45:52 GMT</pubDate>
     <author>gounewbie@gmail.com (Gonewbie)</author>
     <category>javascript</category><category>es6</category><category>group-study</category>
-  </item>
-
-  <item>
-    <guid>https://gonewbie.github.io/blog/project-nft-farm</guid>
-    <title>프로젝트 소개 - NFT Farm</title>
-    <link>https://gonewbie.github.io/blog/project-nft-farm</link>
-    <description>모던 자바스크립트 개발 환경을 위한 Babel과 Webpack</description>
-    <pubDate>Sun, 08 Mar 2020 06:45:52 GMT</pubDate>
-    <author>gounewbie@gmail.com (Gonewbie)</author>
-    <category>blockchain</category><category>project</category>
   </item>
 
   <item>
