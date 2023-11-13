@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://gonewbie.github.io/</loc>
-<lastmod>2023-11-09</lastmod>
+<lastmod>2023-11-13</lastmod>
 </url>
 <url>
 <loc>https://gonewbie.github.io/blog</loc>
-<lastmod>2023-11-09</lastmod>
+<lastmod>2023-11-13</lastmod>
 </url>
 <url>
 <loc>https://gonewbie.github.io/projects</loc>
-<lastmod>2023-11-09</lastmod>
+<lastmod>2023-11-13</lastmod>
 </url>
 <url>
 <loc>https://gonewbie.github.io/tags</loc>
-<lastmod>2023-11-09</lastmod>
+<lastmod>2023-11-13</lastmod>
 </url>
 <url>
 <loc>https://gonewbie.github.io/blog/blog-migration-from-jekyll-to-hexo</loc>
@@ -23,10 +23,6 @@
 <url>
 <loc>https://gonewbie.github.io/blog/configure-vscode-eslint-in-macOS</loc>
 <lastmod>2019-08-22T14:23:07.000Z</lastmod>
-</url>
-<url>
-<loc>https://gonewbie.github.io/blog/cs-network</loc>
-<lastmod>2023-11-08T00:00:00.000Z</lastmod>
 </url>
 <url>
 <loc>https://gonewbie.github.io/blog/es6-argements-rest-spread</loc>
@@ -67,6 +63,10 @@
 <url>
 <loc>https://gonewbie.github.io/blog/es6-symbol</loc>
 <lastmod>2020-02-09T13:14:02.000Z</lastmod>
+</url>
+<url>
+<loc>https://gonewbie.github.io/blog/http-tcp-and-tls</loc>
+<lastmod>2023-11-08T00:00:00.000Z</lastmod>
 </url>
 <url>
 <loc>https://gonewbie.github.io/blog/making-github-blog-pages-with-jekyll</loc>
