@@ -11,13 +11,13 @@
       <atom:link href="https://gonewbie.github.io/feed.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://gonewbie.github.io/blog/cs-network</guid>
-    <title>CS 기초 - Network</title>
-    <link>https://gonewbie.github.io/blog/cs-network</link>
-    <description>Network에 대해 알아보자</description>
+    <guid>https://gonewbie.github.io/blog/http-tcp-and-tls</guid>
+    <title>HTTP와 TCP/IP, HTTPS</title>
+    <link>https://gonewbie.github.io/blog/http-tcp-and-tls</link>
+    <description>HTTP와 TCP/IP, HTTPS에 대해 알아보자</description>
     <pubDate>Wed, 08 Nov 2023 00:00:00 GMT</pubDate>
     <author>gounewbie@gmail.com (Gonewbie)</author>
-    <category>cs</category><category>network</category>
+    <category>cs</category><category>network</category><category>tcp</category><category>http</category><category>tls</category>
   </item>
 
   <item>
