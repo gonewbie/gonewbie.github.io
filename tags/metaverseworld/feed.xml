@@ -1,0 +1,34 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Gonewbie&#39;s notepad</title>
+      <link>https://gonewbie.github.io/blog</link>
+      <description>A blog created with Next.js and Tailwind.css</description>
+      <language>en-us</language>
+      <managingEditor>gounewbie@gmail.com (Gonewbie)</managingEditor>
+      <webMaster>gounewbie@gmail.com (Gonewbie)</webMaster>
+      <lastBuildDate>Sun, 31 Dec 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://gonewbie.github.io/tags/metaverseworld/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://gonewbie.github.io/blog/micro-services-</guid>
+    <title>바닥부터 다시 쌓은 서비스 - MSA 아키텍처 도입기</title>
+    <link>https://gonewbie.github.io/blog/micro-services-</link>
+    <description>기존 아키텍처의 문제점과 이를 개선하기 위한 MSA 아키텍처 구축 방법에 대해 알아보자.</description>
+    <pubDate>Sun, 31 Dec 2023 00:00:00 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>microservices</category><category>msa</category><category>aws</category><category>metaverseworld</category>
+  </item>
+
+  <item>
+    <guid>https://gonewbie.github.io/blog/micro-services-steps</guid>
+    <title>바닥부터 다시 쌓은 서비스 - MSA 아키텍처 도입기</title>
+    <link>https://gonewbie.github.io/blog/micro-services-steps</link>
+    <description>기존 아키텍처의 문제점과 이를 개선하기 위한 MSA 아키텍처 구축 방법에 대해 알아보자.</description>
+    <pubDate>Sun, 31 Dec 2023 00:00:00 GMT</pubDate>
+    <author>gounewbie@gmail.com (Gonewbie)</author>
+    <category>microservices</category><category>msa</category><category>aws</category><category>metaverseworld</category>
+  </item>
+
+    </channel>
+  </rss>
